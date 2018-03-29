@@ -1,5 +1,11 @@
+---
+title: "Python: where to start"
+draft: false
+author: Samantha G. Zeitlin
+---
 
-I've spent the last year learning Python. A lot of people have asked me where to begin. Here's a guide to what I found useful (or not) and why.
+
+I spent about a year learning Python when I first got back into coding. A lot of people have asked me where to begin. Here's a guide to what I found useful (or not) and why.
 
 
 ----------

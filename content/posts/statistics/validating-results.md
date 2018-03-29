@@ -1,3 +1,10 @@
+---
+title: "Validating Results"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 I don't believe truth is a finite value. Truth is what we know right now. Every ten years or so, a major discovery gets overturned. Scientists are just people, and we're wrong a lot. 
 
 So one of the scariest things about doing research, or predictions, is trying to convince yourself, and other people, that what you think you've discovered is 'real'. 

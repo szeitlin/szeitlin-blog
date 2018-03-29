@@ -1,4 +1,10 @@
-Last month, I was looking for some fun time series data to hack on. Turns out [bike computers][1]  provide a great way to interface between your friends' unfounded modesty and their actual rides. 
+---
+title: "Biking data from XML to analysis, part 1"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+I was looking for some fun time series data to hack on. Turns out [bike computers][1]  provide a great way to interface between your friends' unfounded modesty and their actual rides. 
 
 One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He's also relatively consistent, which meant the data he gave me wasn't too terribly noisy. But everyone forgets to turn on the computer sometimes, or forgets to charge the battery.
 

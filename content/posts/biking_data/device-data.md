@@ -1,3 +1,10 @@
+---
+title: "Working with device data"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 In continuing my series on [investigating bike data][1], I ran into some interesting aspects of working with device data. 
 
 I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what's working and what's not. 

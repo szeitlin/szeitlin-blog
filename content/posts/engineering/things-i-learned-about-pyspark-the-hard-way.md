@@ -1,3 +1,10 @@
+---
+title: "Things I learned about Pyspark the hard way"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 Why Spark?
 ----------
 

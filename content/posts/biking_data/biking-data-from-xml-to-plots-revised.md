@@ -1,3 +1,11 @@
+---
+title: "Biking data from XML to analysis, revised"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+
 *Am I getting slower every day?* 
 
 If you've ever been a bike commuter, you've probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:

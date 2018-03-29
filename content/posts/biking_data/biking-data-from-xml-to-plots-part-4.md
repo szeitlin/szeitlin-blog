@@ -1,3 +1,10 @@
+---
+title: "Biking data from XML to analysis, part 4"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn't care about real-life things like time zones. We mostly just cared about calculating time elapsed. 
 
 ...tick...tick...tick

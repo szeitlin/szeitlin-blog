@@ -1,3 +1,9 @@
+---
+title: "Biking data from XML to analysis, part 3"
+draft: false
+author: Samantha G. Zeitlin
+---
+
 One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do. 
 
 First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL. 

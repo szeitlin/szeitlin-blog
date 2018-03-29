@@ -1,3 +1,13 @@
+---
+title: "Airflow"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+# Airflow for hands-off ETL
+-----
+
 Almost exactly a year ago, I joined [Yahoo][1], which more recently became [Oath][2]. 
 
 The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data. 

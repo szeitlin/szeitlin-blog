@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>My New Hugo Site </title>
+    <title> </title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -51,7 +51,7 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
 
 
 
-<meta itemprop="wordCount" content="1008">
+<meta itemprop="wordCount" content="1110">
 
 
 
@@ -72,7 +72,7 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="http://example.org/" class="f3 fw2 hover-white no-underline white-90 dib">
-      My New Hugo Site
+      
     </a>
     <div class="flex-l items-center">
       
@@ -147,9 +147,7 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
 
 <h2 id="some-tips-if-you-re-going-to-use-airflow">Some tips if you&rsquo;re going to use Airflow</h2>
 
-<ul>
-<li>### Make your jobs idempotent if possible ###</li>
-</ul>
+<h3 id="make-your-jobs-idempotent-if-possible">Make your jobs idempotent if possible</h3>
 
 <p>My team has a couple different types of tables that we load into Redshift. One is the type we call &lsquo;metadata&rsquo;, which is typically just a simple mapping that doesn&rsquo;t change very often. For this type of table, when it does change, it&rsquo;s important to drop the old table and re-create it from scratch. This is easier to manage with separate tasks for each SQL step, so the DAG has the following steps:</p>
 
@@ -159,9 +157,7 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
 
 <p>The other kind of table we have is an event table, and those are loaded with fresh data every day. We retain the data for 3 days before we start running out of space on the Redshift cluster. This kind of table doesn&rsquo;t really need a drop_old_table step, because the table name includes the date (which makes it easier to find the table you want when you&rsquo;re running queries). However, when we create these tables, we still want to make sure we don&rsquo;t create duplicates, so in the create step we check to see if the table already exists.</p>
 
-<ul>
-<li>### Get AIRFLOW_HOME depending on where you&rsquo;re running ###</li>
-</ul>
+<h3 id="get-airflow-home-depending-on-where-you-re-running">Get AIRFLOW_HOME depending on where you&rsquo;re running</h3>
 
 <p>If you want a really stable build that requires the least amount of hands-on maintenance, do yourself a favor and &lsquo;productionize&rsquo; your setup. That means you&rsquo;ll want to run Airflow in at least 3 places:</p>
 
@@ -174,90 +170,83 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
 <p>Note that Airflow doesn&rsquo;t make this easy, so I wrote a little helper script to make sure Airflow has the right configuration files and is able to find the DAGs, both of which are dependent on using the correct AIRFLOW_HOME environment variable.</p>
 
 <p>Here&rsquo;s the TL;DR:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#If AIRFLOW_HOME environment variable doesn’t exist, it defaults:</span>
+    os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AIRFLOW_HOME&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;~/airflow&#39;</span>)
 
-<p>[code lang=&ldquo;python&rdquo;]
-    #If AIRFLOW_HOME environment variable doesn’t exist, it defaults:
-        os.getenv(&lsquo;AIRFLOW_HOME&rsquo;, &lsquo;~/airflow&rsquo;)</p>
+<span style="color:#75715e">#It’s really useful to always check where the code is running:</span>
+    homedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;HOME&#39;</span>)
 
-<pre><code>#It’s really useful to always check where the code is running:
-    homedir = os.getenv('HOME')
+<span style="color:#75715e">#If it’s on Jenkins, there’s an environment variable that gives you the path for that:</span>
+    jenkins_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;JENKINS_HOME&#39;</span>, None)
 
-#If it’s on Jenkins, there’s an environment variable that gives you the path for that:
-    jenkins_path = os.getenv('JENKINS_HOME', None)
+<span style="color:#75715e">#In the Jenkinsfile (without Docker), we’re doing this: </span>
+    withEnv([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AIRFLOW_HOME=/br/airflow&#39;</span>])
+    cp <span style="color:#f92672">-</span>r <span style="color:#960050;background-color:#1e0010">$</span>PWD<span style="color:#f92672">/</span>dags <span style="color:#960050;background-color:#1e0010">$</span>AIRFLOW_HOME<span style="color:#f92672">/</span>
 
-#In the Jenkinsfile (without Docker), we’re doing this: 
-    withEnv(['AIRFLOW_HOME=/br/airflow'])
-    cp -r $PWD/dags $AIRFLOW_HOME/
-
-#If you’re running tests locally, there’s a helper that I stole from inside Airflow’s guts:
-    import airflow.configuration as conf
-    conf.load_test_config()
-    os.environ['TEST_CONFIG_FILE'] = conf.TEST_CONFIG_FILE
-</code></pre>
-
-<p>[/code]</p>
-
-<ul>
-<li>### Write unit tests for your Operators and your DAGs ###</li>
-</ul>
+<span style="color:#75715e">#If you’re running tests locally, there’s a helper that I stole from inside Airflow’s guts:</span>
+    <span style="color:#f92672">import</span> airflow.configuration <span style="color:#f92672">as</span> conf
+    conf<span style="color:#f92672">.</span>load_test_config()
+    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;TEST_CONFIG_FILE&#39;</span>] <span style="color:#f92672">=</span> conf<span style="color:#f92672">.</span>TEST_CONFIG_FILE</code></pre></div>
+<h3 id="write-unit-tests-for-your-operators-and-your-dags">Write unit tests for your Operators and your DAGs</h3>
 
 <p>I hadn&rsquo;t seen anyone doing this for Airflow, but I write tests for all my python code, so why should Airflow be any different?</p>
 
 <p>It&rsquo;s a little unintuitive, because Airflow DAG files are not like regular python files. DAG objects have to be at the top level, so the way I got around this was to grab the dag file and then get each of the task objects as attributes.</p>
 
 <p>I wrote the tests for the Operators so that they could be easily re-used, since most of our DAGs have similar tasks. This also lets us use unit tests to enforce best practices.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestPostgresOperators</span>:
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Not meant to be used alone
+</span><span style="color:#e6db74">    For use within specific dag test file
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#a6e22e">@classmethod</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(cls, dagfile):
+        cls<span style="color:#f92672">.</span>dagfile <span style="color:#f92672">=</span> dagfile
 
-<p>[code lang=&ldquo;python&rdquo;]
-class TestPostgresOperators:
-    &ldquo;&rdquo;&rdquo;
-    Not meant to be used alone
-    For use within specific dag test file
-    &ldquo;&rdquo;&rdquo;
-    @classmethod
-    def setUp(cls, dagfile):
-        cls.dagfile = dagfile</p>
-
-<pre><code>def test_droptable(self, taskname='dropTable'):
-    '''
-    validate fields here
-    check retries number
-    :param taskname: str
-
-    '''
-   drop = getattr(self.dagfile, taskname)
-   assert(0 &lt;= drop.retries &lt;= 5)
-   assert(drop.postgres_conn_id=='redshift')
-</code></pre>
-
-<p>[/code]</p>
-
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_droptable</span>(self, taskname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;dropTable&#39;</span>):
+        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">        validate fields here
+</span><span style="color:#e6db74">        check retries number
+</span><span style="color:#e6db74">        :param taskname: str
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+       drop <span style="color:#f92672">=</span> getattr(self<span style="color:#f92672">.</span>dagfile, taskname)
+       <span style="color:#66d9ef">assert</span>(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> drop<span style="color:#f92672">.</span>retries <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>)
+       <span style="color:#66d9ef">assert</span>(drop<span style="color:#f92672">.</span>postgres_conn_id<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;redshift&#39;</span>)</code></pre></div>
 <p>Then these &lsquo;abstract tests&rsquo; get instantiated in the test file for a particular DAG, like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> advertisers_v2
+<span style="color:#f92672">from</span> test_dag_instantiation <span style="color:#f92672">import</span> TestDAGInstantiation
+<span style="color:#f92672">from</span> conftest <span style="color:#f92672">import</span> unittest_config
 
-<p>[code lang=&ldquo;python&rdquo;]
-import advertisers_v2
-from test_dag_instantiation import TestDAGInstantiation
-from conftest import unittest_config</p>
+<span style="color:#f92672">from</span> test_postgres_operators <span style="color:#f92672">import</span> TestPostgresOperators
+<span style="color:#f92672">from</span> test_mysql_to_redshift <span style="color:#f92672">import</span> TestMySQLtoRedshiftOperator
 
-<p>from test_postgres_operators import TestPostgresOperators
-from test_mysql_to_redshift import TestMySQLtoRedshiftOperator</p>
+mydag <span style="color:#f92672">=</span> TestDAGInstantiation()
+mydag<span style="color:#f92672">.</span>setUp(advertisers_v2,unittest_config<span style="color:#f92672">=</span>unittest_config)
+mydag<span style="color:#f92672">.</span>test_dagname()
+mydag<span style="color:#f92672">.</span>test_default_args()
 
-<p>mydag = TestDAGInstantiation()
-mydag.setUp(advertisers_v2,unittest_config=unittest_config)
-mydag.test_dagname()
-mydag.test_default_args()</p>
+postgres_tests <span style="color:#f92672">=</span> TestPostgresOperators()
+postgres_tests<span style="color:#f92672">.</span>setUp(advertisers_v2)
+postgres_tests<span style="color:#f92672">.</span>test_droptable()
+postgres_tests<span style="color:#f92672">.</span>test_createtable()
 
-<p>postgres_tests = TestPostgresOperators()
-postgres_tests.setUp(advertisers_v2)
-postgres_tests.test_droptable()
-postgres_tests.test_createtable()</p>
-
-<p>mysql_to_redshift_tests = TestMySQLtoRedshiftOperator()
-mysql_to_redshift_tests.setUp(advertisers_v2)
-mysql_to_redshift_tests.test_importstep()
-[/code]</p>
-
+mysql_to_redshift_tests <span style="color:#f92672">=</span> TestMySQLtoRedshiftOperator()
+mysql_to_redshift_tests<span style="color:#f92672">.</span>setUp(advertisers_v2)
+mysql_to_redshift_tests<span style="color:#f92672">.</span>test_importstep()</code></pre></div>
 <p>Doing it this way makes it ridiculously easy to set up tests, and they can still be parameterized however you want, to test customizations as needed.</p>
 
+<h3 id="some-other-fun-tidbits">Some other fun tidbits</h3>
+
+<p>If you&rsquo;re using XCOMs, the docs are a little bit out of date. This took me a while to figure out, so hopefully it helps save someone else the same pain. Note that this is for version 1.8 (not sure if anything is changing with XCOMs in the newer versions).</p>
+
+<p>The xcom values are actually stored in the <code>context</code> object, so when you go to push them you have to explicitly grab the task instance object to make that work.</p>
+
+<p>Inside the task where you&rsquo;re pushing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">task_instance <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;task_instance&#39;</span>)
+task_instance<span style="color:#f92672">.</span>xcom_push(name_of_xcom_key, name_of_xcom_value)</code></pre></div>
+<p>And then inside the task where you&rsquo;re pulling, you can use the jinja macro with the key name:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;{{ task_instance.xcom_pull(task_ids=name_of_task_that_pushed, key=name_of_xcom_key) }}&#34;</span></code></pre></div>
       </div>
     </article>
     <aside class="ph3 mt2 mt6-ns">
@@ -496,7 +485,7 @@ mysql_to_redshift_tests.test_importstep()
     <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
-    &copy; 2018 My New Hugo Site
+    &copy; 2018 
   </a>
   
 

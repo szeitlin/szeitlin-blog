@@ -1,4 +1,11 @@
-Recently, I've done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set. 
+---
+title: "Probability binning: simple and fast"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+Over the years, I've done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set. 
 
 One of the first things I usually do is make a bunch of histograms. Histograms are great because it's an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise. 
 

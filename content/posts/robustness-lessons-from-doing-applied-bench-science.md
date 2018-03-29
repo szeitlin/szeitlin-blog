@@ -1,3 +1,10 @@
+---
+title: "Robustness: lessons from applied bench science"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 Inspired by a couple of [great posts by Michael Gibson][1], I want to talk about what robustness means to me, as someone coming from a science background. 
 
 I started working in a "wetlab" doing benchwork cancer research when I was in high school (I was 16). I learned early on that mistakes are:

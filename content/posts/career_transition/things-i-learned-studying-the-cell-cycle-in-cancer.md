@@ -1,3 +1,10 @@
+---
+title: "Things I learned studying the cell cycle in cancer"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 I know that from the outside, 'science' seems like The Place Where Scientists Live. But 'science' is not a monolithic, homogenous thing. Not all scientists are the same. 
 
 

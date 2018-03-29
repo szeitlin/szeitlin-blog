@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>My New Hugo Site </title>
+    <title> </title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -72,7 +72,7 @@
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="http://example.org/" class="f3 fw2 hover-white no-underline white-90 dib">
-      My New Hugo Site
+      
     </a>
     <div class="flex-l items-center">
       
@@ -120,20 +120,14 @@ edit your code, or even just use your code, should be able to refer to your test
 <p>• Think of tests as the way you&rsquo;ll make sure things don&rsquo;t break later when you have to refactor.</p>
 
 <p>• It&rsquo;s perfectly okay to write the name of the test first, and then figure out how to write the rest later. In fact, sometimes it helps to write the test so that you know it will fail, and then use that to write better code. That&rsquo;s <em>test-driven development</em>.</p>
-
-<pre><code class="language-python">    def test_whether_examples_return_likes(self):
-        pass 
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_whether_examples_return_likes</span>(self):
+        <span style="color:#66d9ef">pass</span> </code></pre></div>
 <p>• <strong>Give your test a MEANINGFUL name.</strong></p>
 
 <p>The name should say exactly what the expected behavior is.</p>
-
-<pre><code class="language-python">    def test_savings_meets_minimum_requirement(self):
-        savings.pct = calculate_savings()
-        self.assertGreater(savings.pct, 5)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_savings_meets_minimum_requirement</span>(self):
+        savings<span style="color:#f92672">.</span>pct <span style="color:#f92672">=</span> calculate_savings()
+        self<span style="color:#f92672">.</span>assertGreater(savings<span style="color:#f92672">.</span>pct, <span style="color:#ae81ff">5</span>)</code></pre></div>
 <p>• <strong>Tests should be independent of each other.</strong></p>
 
 <p>If you&rsquo;re thinking about writing a test, first check whether a similar test already exists. Don&rsquo;t duplicate existing tests, because that can create confusion when looking at how many tests fail (creating the impression that things are more broken than they actually are).</p>
@@ -141,62 +135,44 @@ edit your code, or even just use your code, should be able to refer to your test
 <h2 id="what-to-test">What to Test</h2>
 
 <p>• <strong>Start with user stories</strong>. What do they expect to see? Test for that.</p>
-
-<pre><code class="language-python">        def test_user_visits_landing_page(self): 
-            self.assertIn(title, landing_page)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_user_visits_landing_page</span>(self): 
+            self<span style="color:#f92672">.</span>assertIn(title, landing_page)</code></pre></div>
 <p>• Confirm expected data types</p>
-
-<pre><code class="language-python">    def test_answer_dict_creation(self):
-            named = answer_dict()
-            self.assertTrue(isinstance(named, dict))
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_answer_dict_creation</span>(self):
+            named <span style="color:#f92672">=</span> answer_dict()
+            self<span style="color:#f92672">.</span>assertTrue(isinstance(named, dict))</code></pre></div>
 <p>• Confirm expected attributes on objects</p>
-
-<pre><code class="language-python">    def test_profile1_has_no_names(self):
-            self.assertEqual(len(profile1.names), 0)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_profile1_has_no_names</span>(self):
+            self<span style="color:#f92672">.</span>assertEqual(len(profile1<span style="color:#f92672">.</span>names), <span style="color:#ae81ff">0</span>)
     
-        def test_profile2_has_three_names(self):
-            self.assertEqual(len(profile2.names), 3)
-</code></pre>
-
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_profile2_has_three_names</span>(self):
+            self<span style="color:#f92672">.</span>assertEqual(len(profile2<span style="color:#f92672">.</span>names), <span style="color:#ae81ff">3</span>)</code></pre></div>
 <p>• <strong>Features</strong> you haven&rsquo;t finished writing yet (Test-Driven Development)</p>
-
-<pre><code class="language-python">    def test_user_horoscope_is_accurate(self):
-            prediction = None
-            self.assertEqual(reality, prediction)
-        
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_user_horoscope_is_accurate</span>(self):
+            prediction <span style="color:#f92672">=</span> None
+            self<span style="color:#f92672">.</span>assertEqual(reality, prediction)
+        </code></pre></div>
 <p>It&rsquo;s okay (and faster) to group assertions together in one test if they all refer to the same object:</p>
-
-<pre><code class="language-python">    for name, lookup in get_answers(question):
-        self.assertTrue(isinstance(name, str))
-        self.assertTrue(isinstance(lookup, dict))
-        self.assertTrue(isinstance(lookup[name], pd.DataFrame))
-        self.assertIn('answer_name', lookup[name].columns)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">for</span> name, lookup <span style="color:#f92672">in</span> get_answers(question):
+        self<span style="color:#f92672">.</span>assertTrue(isinstance(name, str))
+        self<span style="color:#f92672">.</span>assertTrue(isinstance(lookup, dict))
+        self<span style="color:#f92672">.</span>assertTrue(isinstance(lookup[name], pd<span style="color:#f92672">.</span>DataFrame))
+        self<span style="color:#f92672">.</span>assertIn(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;answer_name&#39;</span>, lookup[name]<span style="color:#f92672">.</span>columns)</code></pre></div>
 <p>• <strong>Test pipelines</strong> sequentially and swap in positive controls for all variables except the one you&rsquo;re testing. Then in the final tests, test the whole pipeline and use only test data. You might want to do this for more complicated features. It ends up looking something like this:</p>
-
-<pre><code class="language-python">    def test_query_returns_objects(self):
-            actual_obj_list = query()
-            self.assertEqual(set(expected_obj_list), set(actual_obj_list))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_query_returns_objects</span>(self):
+            actual_obj_list <span style="color:#f92672">=</span> query()
+            self<span style="color:#f92672">.</span>assertEqual(set(expected_obj_list), set(actual_obj_list))
     
-        def test_make_dataframes_from_query_objects(self):
-            expected_obj_list = query()
-            query_obj_dataframe= pd.DataFrame.from_records(expected_obj_list.values())
-            self.assertTrue(isinstance(query_obj_dataframe, pd.Dataframe))
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_make_dataframes_from_query_objects</span>(self):
+            expected_obj_list <span style="color:#f92672">=</span> query()
+            query_obj_dataframe<span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame<span style="color:#f92672">.</span>from_records(expected_obj_list<span style="color:#f92672">.</span>values())
+            self<span style="color:#f92672">.</span>assertTrue(isinstance(query_obj_dataframe, pd<span style="color:#f92672">.</span>Dataframe))
    
-        def test_query_returns_objects_and_makes_dataframes(self):
-            actual_obj_list = query()
-            query_obj_dataframe= pd.DataFrame.from_records(actual_obj_list.values())
-            self.assertTrue(isinstance(query_obj_dataframe, pd.Dataframe))
-            self.assertIn('total success', query_obj_dataframe.columns)
-</code></pre>
-
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_query_returns_objects_and_makes_dataframes</span>(self):
+            actual_obj_list <span style="color:#f92672">=</span> query()
+            query_obj_dataframe<span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame<span style="color:#f92672">.</span>from_records(actual_obj_list<span style="color:#f92672">.</span>values())
+            self<span style="color:#f92672">.</span>assertTrue(isinstance(query_obj_dataframe, pd<span style="color:#f92672">.</span>Dataframe))
+            self<span style="color:#f92672">.</span>assertIn(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;total success&#39;</span>, query_obj_dataframe<span style="color:#f92672">.</span>columns)</code></pre></div>
 <p>•<strong>Write tests for how to handle expected obstacles and failures</strong></p>
 
 <p>Write tests for things like &ldquo;test_data_cleaning&rdquo; and &ldquo;test_handle_missing_values&rdquo;. Don&rsquo;t expect to rely on inserting a debugger every time something breaks. If the same piece of code breaks more than once, you&rsquo;ve already wasted time by not writing a test.</p>
@@ -210,21 +186,15 @@ edit your code, or even just use your code, should be able to refer to your test
 <p>• It&rsquo;s generally considered poor form to put assertions in main code. Assertions are best used in testing. If you want to check for something in the code, use an if statement. However, if a condition is expected to only occur if something has gone horribly wrong, you should raise a custom exception. This can be tremendously helpful for debugging, for example, if database queries are failing.</p>
 
 <p>Don&rsquo;t do this:</p>
-
-<pre><code class="language-python">    def assertNoErrors(self, resp, msg=''):
-        return self.assertEqual(len(resp['messages']['error']), 0, msg)
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assertNoErrors</span>(self, resp, msg<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;</span>):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>assertEqual(len(resp[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;messages&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;error&#39;</span>]), <span style="color:#ae81ff">0</span>, msg)</code></pre></div>
 <p>Better:</p>
-
-<pre><code class="language-python">    def assertNoErrors(self, resp, msg=''):
-        try:
-        self.assertEqual(len(resp['messages']['error']), 0)
-        except AssertionError:
-            return resp['messages']['error'] 
-            
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assertNoErrors</span>(self, resp, msg<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;</span>):
+        <span style="color:#66d9ef">try</span>:
+        self<span style="color:#f92672">.</span>assertEqual(len(resp[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;messages&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;error&#39;</span>]), <span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">AssertionError</span>:
+            <span style="color:#66d9ef">return</span> resp[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;messages&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;error&#39;</span>] 
+            </code></pre></div>
 <p><strong>Running tests</strong></p>
 
 <ol>
@@ -472,7 +442,7 @@ edit your code, or even just use your code, should be able to refer to your test
     <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
-    &copy; 2018 My New Hugo Site
+    &copy; 2018 
   </a>
   
 

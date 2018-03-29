@@ -1,3 +1,11 @@
+---
+title: "FAQ: why and how I learned to code"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+
 A lot of people have asked me why I'm not working in academia or biotech, how I learned to code, or [how I got into data science][1]. Here are some answers to some of those questions. 
 
 > Are you sure you wouldn't rather be in academia? 

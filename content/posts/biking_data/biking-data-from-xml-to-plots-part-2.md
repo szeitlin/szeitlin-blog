@@ -1,3 +1,10 @@
+---
+title: "Biking data from XML to analysis, part 2"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot. 
 
 **Non-obvious nuances of pandas datetime objects and indexes.**

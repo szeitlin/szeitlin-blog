@@ -1,4 +1,13 @@
-Lately I've been attending a lot of technical (read: software) talks. And I recently attended [PyData][1], which was held at Facebook. I've noticed at all of these events that the quality of presentations varies widely.  
+---
+title: "Tips on giving presentations"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+
+Over the years, I've attended a lot of technical (read: software) talks. Once upon a time, I attended [PyData][1], at Facebook. 
+I've noticed at all of these events that the quality of presentations varies widely.  
 
 ----------
 
