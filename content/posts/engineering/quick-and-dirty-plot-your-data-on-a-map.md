@@ -35,7 +35,7 @@ To find the zipcodes for the data points in my dataframe, I just wanted to match
 
 Essentially, this can be done in a one-line [join][4]. Pandas now has this built in, but it helps to understand how it works in SQL because the arguments are that same style. 
 
-[code lang="python"]
+```python
 
 zips = pandas.read_csv("zipcode.csv")
 
@@ -43,7 +43,7 @@ zippier = zips[['zip', 'city', 'state', 'latitude', 'longitude']]
 
 mappable = pandas.merge(mydata, zippier, how='left', left_on='ZipCode', right_on='zip', sort=False)
 
-[/code]
+```
 
 ----------
 ## Divvying up the data: High, Medium, Low ##
@@ -52,8 +52,7 @@ I played around with different ways to do this. Quartiles and terciles are prett
 
 If your data is not a normal distribution, however, it might make more sense to set up your own thresholds to display more meaningful segments that actually correspond to 'high' vs. 'low'. Ultimately, this was more meaningful for some of the variables I was examining. This is why I always look at histograms before I do anything else. 
 
-[code lang="python"]
-
+```python
 quartiles = pandas.qcut(df['mycolumn'], [0, .25, .5, .75, 1])
 
 #sometimes useful to check the counts to make sure this worked as expected:
@@ -61,14 +60,14 @@ quartiles_counts = pandas.value_counts(quartiles)
 
 #another way to do the divvying
 terciles = pandas.qcut(df['othercolumn'], 3, retbins=True, labels=['low', 'middle', 'high'])
-[/code]
+```
 
 ----------
 ## Assigning colors to groups ##
 
 Hexadecimal time! 
 
-If you've ever seen [my old website][5], you'll immediately know: it's not a secret that I love color. 
+If you ever saw [my old website][5], you'll immediately know: it's not a secret that I love color. 
 
 So I was mildly frustrated when I was talking to a designer who was very concerned about whether there might be colorblind people looking at the maps I was making. 
 
@@ -76,8 +75,7 @@ Ultimately, I looked at a variety of [color palettes][6], and chose to use maxim
 
 Having picked the colors I wanted, I had to assign them to the appropriate segments of the data. First, I made a dictionary with the flags and the colors. Then I wrote a 1-line function to match the values. 
 
-[code lang="python"]
-
+```python
 color_codes = {'low':'660000', 'middle':'990000', 'high':'FF0000'}
 
 def color_picker(terciles, color_codes):
@@ -93,15 +91,14 @@ def color_picker(terciles, color_codes):
     return [color_codes.get(x) for x in terciles]
 
 df['colors'] = color_picker(df['terciles'], color_codes)
-[/code]
+```
 
 ----------
 ## Format labels ##
 
 I wanted the markers on my map to be labeled, so when I click on them I can see what they are. Formatting the labels turned out to be a bit of a pain in the neck, so I just hacked something together. The trick ended up being that it was easiest to deal with getting the data out of the dataframe by using the itertuples() method. 
 
-[code lang="python"]
-
+```python
 def format_labels(df):
     '''
     Each df row is a list of str, float, float, float
@@ -117,8 +114,7 @@ def format_labels(df):
         formatted.append(text)
 
     return formatted
-[/code]
-
+```
 ----------
 
 
@@ -128,8 +124,7 @@ Finally, after all that, I was able to incorporate my data into a map. I followe
 
 And then I did it a few more times, and realized this is something I might use fairly often. Maybe you will, too. 
 
-[code lang="python"]
-
+```python
 #initialize map
 mymap = Map()
 
@@ -176,13 +171,8 @@ df = pandas.read_csv("my_data.csv")
 add_points_from_df(df)
 pt = [33.0000, -117.0000]
 mymap.build_page(center=pt, zoom=10, outfile="map_test.html")
-[/code]
+```
 
-
-----------
-## What to map? ##
-
-For a while now, I thought it might be fun to play with the Yelp API, and this might be a good excuse. Stay tuned - that will have to go in a separate post. 
 
 
 

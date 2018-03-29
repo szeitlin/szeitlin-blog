@@ -1,11 +1,12 @@
 ---
 title: "A tutorial within a tutorial on building reusable models with scikit-learn"
 draft: false
+date: 2016-09-12
 author: Samantha G. Zeitlin
 ---
 
 
-Things I learned while following [this tutorial][1] on how to build reusable models with scikit-learn. 
+Things I learned while following [a tutorial][1] on how to build reusable models with scikit-learn. 
 
  1. When in doubt, go back to pandas. 
  2. When in doubt, write tests. 

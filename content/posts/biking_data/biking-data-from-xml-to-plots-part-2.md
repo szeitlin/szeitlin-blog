@@ -1,6 +1,7 @@
 ---
 title: "Biking data from XML to analysis, part 2"
 draft: false
+date: 2015-02-12
 author: Samantha G. Zeitlin
 ---
 
@@ -14,32 +15,32 @@ So I have some bike data that I parsed out of XML and put into a pandas datafram
 
 If you want to follow along, the .ipynb  is [here][1]. 
 
-[code lang="python"]    
+```python
 sorted_by_date = df.sort_index(by='StartTime') 
 
 sorted_by_date['StartTime'] = sorted_by_date['StartTime'].apply(pandas.to_datetime)
-[/code]
-
+```
 
 ----------
 
 
  **If you want to truncate and resample the data for plotting, you have to resample first and truncate second.**
 
-[code] StartTime	TotalTimeSeconds   DistanceMeters    MaxSpeed    Calories    AvgSpeed
+``` 
+StartTime	TotalTimeSeconds   DistanceMeters    MaxSpeed    Calories    AvgSpeed
 2013-01-02 15:51:51	 1690.76	 14632.39	 12.05	 572	 8.65
 2013-01-03 00:20:26	 1928.39	 15305.22	 12.34	 702	 7.94
 2013-01-04 15:46:52	 1680.40	 14651.60	 12.28	 572	 8.72
 2013-01-04 23:59:27	 1962.15	 15237.36	 11.43	 691	 7.77
 2013-01-07 15:56:14	 1657.51	 14625.53	 12.02	 609	 8.82
-[/code]
+```
 
 
 There were some days with multiple trips, and some days with only one trip. 
 
 If I wanted to know, for example, the total Calories burned in a day, I needed to combine the trips from each day by resampling. Thankfully, pandas makes this really easy. 
 
-[code lang="python"]
+```python
     days = df.resample('B') #B means business days
 
 	TotalTimeSeconds   DistanceMeters   MaxSpeed   Calories   AvgSpeed
@@ -48,14 +49,14 @@ StartTime
 2013-01-03	 1928.390	 15305.22	 12.340	 702.0	 7.940
 2013-01-04	 1821.275	 14944.48	 11.855	 631.5	 8.245
 
-[/code]
+```
 
 But then I went to plot the data, and all the timestamps came out looking like this:
 
-[code]
+```
     2013-01-02 00:00:00
     2013-01-03 00:00:00 
-[/code]
+```
 
 Which does not look so great on a plot. :(
 
@@ -63,13 +64,13 @@ I probably could have truncated the labels somehow, but instead of fighting with
 
 Turns out you can convert to whatever format you want, using a similar magic to the way resampling options are defined. Which gave me back what I thought I had already. 
 
-[code lang="python"]
+```python
     days.index = days.index.values.astype('M8[D]')
 
     2013-01-02
     2013-01-03
 
-[/code]
+```
 
 ----------
 I keep finding out the hard way that IPython notebook is a little too clever in that it hides a lot of ugliness for you, but matplotlib is stubborn and wants to be overly correct, so it shows everything, even the meaningless stuff. 
@@ -97,7 +98,7 @@ Note: I found out the hard way that once again, I had to reset the date(time) in
 
 Then I turned it back into the index of the resulting dataframe, so I could use it as the labels for the x-axis. 
 
-[code lang="python"]
+```python
     days2 = somedays.reset_index()   #note that I found this out the hard way
 
     q="""SELECT *
@@ -108,12 +109,12 @@ Then I turned it back into the index of the resulting dataframe, so I could use 
     subset = pandasql.sqldf(q, locals())
 
     date_subset = subset.set_index(['index'])     #put the index back where I wanted it
-[/code]
+```
 
 ![calories_day_better.png](/site_media/media/bc5d25bc2f121.png)
 
-Thanks for reading this far! I also went on and did more in [part 3][2] and part 4.
+Thanks for reading this far! I also went on and did more. The next part is [part 3][2].
 
 
   [1]: https://github.com/szeitlin/biking_data/blob/master/import-one-year.ipynb "here"
-  [2]: http://codrspace.com/szeitlin/biking-data-from-xml-to-plots-part-3/ 
+  [2]: {{<ref "biking-data-from-xml-to-plots-part-3.md" >}}

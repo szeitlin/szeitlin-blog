@@ -1,6 +1,7 @@
 ---
 title: "Biking data from XML to analysis, part 3"
 draft: false
+date: 2015-02-12
 author: Samantha G. Zeitlin
 ---
 
@@ -8,7 +9,7 @@ One thing I wanted to do with this data set was experiment with plotting methods
 
 First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL. 
 
-[code lang="python"]
+```python
     import pandas
     import pandasql
 
@@ -33,8 +34,7 @@ First I had to select out subsets of data to compare. I knew that there were two
 
     suburbs = pandasql.sqldf(q, locals())
 
-[/code]
-
+```
 
 ----------
 
@@ -66,7 +66,7 @@ I had to look up what the colors were, because in the tutorial they don't tell y
 
 Ultimately, I had to add this ridiculously complicated (typical matplotlib) line to tell it to put the legend to the right a little bit. Otherwise who knows if there is a legend, because it is invisible. 
 
-[code lang="python"] 
+```python
     max_data=np.r_[cityspeed, suburbspeed].max()
     bins= np.linspace(0, max_data, max_data+1) 
     plt.hist(cityspeed, bins, normed=True, color="#6495ED", alpha=0.5, label="city")      #blue
@@ -75,15 +75,18 @@ Ultimately, I had to add this ridiculously complicated (typical matplotlib) line
     plt.ylabel("Fraction")
     l = plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)   #show me the legend!
 
-[/code] 
+```
 
 At the end of all that, I was pretty happy with how this plot turned out. 
 
-It's not surprising that the suburb plot is relatively gaussian with little bit of a tail to the left. What surprised me was how high the average speeds were, even on the relatively short city rides. Personally, I don't like to ride that fast in the city, because most of the time it is too scary and/or impossible with traffic. But the timestamps give a little more insight into why that's not always impossible (more on that in [part 4][3]). 
+It's not surprising that the suburb plot is relatively gaussian with little bit of a tail to the left. 
+What surprised me was how high the average speeds were, even on the relatively short city rides. 
+Personally, I don't like to ride that fast in the city, because most of the time it is too scary and/or impossible with traffic. 
+But the timestamps give a little more insight into why that's not always impossible (more on that in [part 4][3]). 
 
 ![city_vs_suburb.png](/site_media/media/73752cba2ef31.png)
 
 
-  [1]: http://stanford.edu/%7Emwaskom/software/seaborn/tutorial/plotting_distributions.html#basic-visualization-with-histograms
+  [1]: http://seaborn.pydata.org/tutorial.html
   [2]: http://stackoverflow.com/questions/18601001/numpy-r-is-not-a-function-what-is-it
-  [3]: http://codrspace.com/szeitlin/biking-data-from-xml-to-plots-part-4/
+  [3]: {{<ref "biking-data-from-xml-to-plots-part-4.md" >}}

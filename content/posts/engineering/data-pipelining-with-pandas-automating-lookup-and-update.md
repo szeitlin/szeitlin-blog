@@ -11,31 +11,27 @@ For example, if you want to apply a condition via lookup, sometimes it makes sen
 
 This is an extremely simple example to show what I mean: 
 
-[code lang="python"]
+```python
     import pandas
-
-
     table = pandas.DataFrame({'Existing Column':['apples', 'oranges']})
-
-[/code] 
-
+```
 
 ![Screen Shot 2016-01-02 at 7.51.21 PM.png](/site_media/media/580ab176b1cd1.png)
 
 
-    reference_table = pandas.DataFrame({'Reference Column':['apples', 'lemons']})
+    `reference_table = pandas.DataFrame({'Reference Column':['apples', 'lemons']})`
 
 
 ![Screen Shot 2016-01-02 at 7.52.29 PM.png](/site_media/media/777ea54eb1cd1.png)
 
 
 
-    merge = pandas.concat([table,reference_table], axis=1)
+    `merge = pandas.concat([table,reference_table], axis=1)`
 
 ![Screen Shot 2016-01-02 at 7.53.22 PM.png](/site_media/media/9c799854b1cd1.png)
 
 
-    merge['Result Column'] = merge['Existing Column'] == merge['Reference Column']
+    `merge['Result Column'] = merge['Existing Column'] == merge['Reference Column']`
 
 ![Screen Shot 2016-01-02 at 7.54.37 PM.png](/site_media/media/bf4f535ab1cd1.png)
 
@@ -74,8 +70,7 @@ Iterate through the masks, applying each one to your target dataframe. Keep in m
 I also recommend that you write and run tests for these methods, to make sure the masks match what you expect, and that all the masks were applied as expected. You also might want to test to make sure there are no NaNs at the end, if you care about that sort of thing, in case your masks don't fill all the rows in all the columns. 
 
 
-[code lang="python"]
-
+```python
     def create_masks(reference_df, target_df):
         """" Apply conditional logic to create masks and append them to a list for use later """
 
@@ -112,7 +107,10 @@ I also recommend that you write and run tests for these methods, to make sure th
             target_df.loc[both_masks,'target_col']= result
 
         return target_df
-[/code]
+```
 
 
-Obviously, you might not want to always update the same column, so I actually combined this with dynamic naming. To do that, I created and added a name to each tuple that contains the masks. That way, the name also gets passed into the method, so it's available when the mask is applied, so I can create new columns or update existing ones as appropriate. 
+Obviously, you might not want to always update the same column, so I actually combined this with dynamic naming. 
+To do that, I created and added a name to each tuple that contains the masks. 
+That way, the name also gets passed into the method, 
+so it's available when the mask is applied, so I can create new columns or update existing ones as appropriate. 

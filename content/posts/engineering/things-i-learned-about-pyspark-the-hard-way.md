@@ -66,7 +66,7 @@ What I ended up doing:
 
 6. Flatten everything (with a flatMap lambda function)
 
-7. Convert to Row objects with a helper function
+7. Write a helper function to make Row objects
 
 	```python
 	#this method is from StackOverflow, but it really should be built-in (!)
@@ -86,7 +86,7 @@ What I ended up doing:
 		return Row(**OrderedDict(inputdict)) #Note that only the kwargs version of ** dictionary expansion is supported in python 3.4
 	```
 
-8. Convert big RDD of Row objects to dataframe
+8. Use the helper function to convert big RDD to Row objects, and then to dataframe
 
 	```python
 	df = deindexed.map(ph.convert_to_row).toDF()
@@ -95,10 +95,12 @@ What I ended up doing:
 9. Rename any columns that aren't compatible with the ultimate destination, e.g. in my case I had to convert things like "req.id" and "device-type" to "req_id" and "device_type" because Redshift and Athena will not tolerate period symbols or dashes in column names. 
 
 	1) create the list of df.columns, just like you would in pandas
-	2) create a new dataframe with the new columns like this: 
-		```python 
+
+	2) create a new dataframe with the new columns like this:
+ 
+	```python 
 		renamed = df.toDF(*df_columns) #note that the asterisk splat operator is supported even in python3.4, even though the ** dictionary expansion is not supported until later versions
-		```
+	```
 
 10. Write out with coalesce to avoid getting a ton of tiny files
 

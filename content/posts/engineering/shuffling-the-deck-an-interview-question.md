@@ -1,6 +1,7 @@
 ---
 title: "Shuffling the deck: an interview experience"
 draft: false
+date: 2016-06-16
 author: Samantha G. Zeitlin
 ---
 
@@ -9,21 +10,23 @@ Here is a story about an interesting interview question and how I approached it.
 
 The company in question wasn't interested in actually looking at my code, since I apparently tried to answer the wrong question. 
 
-> Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck. This is repeated until one portion is used up. The remaining cards go on top.
+> _Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck. This is repeated until one portion is used up. The remaining cards go on top._
 
 
-> Determine the number of perfect shuffles before the deck returns to its original order. This can be done in any language. A successful solution will solve the problem for 1002 cards and a cut size of 101 in under a second even on a slow machine.
+> _Determine the number of perfect shuffles before the deck returns to its original order. This can be done in any language. A successful solution will solve the problem for 1002 cards and a cut size of 101 in under a second even on a slow machine._
 
 I looked at that and did what they tell you to do for interviews, and coding in general, especially when you don't know where to start: start with the naive, simple approach. 
 
 Step 1. make_deck
 
-    [code lang="python"] cards = [x for x in range(1,n+1)] 
-[/code]
+     cards = [x for x in range(1,n+1)] 
 
-Step 2. def shuffle(cards,c):
+Step 2. 
 
-[code lang="python"]
+```python
+   
+  def shuffle(cards,c):
+
    """
    :param: c, where to cut the deck (int)
    """
@@ -47,11 +50,13 @@ Step 2. def shuffle(cards,c):
         newstack.extendleft(bottom)
 
     return newstack
-   [/code]
+   ```
 
-Step 3. def shuffle_recursive(cards, c, shuffle_count):
+Step 3. 
 
-[code lang="python"]
+```python
+
+  def shuffle_recursive(cards, c, shuffle_count):
 
     """
     shuffle until the original order is restored, and count as you go.
@@ -74,7 +79,7 @@ Step 3. def shuffle_recursive(cards, c, shuffle_count):
     else:
         return shuffle_recursive(list(newstack), c, shuffle_count)
 
-[/code]
+```
 
 So I did that, and was surprised to get a recursion depth error. 
 
@@ -84,11 +89,11 @@ Also, it was obviously too slow.
 
 So I did some profiling, and found that the majority of time was spent in these 3 lines:
 
-[code lang="python"]
+```python
    for i in range(stopping_criteria):
         newstack.append(top.pop())
         newstack.append(bottom.pop())
-[/code]
+```
 
 And that kind of surprised me, since I thought the whole point of deque() is that it's supposed to be faster. 
 
@@ -114,13 +119,12 @@ However. When I went to turn in my work, the response was less than encouraging.
 
 I wrote:
 
-> I came up with a simple, very slow (10 second+ run-time) solution fairly quickly, and then spent 3-4x more time coming up with a 10x faster solution.
-
-> What I have right now meets the requirement for 1002 cards with cut size 101 in under a second on my mac laptop (see below - not sure what you define as a "slow machine"?).
+> _I came up with a simple, very slow (10 second+ run-time) solution fairly quickly, and then spent 3-4x more time coming up with a 10x faster solution. 
+What I have right now meets the requirement for 1002 cards with cut size 101 in under a second on my mac laptop (see below - not sure what you define as a "slow machine"?)._
 
 And the reply came back: 
 
-> What answer did your solution arrive at for the test case? Is is 790034? That's not correct, so if that's the case you should take another look. It should only take a tenth of a second or so.
+> _What answer did your solution arrive at for the test case? Is is 790034? That's not correct, so if that's the case you should take another look. It should only take a tenth of a second or so._
 
 Apparently I was so annoyed at the way this exchange ended that I deleted both my response (let's consider it redacted) and theirs. I said something about how if the point was that it was a coding exercise, maybe they'd want to see my code even if I got a different answer (I did)? 
 
@@ -137,8 +141,6 @@ Of course, I found that confusing, because based on what I did, I don't think it
 And some cards (as the edge cases show) will take a much longer time to get back to their original position, depending on where you cut the deck and how many shuffles you do. 
 
 So, my shuffles might be imperfect, and my ability to read interviewers' minds hasn't improved much. But hey, those harmonics are pretty interesting. 
-
-
 
 
 

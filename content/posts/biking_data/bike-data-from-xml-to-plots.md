@@ -13,7 +13,7 @@ Garmin has an app that lets you export data from the puny bike computer and, I g
 Eventually I realized the only way to get the values I wanted was to export as XML, which I had heard was not fun to parse. 
 
 A snapshot of the file looks like this:
-[code lang="XML"]
+```XML
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/ActivityExtension/v2 http://www.garmin.com/xmlschemas/ActivityExtensionv2.xsd http://www.garmin.com/xmlschemas/FatCalories/v1 http://www.garmin.com/xmlschemas/fatcalorieextensionv1.xsd http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">
 
@@ -39,7 +39,8 @@ A snapshot of the file looks like this:
           </LX>
         </Extensions>
       </Lap>
-      <Lap StartTime="2013-06-12T00:42:37Z">[/code]
+      <Lap StartTime="2013-06-12T00:42:37Z">
+```
 
 Unexpectedly, the links in the file that were supposed to tell me the schema were all outdated (this bike computer is not exactly the newest model). So I hunted around a bit and found I could use [lxml objectify][2]. This let me parse the XML, starting with the root. Then I could "walk" along the tree to figure out what was where. 
 
@@ -47,17 +48,18 @@ In practice, without a useful map of the schema, "walking the tree" was more lik
 
 Even with more of a map, the structure seems strange. Some values were nested for no apparent reason (maybe that's typical for XML? I don't know). Some basic calculations for obvious things (like average speed) were added separately as "Extensions", like an afterthought. 
 
-[code lang="python"] 
+```python
 import pandas
 from lxml import objectify
 path = "2013_xml.tcx"
 parsed = objectify.parse(open(path))
 root = parsed.getroot()
-root.Activities.Activity.Lap.descendantpaths() [/code]
+root.Activities.Activity.Lap.descendantpaths()
+```
 
 Which told me the actual structure looks more like this: 
  
-[code]
+```
 [u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap',
  u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.TotalTimeSeconds',
  u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.DistanceMeters',
@@ -71,11 +73,11 @@ Which told me the actual structure looks more like this:
  u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/FatCalories/v1}FatCalories.Value',
  u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/ActivityExtension/v2}LX',
  u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/ActivityExtension/v2}LX.AvgSpeed']
-[/code] 
+``` 
 
 And just to make it more fun, in some cases, the data was the "value", in some cases it was the "text", in some cases it was the "pyval" (python-friendly version of otherwise deeply nested values). In some cases, where the values were "text" that meant they were strings when I needed floats. So I had to drill down, and then drill down some more, and convert everything, and it still isn't obvious to me why they structured it this way. But I parsed out the things I wanted and wrote them to lists:
 
-[code lang="python"] 
+```python
 for activity in root.Activities.Activity:
     for lap in activity.Lap:
         StartTime.append(lap.values()[0]) 
@@ -87,12 +89,11 @@ for activity in root.Activities.Activity:
         kids= lap.Extensions.getchildren()
         avgspeed = kids[1].AvgSpeed.pyval       #use pyval to get rid of nested brackets 
         AvgSpeedList.append(avgspeed)
-
-[/code] 
+``` 
 
 Of course that was just a first pass, and I quickly realized things were still not very pretty. I got rid of extra decimal places, and converted each list to a pandas Series so I could concatenate them together into a big dataframe. For example:
 
-[code lang="python"]
+```python
 AverageSpeed = pandas.Series(AvgSpeedList)
 AverageSpeed = AverageSpeed.round(2)
 
@@ -103,18 +104,15 @@ MaximumSpeed, Calories, AverageSpeed], axis=1)
 #rename the columns to something useful
 df.columns = ['StartTime','TotalTimeSeconds', 'DistanceMeters', \
 'MaximumSpeed', 'Calories', 'AverageSpeed']
-
-[/code]
+```
 
 Finally! Now the data table looked more like this: 
 
-[code]
+```
 StartTime	   TotalTimeSeconds	DistanceMeters	MaximumSpeed	Calories	AverageSpeed
 2013-06-11T23:18:21Z	 1669.75	 14122.15	 11.16	          575	         8.46
 
-
-[/code]
-
+```
 But as I'm finding with these low-level data science tools, just getting numbers into a table isn't going to tell you much, and every different question you want to ask, every plot you want to make, means making additional tables, usually with a lot more rearranging. (More on that in [part 2][4]) 
   
 
@@ -122,4 +120,4 @@ But as I'm finding with these low-level data science tools, just getting numbers
   [1]: http://www.garmin.com/en-US "Garmin"
   [2]: http://lxml.de/1.3/objectify.html "LXML objectify"
   [3]:  http://www8.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd "tcx schema"
-  [4]: http://codrspace.com/szeitlin/biking-data-from-xml-to-plots-part-2/
+  [4]: {{<ref "biking-data-from-xml-to-plots-part-2.md" >}}

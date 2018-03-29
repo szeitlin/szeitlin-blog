@@ -1,6 +1,7 @@
 ---
 title: "Things I learned about zip files"
 draft: false
+date: 2015-01-15
 author: Samantha G. Zeitlin
 ---
 
@@ -27,7 +28,7 @@ For some python modules, the docstrings are great, and save you the work of havi
 
 If you do this:
 
-[code lang="tsch"] pydoc zipfile.is_zipfile[/code]
+    pydoc zipfile.is_zipfile
 
 You'll get this:
 
@@ -65,7 +66,7 @@ I did not know that there is such a thing as a [magic number][3], and that the o
 
 The command “file” will give you information about the filetype. So if you download something and you’re not sure what it is, or you just want to verify that it's what you thought it should be (say, before you decompress it), try this first. 
 
-[code lang="tsch"] file myfile.zip [/code]
+    file myfile.zip
 
 returns something like this:
 
@@ -97,7 +98,7 @@ It turns out that *file-like objects* can be a pretty vague way to describe what
 
 Also, unlike more modern Python modules, there were not any examples of how to use the methods. So eventually I figured out that all I had to do was this: 
 
-[code lang="python"]
+```python
     import urllib2
     import zipfile
 
@@ -115,7 +116,7 @@ Also, unlike more modern Python modules, there were not any examples of how to u
     #create a zip file object instance, so you can use the zipfile class methods
     myfile = zipfile.ZipFile("channel.zip")
 
-[/code]
+```
 ----------
  **5. Code Review.** 
 
@@ -123,8 +124,7 @@ After reading the original version of this post, one friend commented that I sho
 
 Another friend emailed me this code block, which actually answered my original question about how to do it in-memory. As usual, the real lesson here is, if you don't know the name of something, it's hard to know how to look it up. 
 
-[code lang="python"]
-
+```python
   import io
   import sys
   import urllib2
@@ -143,7 +143,7 @@ Another friend emailed me this code block, which actually answered my original q
     print myfile
     print zipfile.is_zipfile(byte_buffer)
 
-[/code] 
+```
 
   [1]: http://pythonchallenge.com
   [2]: https://en.wikipedia.org/wiki/Zip_(file_format)#Structure

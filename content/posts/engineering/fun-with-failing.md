@@ -29,8 +29,11 @@ I tried everything I knew how to do. I tried adding options in pandas that had w
 
 So I was doing: 
 
+```python
     import pandas
     data = pandas.read_csv("Rawfile.txt", sep='\t')
+
+```
 
 And I was getting a giant mess of stuff like this:
 
@@ -54,7 +57,7 @@ It turns out that UTF-8, the usual format for text files, doesn't have a BOM. Th
 
 NOTE: a friend wrote in and suggested this even better unix solution:
 
-    >>>file myfile.txt
+    >>> file myfile.txt
     Little-endian UTF-16 Unicode English text, with CR line terminators
 
 
@@ -65,12 +68,13 @@ NOTE: a friend wrote in and suggested this even better unix solution:
 
 To get this file imported, then, I had to first read it in using the Python module called 'codecs'. And I had to add the argument for the universal end-of-line, like so, or it wouldn't read it as a table:
 
+```python
     import codecs
 
     opened = codecs.open("All_iPod_Music_Cleaned_Up_031114.txt", 'rU', 'UTF16')
 
     df = pandas.read_csv(opened, sep='\t')
-
+```
 
 ----------
 
