@@ -1,12 +1,23 @@
-Last week I did a technical interview for which I was underprepared. I feel like no matter how much I try to prepare, I am always underprepared for technical interviews. 
+---
+title: "Recursion excursion"
+draft: false
+author: Samantha G. Zeitlin
+---
 
-In this case, I was underprepared for a few reasons, including:
 
-a) It was the first interview where I've been asked to write more than a couple lines of recursive code 
+More than once, and probably not for the last time, I have done a technical interview for which I was underprepared. 
+I feel like no matter how much I try to prepare, I am always underprepared for technical interviews. 
+
+I'm going to tell you about a time I was underprepared for a few reasons, including:
+
+a) It was the first interview where I was asked to write more than a couple lines of recursive code 
 
 b) in front of 3 people
 
-c) For some reason, for this position, it didn't occur to me that I was meeting with the software team and doing a technical interview of that sort at all. As I discovered after arriving onsite, my understanding of the role was murky: I thought I was being recruited for a different subset of my skills. Also, as has happened to me repeatedly and will probably happen again, although I specifically asked about the structure of the interview, critical pieces of information were not communicated to me. 
+c) For some reason, for this position, it didn't occur to me that I was meeting with the software team and doing a technical interview of that sort at all. 
+As I discovered after arriving onsite, my understanding of the role was murky: I thought I was being recruited for a different subset of my skills. 
+Also, as has happened to me repeatedly and will probably happen again, although I specifically asked about the structure of the interview, 
+critical pieces of information were not communicated to me. 
 
 Nevertheless, I tried.  
 
@@ -14,7 +25,7 @@ I failed.
 
 I came home and spent the last several days thinking about why that was so difficult. In some ways, it was a very good interview question. And I understood the question. 
 
-But I got stuck because I am not good at writing code with people watching me. Or even with other people in the room. Especially in the afternoon. 
+But I got stuck because I am not great at writing code with people watching me. Or even with other people in the room. Especially in the afternoon. 
 
 
 ----------

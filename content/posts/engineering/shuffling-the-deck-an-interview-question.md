@@ -1,3 +1,10 @@
+---
+title: "Shuffling the deck: an interview experience"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 Here is a story about an interesting interview question and how I approached it. 
 
 The company in question wasn't interested in actually looking at my code, since I apparently tried to answer the wrong question. 

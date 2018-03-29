@@ -1,4 +1,11 @@
-Recently I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python. 
+---
+title: "Quick and dirty: plot your data on a map with python"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python. 
 
 
 ----------

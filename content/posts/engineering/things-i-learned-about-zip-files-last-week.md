@@ -1,4 +1,11 @@
-In an effort to advance my python skills, I’ve been slowly pecking away at [the puzzles on pythonchallenge][1]. I’ve gotten stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles. 
+---
+title: "Things I learned about zip files"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+In an effort to advance my python skills, I spent some time slowly pecking away at [the puzzles on pythonchallenge][1]. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles. 
 
 I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression. I used various utilities and command-line tools to deal with zipping and unzipping. But I never needed to know how they worked. 
 

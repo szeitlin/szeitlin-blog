@@ -1,4 +1,11 @@
-Recently, a friend recruited me to do some technical writing for the company where he works now. Basically, they needed someone to quickly revise and update the documentation for their software. 
+---
+title: "Automating user-friendly documentation with Selenium"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+Once upon a time, a friend recruited me to do some technical writing for the company where he works now. Basically, they needed someone to quickly revise and update the documentation for their software. 
 
 Most modern user-friendly software documentation isn't just writing, though. It's screenshots. A LOT of screenshots. So you don't just write "click on the blue box", you also show a picture of it, like this. See the blue box? 
 

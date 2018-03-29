@@ -1,3 +1,10 @@
+---
+title: "Test-driven data pipelining"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 ## When to test, and why:
 
 • Write a test for every method. 

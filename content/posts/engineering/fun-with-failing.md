@@ -1,4 +1,12 @@
-This post is about a couple of painful problems I've had recently with reading in text files. 
+
+---
+title: "Fun with text file encodings"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+This post is about a couple of painful problems I've had with reading in text files. 
 
 They're just text files, right? What could be hard about that? 
 

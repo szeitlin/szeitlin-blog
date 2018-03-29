@@ -1,8 +1,16 @@
+---
+title: "Game plan for attending conferences with a high risk of harassment"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 So let's say you're thinking about attending a conference in tech, or some STEM field. 
 
 Maybe you'll be going alone. Maybe you've never been to a conference before, or this conference has a reputation for having, shall we say, "a higher risk of harassment". 
 
-Here's a 'game plan' for things to keep in mind. I'm not saying anyone should have to do this, I'm saying this is more or less what I did when I was younger and had to go to STEM meetings, usually alone, and didn't always feel safe. 
+Here's a 'game plan' for things to keep in mind. I'm not saying anyone should ever have to do this, 
+I'm saying this is more or less what I did when I was younger and had to go to STEM meetings, usually alone, and didn't always feel safe. 
 
  **1. Study martial arts. Advertise this.** 
 

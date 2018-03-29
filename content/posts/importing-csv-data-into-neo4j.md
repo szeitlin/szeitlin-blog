@@ -1,3 +1,8 @@
+---
+title: "Outdated: importing csv data into neo4j"
+draft: true
+author: Samantha G. Zeitlin
+---
 
 Thanks to a friend who wants to help more women get into tech careers, last year I attended [Developer Week](http://www.developerweek.com), where I was impressed by a talk about [Neo4j](http://www.Neo4j.org).
 

@@ -1,4 +1,11 @@
-A couple of weeks ago, I had a pleasant interview. Here's what was different about that interview, that made it really stand out from the others I've done. 
+---
+title: "Advice on recruiting"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
+I have had a few pleasant job interviews. Here's what's different about those interviews, that made them really stand out from the others I've done. I'll describe a specific example, and then give some specific suggestions.  
 
 ----------
 
@@ -24,14 +31,14 @@ Two minor things could be improved in the future:
 
 ----------
 
-For most of the interviews I've been on, there have been two major things that waste everybody's time.
+## For most of the interviews I've been on, there have been two major things that waste everybody's time.
 ----------------------------------------
 
  **1. Uncertainty about what the job actually is, or what skills are required to do it well.** 
 
 ***Disagreement***: the hiring manager wants something different than what the rest of the team thinks they need. 
 
-***Inexperience***: Maybe you've never hired someone for this type of position (in my case, something along the Software-Data-Scientist-Analyst spectrum). Confused about several similar job titles, and how they differ? E.g. Analyst vs. Data Scientist Vs. Data Engineer? Confused about the level of expertise required, and about how to conduct the actual interview in order to screen candidates for the best 'fit'? What is your idea of 'fit'? 
+***Inexperience***: Maybe you've never hired someone for this type of position (in my case, something along the Engineer-Data-Scientist-Analyst spectrum). Confused about several similar job titles, and how they differ? E.g. Analyst vs. Data Scientist Vs. Data Engineer? Confused about the level of expertise required, and about how to conduct the actual interview in order to screen candidates for the best 'fit'? What is your idea of 'fit'? 
 
 
 ----------
@@ -48,7 +55,8 @@ The interview can probably only assess a small subset of your laundry list, usua
 
 ----------
 
-So here are some suggestions. Maybe your struggles with recruiting fall into these traps.
+## So here are some suggestions. Maybe your struggles with recruiting fall into these traps.
+
 ----------------------------------------
 
 **Or maybe you're bringing in great candidates and they're turning you down. Maybe your interview process is scaring them away.**
@@ -57,7 +65,7 @@ So here are some suggestions. Maybe your struggles with recruiting fall into the
 ----------
 
 
-***Make sure everyone is on the same page.*** 
+## Make sure everyone is on the same page.
 
 At a minimum, the following people need to get their stories straight:
 

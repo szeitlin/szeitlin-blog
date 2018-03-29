@@ -1,3 +1,10 @@
+---
+title: "Data pipelining with pandas"
+draft: false
+author: Samantha G. Zeitlin
+---
+
+
 For better or worse, when you're dealing with data pipelines of varying shapes and sizes, sometimes you need to combine objects that don't match up evenly. 
 
 For example, if you want to apply a condition via lookup, sometimes it makes sense to just do a merge. This creates a new column in your data table, and then you can use that for reference. 
