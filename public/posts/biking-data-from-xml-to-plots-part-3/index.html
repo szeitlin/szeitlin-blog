@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='http://example.org/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="" />
+<meta property="og:description" content="One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.
+First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/biking-data-from-xml-to-plots-part-3/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.
+First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL.">
+
+
+
+<meta itemprop="wordCount" content="546">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.
+First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="http://example.org/" class="f3 fw2 hover-white no-underline white-90 dib">
+      My New Hugo Site
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.</p>
+
+<p>First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL.</p>
+
+<p>[code lang=&ldquo;python&rdquo;]
+    import pandas
+    import pandasql</p>
+
+<pre><code>import matplotlib.pyplot as plt
+import matplotlib 
+import seaborn as sns     #for prettier plotting 
+import numpy as np        #for binning
+
+%matplotlib inline    #IPython magic
+
+df = pandas.read_csv(&quot;updated_2013.csv&quot;, index_col=0)
+
+q=&quot;&quot;&quot;SELECT *
+FROM df
+WHERE Miles &lt;6&quot;&quot;&quot;
+
+city = pandasql.sqldf(q, locals())
+
+q=&quot;&quot;&quot;SELECT *
+FROM df
+WHERE Miles &gt;5&quot;&quot;&quot;
+
+suburbs = pandasql.sqldf(q, locals())
+</code></pre>
+
+<p>[/code]</p>
+
+<hr />
+
+<h2 id="give-that-story-a-little-more-plot">Give that story a little more plot!</h2>
+
+<p>First, I used seaborn to make two histograms of the average speed, and plot them together in two different colors. Thankfully, the <a href="http://stanford.edu/%7Emwaskom/software/seaborn/tutorial/plotting_distributions.html#basic-visualization-with-histograms">seaborn tutorial</a> had exactly the right example for me to follow, but I&rsquo;m going to explain a few things that were not obvious to me.</p>
+
+<hr />
+
+<p><strong>Calculate the range for the binning</strong></p>
+
+<p>If you have more than one data set, this is done by concatenating the dataframes so you can treat the data as one big one.</p>
+
+<p>To do this, the example in the seaborn tutorial used this odd little thing called r_. I didn&rsquo;t know what that was, so I did some digging and found <a href="http://stackoverflow.com/questions/18601001/numpy-r-is-not-a-function-what-is-it">this post</a> the most useful. I&rsquo;ll probably be able to remember it now that I know that it&rsquo;s similar to how slicing works in R.</p>
+
+<p>The actual bins come from using linspace to create an array of linearly spaced points.</p>
+
+<p>The normed=True argument is good here because I didn&rsquo;t want to worry about the size of the distributions (I knew they weren&rsquo;t the same).</p>
+
+<hr />
+
+<p><strong>Show your colors!</strong></p>
+
+<p>I had to look up what the colors were, because in the tutorial they don&rsquo;t tell you, and it wasn&rsquo;t obvious to me from the hex code, which color was which dataset. I also didn&rsquo;t know that you can add the label to the same command where you chose the data set, because initially the legend didn&rsquo;t show up at all.</p>
+
+<p>Ultimately, I had to add this ridiculously complicated (typical matplotlib) line to tell it to put the legend to the right a little bit. Otherwise who knows if there is a legend, because it is invisible.</p>
+
+<p>[code lang=&ldquo;python&rdquo;]
+    max<em>data=np.r</em>[cityspeed, suburbspeed].max()
+    bins= np.linspace(0, max_data, max_data+1)
+    plt.hist(cityspeed, bins, normed=True, color=&ldquo;#6495ED&rdquo;, alpha=0.5, label=&ldquo;city&rdquo;)      #blue
+    plt.hist(suburbspeed, bins, normed=True, color=&ldquo;#F08080&rdquo;, alpha=.5, label=&ldquo;suburb&rdquo;)   #coral
+    plt.xlabel(&ldquo;Mph&rdquo;)
+    plt.ylabel(&ldquo;Fraction&rdquo;)
+    l = plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)   #show me the legend!</p>
+
+<p>[/code]</p>
+
+<p>At the end of all that, I was pretty happy with how this plot turned out.</p>
+
+<p>It&rsquo;s not surprising that the suburb plot is relatively gaussian with little bit of a tail to the left. What surprised me was how high the average speeds were, even on the relatively short city rides. Personally, I don&rsquo;t like to ride that fast in the city, because most of the time it is too scary and/or impossible with traffic. But the timestamps give a little more insight into why that&rsquo;s not always impossible (more on that in <a href="http://codrspace.com/szeitlin/biking-data-from-xml-to-plots-part-4/">part 4</a>).</p>
+
+<p><img src="/site_media/media/73752cba2ef31.png" alt="city_vs_suburb.png" /></p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        29 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black o-50">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/converting-a-python-script-to-a-spark-pipeline/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/fun-with-failing/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/importing-csv-data-into-neo4j/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/more-biking-data/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/probability-binning-part-2-speeding-up-machine-learning/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/python-where-to-start/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recursion-excursion/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/transitioning-to-data-science/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/validating-results/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+    &copy; 2018 My New Hugo Site
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="http://example.org/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

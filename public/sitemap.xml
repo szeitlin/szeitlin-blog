@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.org/posts/airflow-for-hands-off-etl/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/automating-user-friendly-documentation-using-selenium-/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/bike-data-from-xml-to-plots/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/biking-data-from-xml-to-plots-part-2/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/biking-data-from-xml-to-plots-part-3/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/biking-data-from-xml-to-plots-part-4/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/biking-data-from-xml-to-plots-revised/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/converting-a-python-script-to-a-spark-pipeline/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/data-pipelining-with-pandas-automating-lookup-and-update/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/faq-why-and-how-i-learned-to-code/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/fun-with-failing/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/game-plan-for-conferences-with-high-risk-of-harassment/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/importing-csv-data-into-neo4j/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/more-biking-data/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/probability-binning-part-2-speeding-up-machine-learning/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/probability-binning-simple-and-fast/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/python-where-to-start/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/quick-and-dirty-plot-your-data-on-a-map/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/recursion-excursion/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/robustness-lessons-from-doing-applied-bench-science/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/shuffling-the-deck-an-interview-question/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/still-looking-for-a-job-advice-on-recruiting-/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/test-driven-data-pipelining/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/things-i-learned-about-pyspark-the-hard-way/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/things-i-learned-about-zip-files-last-week/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/things-i-learned-studying-the-cell-cycle-in-cancer/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/tips-on-giving-presentations/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/transitioning-to-data-science/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/validating-results/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/within-every-tutorial-is-another-tutorial/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
