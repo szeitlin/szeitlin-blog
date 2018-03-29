@@ -1,6 +1,8 @@
 ---
 title: "Things I learned about Pyspark the hard way"
 draft: false
+date: 2018-03-28
+tags: ["spark"]
 author: Samantha G. Zeitlin
 ---
 

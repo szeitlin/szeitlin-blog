@@ -1,6 +1,8 @@
 ---
 title: "Test-driven data pipelining"
 draft: false
+date: 2016-02-08
+tags: ["pandas", "testing", "python"]
 author: Samantha G. Zeitlin
 ---
 

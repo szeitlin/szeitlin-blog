@@ -2,6 +2,7 @@
 title: "Things I learned about zip files"
 draft: false
 date: 2015-01-15
+tags: ["unix", "python", "zip"]
 author: Samantha G. Zeitlin
 ---
 

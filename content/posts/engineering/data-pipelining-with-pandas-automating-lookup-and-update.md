@@ -1,6 +1,8 @@
 ---
 title: "Data pipelining with pandas"
 draft: false
+date: 2016-01-02
+tags: ["pandas", "python"]
 author: Samantha G. Zeitlin
 ---
 

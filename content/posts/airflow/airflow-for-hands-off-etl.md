@@ -1,6 +1,8 @@
 ---
 title: "Airflow"
 draft: false
+date: 2017-11-18
+tags: ["python", "testing"]
 author: Samantha G. Zeitlin
 ---
 

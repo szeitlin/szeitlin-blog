@@ -2,6 +2,7 @@
 title: "A tutorial within a tutorial on building reusable models with scikit-learn"
 draft: false
 date: 2016-09-12
+tags: ["python", "scikit-learn", "ML", "testing"]
 author: Samantha G. Zeitlin
 ---
 

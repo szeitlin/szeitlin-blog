@@ -1,6 +1,8 @@
 ---
 title: "Validating Results"
 draft: false
+date: 2016-04-15
+tags: ["experimental design"]
 author: Samantha G. Zeitlin
 ---
 

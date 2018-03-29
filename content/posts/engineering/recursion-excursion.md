@@ -1,6 +1,7 @@
 ---
 title: "Recursion excursion"
 draft: false
+tags: ["python", "recursion"]
 author: Samantha G. Zeitlin
 ---
 

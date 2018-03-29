@@ -2,6 +2,7 @@
 title: "Shuffling the deck: an interview experience"
 draft: false
 date: 2016-06-16
+tags: ["python", "recursion"]
 author: Samantha G. Zeitlin
 ---
 

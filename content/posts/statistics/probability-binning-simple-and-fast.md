@@ -1,6 +1,8 @@
 ---
 title: "Probability binning: simple and fast"
 draft: false
+date: 2016-11-04
+tags: ["statistics", "python", "pandas"]
 author: Samantha G. Zeitlin
 ---
 
@@ -25,7 +27,7 @@ A histogram is just a plot with the number of counts per value, where the values
 
 First, I used matplotlib to get the bin ranges, because that was easy. Then I applied those as masks on my original dataframe, to convert the data into categories based on the bin ranges. 
 
-[code lang="python"]
+```python
     def feature_splitter(df, column, bins=3):
         """
         Convert continuous variables into categorical for classification.
@@ -61,7 +63,7 @@ First, I used matplotlib to get the bin ranges, because that was easy. Then I ap
 
         return df
 
-[/code]
+```
 
 This worked well enough for a first attempt, but the bins using a traditional histogram didn't always make sense for my purposes, and I was assuming that I'd always be masking with 3 bin ranges. 
  
@@ -100,7 +102,7 @@ For the simple case yes, but on further testing realized I had to combine bins i
 
 *Step 5:* use the bin ranges to mask the original dataframe and assign category labels
 
-[code lang="python"]
+```python
     def bin_masker(self):
         """
         Use bin_ranges from probability binning to create categorical column
@@ -121,7 +123,7 @@ For the simple case yes, but on further testing realized I had to combine bins i
         for i, mask in enumerate(masks):
             self.df.loc[mask, (self.feature + '_cat')] = i
             self.df[self.feature + '_cat'].fillna(0, inplace=True) #get the bottom category
-[/code]
+```
 
 *Step 6:* try it in the machine learning application of my choice (a decision tree - this will go in a separate post). Check the accuracy score on the train-test-split (0.999, looks good enough to me). 
  

@@ -1,6 +1,8 @@
 ---
 title: "Working with device data"
 draft: false
+date: 2015-04-30
+tags = ["device data", "bike data"]
 author: Samantha G. Zeitlin
 ---
 
@@ -102,6 +104,6 @@ I was relieved to see that although the bike computer seemed to be dying, it was
 
 
 
-  [1]: http://codrspace.com/szeitlin/biking-data-from-xml-to-plots-revised/
+  [1]: {{< ref "biking-data-from-xml-to-plots-revised.md" >}}
   [2]: https://github.com/szeitlin/biking_data/blob/master/xml_feb26_2015.py
   [3]: https://github.com/szeitlin/biking_data/blob/master/14April_googlemaps_api.ipynb
