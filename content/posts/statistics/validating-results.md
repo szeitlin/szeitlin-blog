@@ -25,29 +25,29 @@ How do we get around that, and generate solid insights without wasting a lot of 
 
 ----------
 
-## Start from what is known. ##
+## Start from what is known. 
 
-### Read Everything ###
+### Read Everything 
 When I was in college, the Chair of my Department was big on reading. He gave us 2 thick textbooks the summer before our senior seminar with him, and told us to read them cover to cover. Then when we wrote our final papers, he told us to read every paper we could find on our subject of choice. 
 
 It sounds ridiculous, but it's great advice. If you don't know what's been done before, how do you know you're actually doing something new? If it's been attempted before, how do you know you won't make all the same mistakes? How do you know you're not missing out on all kinds of tips and tricks that might save you a lot of time and confusion? 
 
-###Trust but verify###
+### Trust but verify
 Perhaps most importantly, if there's some way to verify your assumptions, like say if someone has done part or all of your project before, try to get your hands on their results. You're going to want to know how your results compare with theirs. Can you understand why your results might be different from what they reported? Have you improved on previous methods? Are you able to recapitulate their results using their methods? Using yours? Maybe their results are completely unreproducible. In that case, you shouldn't be trying to make your approach look like theirs. Or maybe your methods aren't very robust, in which case you have more work to do. 
 
-## Design your experiments wisely ##
+## Design your experiments wisely 
 
-###Pick two###
+### Pick two
 
 Choose at least two approaches. It's never a good idea to base a major conclusion on a single measurement, or even a single type of measurement made in triplicate. 
 
 Ideally, it's best to have a handful of orthogonal approaches. Then if the conclusions from each of these are consistent, you can feel pretty confident about your overall conclusion.  
  
-### Have a testable hypothesis###
+### Have a testable hypothesis
 
 Do you know what you expect? Try examining your assumptions, and turn those into hypotheses. Are you trying to confirm a known result? Then you are testing whether you can reproduce that result. Set boundaries on how exact your answer should be. Does it have to be perfect? Or within 5%?  It really can be that simple. 
 
-### Know the pros and cons of the approaches you choose###
+### Know the pros and cons of the approaches you choose
 
 Maybe you're debating about the best way to get data into your system. Your options are things like: 
 
@@ -65,13 +65,13 @@ Paying for access to a 3rd party database might be the most expensive, but it al
 
 It also depends on whether the data is going to be used as samples (for experimentation, where there might not be a 'right answer'), vs. as reference data (where you need the data to be as stable and accurate as possible). 
 
-### Design an experiment that will let you see things you didn't know to look for###
+### Design an experiment that will let you see things you didn't know to look for
 
 In the example above, options (b) and (c) might provide additional insights that (a) won't give you. Computers only know to look for what you tell them, but people tend to notice everything. Databases often contain additional data that you didn't think you would need, but which might be interesting to you and relevant to your project. Choosing your data sources and process of collection can provide additional insights that you might otherwise miss out on. 
 
-### Sample selection###
+### Sample selection
 
-####Choose samples that represent:####
+#### Choose samples that represent:
 
  **Positive controls:** known responders. Examples that reproducibly support your original hypothesis.
 
@@ -93,24 +93,24 @@ Edge cases are critical for determining the sensitivity and selectivity of your 
  **Main samples:** examples of what you expect to occur most commonly, which contain your target category and which can be sorted or otherwise identified (if only you can get the right methods and models in place!). Usually this is a mixed population, and you have some hypotheses about what variables might play a role in segmentation, even if your hypothesis is just "there is more than one sub-population in this group." (Hint: if you look carefully, there is usually more than one sub-population in a group)
 
 
-###Sample size###
+### Sample size
 
 Choose samples that are big enough to be representative. For edge cases, sometimes one is enough. 
 For positive and negative controls, you usually need a few, to check for variability within the populations, and also to compare against your main sample. But it all depends on the distribution of your system. If it's not a normal distribution, or your controls are Gaussian but your main samples are not, you're going to need a bigger sample to train your model, if you want it to perform well in real tests. 
 
 It's also worth thinking about how your test population and controls, which are usually static, will represent the real thing, which might be streaming or otherwise changing over time. Are there known variables, like season, that might require you to periodically update your test samples? Your model can't account for what it hasn't seen. 
 
-###Metrics to evaluate whether it worked or not###
+### Metrics to evaluate whether it worked or not
 
 Before you begin any experiment, think about how you're going to evaluate what you observe. If you have a hypothesis, your metric for success might be whether your data are consistent with your hypothesis. If you don't, maybe you have a threshold for what you'd consider a believable observation. How are you going to measure that? Is it going to affect the sample sizes you choose for your test populations (probably)? 
 
-## Get input ##
+## Get input 
 
 Ask other people to discuss the models you're considering. Look at what other people have done in similar situations. Review your work with interested parties, while it's still in progress, so you can make modifications if any of your assumptions are wrong, if new insights become available, or if any of the priorities have changed. 
 
 And then when you think you're done, review it again. And again. Get other people to help you look for possible mistakes. Everybody makes mistakes. It doesn't mean you're not working hard or not good at your job. Sometimes it just means you're too close to the problem, or you've been looking at it too long. Make sure to build time into your process so you can take a break, even if it's just to sleep on it for one night, and then look everything over again with fresh eyes. 
 
-##You might still be wrong##
+## You might still be wrong
 
 Always remember that you might be wrong. Always re-examine all your assumptions, and all the shortcomings of the approaches you've used. Sometimes this will open up new avenues for investigation, or help you shore up your findings. Sometimes someone else will come to you with evidence that you've made a mistake. There will be bugs in your code. That's ok. Just take a deep breath and see what's changed with this new information. 
 

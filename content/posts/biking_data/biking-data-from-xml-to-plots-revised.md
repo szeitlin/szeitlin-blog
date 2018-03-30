@@ -1,9 +1,10 @@
 ---
 title: "Biking data from XML to analysis, revised"
 draft: false
+date: 2015-08-07
+tags: ["device data", "bike"]
 author: Samantha G. Zeitlin
 ---
-
 
 
 *Am I getting slower every day?* 
@@ -24,7 +25,7 @@ This new and improved version is both prettier and more interesting, thanks to h
 
 ----------
 
-**First, get a rough idea of what is going on**
+## First, get a rough idea of what is going on
 
 One of the first questions we wanted to ask was about relative speeds in the city vs. suburbs, and morning vs. evening. 
 
@@ -42,7 +43,7 @@ And that gave me a clear idea of what might work, but this kind of plot is not v
 
 
 ----------
-**Clarify relevant questions**
+## Clarify relevant questions
 
 So to make it a little clearer, and be able to ask better questions, I wrote a simple helper function to add a flag for the four main categories I wanted: morning city, morning suburbs, evening city, evening suburbs. 
 
@@ -50,7 +51,7 @@ On further revision, I added a couple of extra flags for two kinds of 'outliers'
 
 Then I used a list comprehension to apply that to the 'hour' column in my dataframe, which I had previously generated using the awesome built-in datetime handling that pandas makes so easy. Then I made a better plot with seaborn. 
 
-[code]    
+```python   
      def leg_definer(hour):
         """
         (int) -> (str)
@@ -74,27 +75,26 @@ Then I used a list comprehension to apply that to the 'hour' column in my datafr
     
     g = sns.lmplot("day", "average_mph", filtered, hue="leg_flag", fit_reg=False)
     g.set(xticks=[0,5,10,15,20,25,30], ylim=(5,24))
-    
-    [/code] 
+ ```
 
 ![2014_avmph_day_lmplot.png](/site_media/media/25e3a19ec5151.png)
 
 And I think that's pretty cute, but it doesn't really show any meaningful patterns, because we're looking at all the months on top of each other (day here is coming from the date, aka 'day of the month'). 
 
 ----------
-**Focus on how to see what you're looking for**
+## Focus on how to see what you're looking for
 
 I realized grouping by weekday was more likely to be interesting. And then I got caught by one of those random little pandas gotchas: weekday is a method, not a datetime attribute. So it's item.weekday(), not item.weekday (so it's different from month, day, or hour). 
 
 I also had to use a plotting trick of adding horizontal 'jitter' to make it easier to see all the dots on the scatterplot that would otherwise be overlapped. 
 
-[code]
+```python
 filtered["weekday"]=[item.weekday() for item in filtered["zoned"]]
 
 sns.set_context("talk")
 g=sns.lmplot("weekday", "average_mph", filtered, hue="leg_flag", x_jitter=0.15, fit_reg=False)
 g.set(xlim=(-1,6), ylim=(5,24))
-[/code]
+```
 
 ![2014_avgmph_weekday_flagged.png](/site_media/media/b84c398ac5181.png)
 
@@ -107,20 +107,20 @@ This plot is starting to make more sense. Now, we can start making some observat
 
 
 ----------
-**Sometimes a different type of plot works better to get your point across**
+## Sometimes a different type of plot works better to get your point across
 
 Now, it seemed like the relevant finding was that Mornings were generally faster than Evenings, and I decided to focus on the Suburbs rides since they were less vulnerable to the confounding (!) effects of traffic. 
 
 I chose a violin plot to show the distributions more clearly. I hadn't done this quite this way before, but it's actually very easy to create a plot object, and add a couple of subplots. Then I tweaked it a little more: I adjusted the range of the axes, as well as getting rid of the tick-marks along the edge, to make it less cluttered. (Also, I didn't know how to add a title to a plot, so I had to look that up!)
 
-[code]
+```python
 f, ax= plt.subplots()
 g = sns.violinplot(evening_suburb["average_mph"], evening_suburb["weekday"], color="Blues")
 g = sns.violinplot(morning_suburb["average_mph"], morning_suburb["weekday"], color="Yellow")
 g.set(ylim=(10,24))
 title("Morning(yellow) vs. Evening(blue) Suburb")
 sns.despine()
-[/code] 
+```
 
 ![2014_morning_vs_suburb.png](/site_media/media/bafb74eac51b1.png)
 
@@ -133,7 +133,7 @@ Sure enough, a rough estimate of the route using this awesome tool at [cyclerout
 Next time: Plotting the measured velocities over the distance of the actual route. 
 
 
-  [1]: http://codrspace.com/szeitlin/bike-data-from-xml-to-plots/
+  [1]: {{<ref "bike-data-from-xml-to-plots.md" >}}
   [2]: http://web.stanford.edu/~mwaskom/software/seaborn/
   [3]: http://codrspace.com/site_media/media/73752cba2ef31.png "this plot"
   [4]: http://cycleroute.org "Cycle Route"

@@ -2,7 +2,7 @@
 title: "Working with device data"
 draft: false
 date: 2015-04-30
-tags = ["device data", "bike data"]
+tags: ["device data", "bike data"]
 author: Samantha G. Zeitlin
 ---
 
@@ -11,7 +11,7 @@ In continuing my series on [investigating bike data][1], I ran into some interes
 
 I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what's working and what's not. 
 
-## Things to consider when working with devices ##
+## Things to consider when working with devices 
 
  1. Are you using the device yourself?
  2. Are you interacting with the user(s) (directly or indirectly)? Or not at all?
@@ -45,7 +45,7 @@ This file is a great example of how two distributions can be quite different in 
 
 ----------
 
-## Leverage granularity of real-time data using generators ##
+## Leverage granularity of real-time data using generators 
 
 I wanted a pipeline to process the data into manageable units, for two purposes. (1) to make plots to look at the degree of variability, and (2) to feed into outside APIs, like Google Maps.  
 
@@ -73,7 +73,7 @@ Some of the plots looked fine, but many had varying degrees of inconsistent prob
 
 
 ----------
-## The path to enlightenment (when you can’t walk it yourself)  ##
+## The path to enlightenment (when you can’t walk it yourself)  
 
 Initially, I wanted to look at altitude over time, but I realized that datetime objects were adding unnecessary complexity. So instead I did distance vs. altitude, which revealed that the source of the noise seemed to be related to altitude. 
 
@@ -90,7 +90,7 @@ Possible sources of ‘noise’:
 Unless the user tells me they know they always forget to turn the computer off when they get on Caltrain, or that they've dropped it repeatedly from a great height, I look at other factors first. Namely, my own mistakes, the age of the device, other environmental issues (is it not waterproof enough? when was the last time it was out in the rain?). 
 
 ----------
-## When in doubt, validate using orthogonal methods ##
+## When in doubt, validate using orthogonal methods 
 
 I had been thinking about trying out the Google Maps API, and here was my perfect excuse. 
 

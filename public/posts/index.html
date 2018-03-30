@@ -15,24 +15,24 @@
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     
 
-    <link href='http://example.org/dist/main.css' rel='stylesheet' type="text/css" />
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
     
       
     
 
     
-      <link href="http://example.org/posts/index.xml" rel="alternate" type="application/rss+xml" title="" />
-      <link href="http://example.org/posts/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="https://szeitlin.github.io/posts/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://szeitlin.github.io/posts/index.xml" rel="feed" type="application/rss+xml" title="" />
     
 
     <meta property="og:title" content="Posts" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/posts/" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/" />
 
 
 
-
+<meta property="og:updated_time" content="2018-03-28T00:00:00&#43;00:00"/>
 
 
 
@@ -57,11 +57,11 @@
 
   
   
-  <header class="cover bg-top" style="background-image: url('http://example.org/images/gohugo-default-sample-hero-image.jpg');">
+  <header class="cover bg-top" style="background-image: url('https://szeitlin.github.io/images/gohugo-default-sample-hero-image.jpg');">
     <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="http://example.org/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
       
     </a>
     <div class="flex-l items-center">
@@ -92,6 +92,10 @@
     <main class="pb7" role="main">
       
   <article class="cf pa3 pa4-m pa4-l">
+	 <header>
+            <h1>Posts</h1>
+        </header>
+
     <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
       
     </div>
@@ -105,12 +109,31 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/airflow-for-hands-off-etl/" class="link black dim">
-        
+      <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link black dim">
+        Things I learned about Pyspark the hard way
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
+      Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link black dim">
+        Airflow
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
 The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
 Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS.
     </div>
@@ -124,13 +147,13 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/automating-user-friendly-documentation-using-selenium-/" class="link black dim">
-        
+      <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link black dim">
+        Probability binning: simple and fast
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Recently, a friend recruited me to do some technical writing for the company where he works now. Basically, they needed someone to quickly revise and update the documentation for their software.
-Most modern user-friendly software documentation isn&rsquo;t just writing, though. It&rsquo;s screenshots. A LOT of screenshots. So you don&rsquo;t just write &ldquo;click on the blue box&rdquo;, you also show a picture of it, like this. See the blue box?
+      Over the years, I&rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.
+One of the first things I usually do is make a bunch of histograms. Histograms are great because it&rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.
     </div>
   </div>
 </div>
@@ -142,13 +165,13 @@ Most modern user-friendly software documentation isn&rsquo;t just writing, thoug
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/bike-data-from-xml-to-plots/" class="link black dim">
-        
+      <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link black dim">
+        A tutorial within a tutorial on building reusable models with scikit-learn
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Last month, I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&rsquo; unfounded modesty and their actual rides.
-One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&rsquo;s also relatively consistent, which meant the data he gave me wasn&rsquo;t too terribly noisy.
+      Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that.
     </div>
   </div>
 </div>
@@ -160,13 +183,14 @@ One friend was kind enough to donate some data for my entertainment. This friend
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/biking-data-from-xml-to-plots-part-2/" class="link black dim">
-        
+      <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link black dim">
+        Shuffling the deck: an interview experience
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.
-Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.
+      Here is a story about an interesting interview question and how I approached it.
+The company in question wasn&rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.
+ Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck.
     </div>
   </div>
 </div>
@@ -178,13 +202,14 @@ Non-obvious nuances of pandas datetime objects and indexes. You have to sort the
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/biking-data-from-xml-to-plots-part-3/" class="link black dim">
-        
+      <a href="/posts/statistics/validating-results/" class="link black dim">
+        Validating Results
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.
-First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL.
+      I don&rsquo;t believe truth is a finite value. Truth is what we know right now. Every ten years or so, a major discovery gets overturned. Scientists are just people, and we&rsquo;re wrong a lot.
+So one of the scariest things about doing research, or predictions, is trying to convince yourself, and other people, that what you think you&rsquo;ve discovered is &lsquo;real&rsquo;.
+Or at least real enough, right now, to be believable.
     </div>
   </div>
 </div>
@@ -196,14 +221,14 @@ First I had to select out subsets of data to compare. I knew that there were two
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/biking-data-from-xml-to-plots-part-4/" class="link black dim">
-        
+      <a href="/posts/engineering/test-driven-data-pipelining/" class="link black dim">
+        Test-driven data pipelining
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.
-&hellip;tick&hellip;tick&hellip;tick
-Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs.
+      When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&rsquo;s happening.
     </div>
   </div>
 </div>
@@ -215,44 +240,8 @@ Anyway one thing I wondered about with the bike data was, can we compare average
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/biking-data-from-xml-to-plots-revised/" class="link black dim">
-        
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Am I getting slower every day?
-If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
- If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/converting-a-python-script-to-a-spark-pipeline/" class="link black dim">
-        
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/data-pipelining-with-pandas-automating-lookup-and-update/" class="link black dim">
-        
+      <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link black dim">
+        Data pipelining with pandas
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
@@ -270,15 +259,33 @@ This is an extremely simple example to show what I mean:
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/faq-why-and-how-i-learned-to-code/" class="link black dim">
-        
+      <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link black dim">
+        Biking data from XML to analysis, revised
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      A lot of people have asked me why I&rsquo;m not working in academia or biotech, how I learned to code, or how I got into data science. Here are some answers to some of those questions.
- Are you sure you wouldn&rsquo;t rather be in academia?
- Yes and no.
-Yes, I wanted my own lab. No, we don&rsquo;t always get what we want, even after 7 years of postdoc.
+      Am I getting slower every day?
+If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
+ If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/biking_data/device-data/" class="link black dim">
+        Working with device data
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.
+I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&rsquo;s working and what&rsquo;s not.
+Things to consider when working with devices  Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?
     </div>
   </div>
 </div>
@@ -352,7 +359,7 @@ Yes, I wanted my own lab. No, we don&rsquo;t always get what we want, even after
     </main>
     <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://example.org/" >
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
     &copy; 2018 
   </a>
   
@@ -367,7 +374,7 @@ Yes, I wanted my own lab. No, we don&rsquo;t always get what we want, even after
   </div>
 </footer>
 
-    <script src="http://example.org/dist/app.bundle.js" async></script>
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>
