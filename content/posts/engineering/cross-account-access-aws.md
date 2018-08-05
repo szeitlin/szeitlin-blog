@@ -55,7 +55,7 @@ _The scene:_
 2) EMROwner account
 
 
-![summary diagram](/AWS_diagram_anonymized.pdf)
+![summary diagram](/AWS_diagram_anonymized.png)
 
 **Local configuration:**
 I already knew how to configure my local machine to let me have multiple profiles, but if you haven't 
@@ -174,6 +174,7 @@ keep track of what was working and what wasn't.
 
 First, I wanted to confirm that I could at least list the bucket
 from the EMROwner account, from my machine:
+
 {{< highlight python >}}
 def test_myEMROwner_profile_can_list_s3_bucket(self): 
     session = boto3.Session(profile_name = 'EMROwner') 
@@ -184,6 +185,7 @@ def test_myEMROwner_profile_can_list_s3_bucket(self):
     
 Next, I wanted to make sure I could assume the new roles I had created, and use
 those to list the bucket, from my machine:
+
 {{< highlight python >}}
 def  role_arn_to_session(profile_name, 
                          region_name= 'us-west-2',
@@ -212,22 +214,24 @@ def  role_arn_to_session(profile_name,
     
 If you've done much with s3, you might already know that just because you can list a bucket, doesn't mean
 you can get the objects in it, or read them. So I wrote a test for that. 
-{{< highlight python >}}
-def  test_get_object(self):
-    assumed_session = role_arn_to_session(RoleArn = 'arn:aws:iam::11111111:role/emr-s3-access')
-    assumed_client = assumed_session.client('s3')
-    response = assumed_client.get_object(Bucket = 'source-data',
-                                            Key = 'example-filename.gz') 
-    assert  response[ 'ResponseMetadata' ][ 'HTTPStatusCode' ] ==  200
-{{< /highlight >}}
+
+    {{< highlight python >}}
+    def  test_get_object(self):
+        assumed_session = role_arn_to_session(RoleArn = 'arn:aws:iam::11111111:role/emr-s3-access')
+        assumed_client = assumed_session.client('s3')
+        response = assumed_client.get_object(Bucket = 'source-data',
+                                                Key = 'example-filename.gz') 
+        assert  response['ResponseMetadata'][ 'HTTPStatusCode' ] ==  200
+    {{< /highlight >}}
+         
+     I also needed to make sure I could actually access the key:
      
- I also needed to make sure I could actually access the key:
-{{< highlight python >}}
-def  test_describe_key( self ):
-    kms_client =  self .session.client( 'kms' )
-    response = kms_client.describe_key( KeyId = 'arn:aws:kms:us-west-2:1111111:alias/a-uuid' )
-    assert  response[ 'KeyMetadata' ][ 'KeyUsage' ] ==  'ENCRYPT_DECRYPT'
-{{< /highlight >}}
+    {{< highlight python >}}
+    def  test_describe_key( self ):
+        kms_client =  self .session.client( 'kms' )
+        response = kms_client.describe_key( KeyId = 'arn:aws:kms:us-west-2:1111111:alias/a-uuid' )
+        assert  response['KeyMetadata'][ 'KeyUsage' ] ==  'ENCRYPT_DECRYPT'
+    {{< /highlight >}}
 
 ----------
 In the end, I created a new IAM role, let's call it  arn:aws:iam::2222222:role/emr-s3-bucket-role, to
@@ -309,6 +313,7 @@ my IAM roles explicitly from inside my spark job, just to see if that would work
 
 I decided to try using this (from here: https://github.com/boto/boto3/issues/222)  
 with a modified version of the code I already had:
+
 {{< highlight python >}}
 from  botocore.credentials  import  InstanceMetadataProvider, InstanceMetadataFetcher
    
@@ -317,11 +322,15 @@ num_attempts = 2 ))
 creds = provider.load()
 access_key  =  creds.access_key
 secret_key = creds.secret_key
+{{</highlight>}}
 
-#then use the same code from before for assuming a role, but this time you're telling the EC2 Instance Profile
+Then use the same code from before for assuming a role, 
+but this time you're telling the EC2 Instance Profile
 to assume the IAM role that has the s3 bucket access
  
-#plus this, so the hadoop user could use the new credentials:
+Plus this, so the hadoop user could use the new credentials:
+
+{{< highlight python >}}
 sc._jsc.hadoopConfiguration().set( 'fs.s3a.access.key' , creds[ 'access_key_id' ]) 
 sc._jsc.hadoopConfiguration().set( 'fs.s3a.secret.key' , creds[ 'secret_key' ]) 
 sc._jsc.hadoopConfiguration().set( 'fs.s3a.session.token' , creds[ 'session_token' ])
@@ -365,6 +374,7 @@ s3 is to re-upload, or copy, the files over again. So the CLI command looks like
     --sse aws:kms --sse-kms-key-id arn:aws:kms:us-west-2:11111111:alias/a-uuid --profile BucketOwner
 
 And the boto3 code for that looks something like this:
+
 {{< highlight python >}}
 def  re_encrypt_objects(datestring, keyid= 'arn:aws:kms:us-west-2:111111111:alias/a-uuid' ):
      '''

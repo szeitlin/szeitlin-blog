@@ -74,7 +74,7 @@ There can also be side-effects of the interruption.
 
 ### 2. Watch. Just watch.
 
-![ARRAYSCAN_080530110005_A10f00d0.TIF](/static/ARRAYSCAN_080530110005_A10f00d0.TIF)
+![cells](/ARRAYSCAN_080530110005_A10f00d0.png)
 
 With cells, watching usually means using a microscope, and sampling. 
 
@@ -98,7 +98,7 @@ As a researcher, I had to be highly organized. The kinds of experiments we did w
 
 My calendar was always full. Here's a screenshot of a typical month from when I was a postdoc: 
 
-![calendar_example.tiff](/static/calendar_example.tiff)
+![calendar_example](/calendar_example.png)
 
 So I put a lot of effort into trying to figure out how to get the most bang for my buck, in terms of how to design my experiments to be informative, making sure I had everything I needed for the more elaborate ones (especially the time-sensitive experiments), and trying to do it all on a shoestring budget. 
 
