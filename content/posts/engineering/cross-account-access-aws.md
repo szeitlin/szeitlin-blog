@@ -1,6 +1,7 @@
 ---
 title: "Cross-account access with AWS"
 draft: false
+date: 2018-08-05
 tags: ["python", "aws", "s3", "EMR", "pyspark", "KMS"]
 author: Samantha G. Zeitlin
 ---
@@ -167,67 +168,60 @@ keep track of what was working and what wasn't.
 
 First, I wanted to confirm that I could at least list the bucket
 from the EMROwner account, from my machine:
-
-    [code lang="python"]
-    
-     def test_myEMROwner_profile_can_list_s3_bucket(self): 
-        session = boto3.Session(profile_name = 'EMROwner') 
-        s3_client = session.client('s3')
-        response = s3_client.list_objects(Bucket = 'source-data')  
-        assert isinstance (response,  dict)
-    [/code]
+{{< highlight python >}}
+def test_myEMROwner_profile_can_list_s3_bucket(self): 
+    session = boto3.Session(profile_name = 'EMROwner') 
+    s3_client = session.client('s3')
+    response = s3_client.list_objects(Bucket = 'source-data')  
+    assert isinstance (response,  dict)
+{{< /highlight >}}
     
 Next, I wanted to make sure I could assume the new roles I had created, and use
 those to list the bucket, from my machine:
-
-    ```python
+{{< highlight python >}}
+def  role_arn_to_session(profile_name, 
+                         region_name= 'us-west-2',
+                         RoleArn= 'arn:aws:iam::1111111:role/emr-s3-access', 
+                         RoleSessionName= 'test'):
+    """
+    modified slightly from the example here:
+        https://gist.github.com/gene1wood/938ff578fbe57cf894a105b4107702de
     
-    def  role_arn_to_session(profile_name, 
-                             region_name= 'us-west-2',
-                             RoleArn= 'arn:aws:iam::1111111:role/emr-s3-access', 
-                             RoleSessionName= 'test'):
-        """
-        modified slightly from the example here:
-            https://gist.github.com/gene1wood/938ff578fbe57cf894a105b4107702de
-        
-        For assuming a role to use temporary credentials via the AWS STS (security token service). 
-        All params are required
-        
-        :  param  profile_name: str, must match a profile in your .aws config
-        :  param  region_name: str, not strictly required but strongly recommended :  param  RoleArn: standard AWS ARN format
-        :  param  RoleSessionName: can be any string (required)
-        :  returns : a boto3 Session. Note that temporary credentials expire in 1 hour by default
-        """
-        session = boto3.Session(profile_name = profile_name,  region_name =region_name) 
-        client = session.client('sts')
-        response = client.assume_role( RoleArn = RoleArn,  RoleSessionName =RoleSessionName)  
-        return  boto3.Session(
-            aws_access_key_id =response[ 'Credentials' ][ 'AccessKeyId' ],  
-            aws_secret_access_key =response[ 'Credentials' ][ 'SecretAccessKey' ], 
-            aws_session_token =response[ 'Credentials' ][ 'SessionToken' ])
-          
-    ```
+    For assuming a role to use temporary credentials via the AWS STS (security token service). 
+    All params are required
+    
+    :  param  profile_name: str, must match a profile in your .aws config
+    :  param  region_name: str, not strictly required but strongly recommended :  param  RoleArn: standard AWS ARN format
+    :  param  RoleSessionName: can be any string (required)
+    :  returns : a boto3 Session. Note that temporary credentials expire in 1 hour by default
+    """
+    session = boto3.Session(profile_name = profile_name,  region_name =region_name) 
+    client = session.client('sts')
+    response = client.assume_role( RoleArn = RoleArn,  RoleSessionName =RoleSessionName)  
+    return  boto3.Session(
+        aws_access_key_id =response[ 'Credentials' ][ 'AccessKeyId' ],  
+        aws_secret_access_key =response[ 'Credentials' ][ 'SecretAccessKey' ], 
+        aws_session_token =response[ 'Credentials' ][ 'SessionToken' ])  
+{{< /highlight >}}
     
 If you've done much with s3, you might already know that just because you can list a bucket, doesn't mean
 you can get the objects in it, or read them. So I wrote a test for that. 
-
-    [code lang="python"]
-     def  test_get_object(self):
-        assumed_session = role_arn_to_session(RoleArn = 'arn:aws:iam::11111111:role/emr-s3-access')
-        assumed_client = assumed_session.client('s3')
-        response = assumed_client.get_object(Bucket = 'source-data',
-                                                Key = 'example-filename.gz') 
-        assert  response[ 'ResponseMetadata' ][ 'HTTPStatusCode' ] ==  200
-     [/code]
+{{< highlight python >}}
+def  test_get_object(self):
+    assumed_session = role_arn_to_session(RoleArn = 'arn:aws:iam::11111111:role/emr-s3-access')
+    assumed_client = assumed_session.client('s3')
+    response = assumed_client.get_object(Bucket = 'source-data',
+                                            Key = 'example-filename.gz') 
+    assert  response[ 'ResponseMetadata' ][ 'HTTPStatusCode' ] ==  200
+{{< /highlight >}}
      
  I also needed to make sure I could actually access the key:
- 
-     [code lang="python"]
-     def  test_describe_key( self ):
-        kms_client =  self .session.client( 'kms' )
-        response = kms_client.describe_key( KeyId = 'arn:aws:kms:us-west-2:1111111:alias/a-uuid' )
-        assert  response[ 'KeyMetadata' ][ 'KeyUsage' ] ==  'ENCRYPT_DECRYPT'
-     [/code]
+{{< highlight python >}}
+def  test_describe_key( self ):
+    kms_client =  self .session.client( 'kms' )
+    response = kms_client.describe_key( KeyId = 'arn:aws:kms:us-west-2:1111111:alias/a-uuid' )
+    assert  response[ 'KeyMetadata' ][ 'KeyUsage' ] ==  'ENCRYPT_DECRYPT'
+{{< /highlight >}}
 
 ----------
 In the end, I created a new IAM role, let's call it  arn:aws:iam::2222222:role/emr-s3-bucket-role, to
@@ -309,24 +303,23 @@ my IAM roles explicitly from inside my spark job, just to see if that would work
 
 I decided to try using this (from here: https://github.com/boto/boto3/issues/222)  
 with a modified version of the code I already had:
+{{< highlight python >}}
+from  botocore.credentials  import  InstanceMetadataProvider, InstanceMetadataFetcher
+   
+provider  =  InstanceMetadataProvider( iam_role_fetcher = InstanceMetadataFetcher( timeout = 1000 ,
+num_attempts = 2 ))
+creds = provider.load()
+access_key  =  creds.access_key
+secret_key = creds.secret_key
 
-    [code lang="python"]
-    from  botocore.credentials  import  InstanceMetadataProvider, InstanceMetadataFetcher
-       
-    provider  =  InstanceMetadataProvider( iam_role_fetcher = InstanceMetadataFetcher( timeout = 1000 ,
-    num_attempts = 2 ))
-    creds = provider.load()
-    access_key  =  creds.access_key
-    secret_key = creds.secret_key
-    
-    #then use the same code from before for assuming a role, but this time you're telling the EC2 Instance Profile
-    to assume the IAM role that has the s3 bucket access
-     
-    #plus this, so the hadoop user could use the new credentials:
-    sc._jsc.hadoopConfiguration().set( 'fs.s3a.access.key' , creds[ 'access_key_id' ]) 
-    sc._jsc.hadoopConfiguration().set( 'fs.s3a.secret.key' , creds[ 'secret_key' ]) 
-    sc._jsc.hadoopConfiguration().set( 'fs.s3a.session.token' , creds[ 'session_token' ])
-    [/code]
+#then use the same code from before for assuming a role, but this time you're telling the EC2 Instance Profile
+to assume the IAM role that has the s3 bucket access
+ 
+#plus this, so the hadoop user could use the new credentials:
+sc._jsc.hadoopConfiguration().set( 'fs.s3a.access.key' , creds[ 'access_key_id' ]) 
+sc._jsc.hadoopConfiguration().set( 'fs.s3a.secret.key' , creds[ 'secret_key' ]) 
+sc._jsc.hadoopConfiguration().set( 'fs.s3a.session.token' , creds[ 'session_token' ])
+{{< /highlight >}}
 
 But I was still getting the same AccessDenied 403 error.
 
@@ -366,21 +359,20 @@ s3 is to re-upload, or copy, the files over again. So the CLI command looks like
     --sse aws:kms --sse-kms-key-id arn:aws:kms:us-west-2:11111111:alias/a-uuid --profile BucketOwner
 
 And the boto3 code for that looks something like this:
-
-    [code lang="python"]
-    def  re_encrypt_objects(datestring, keyid= 'arn:aws:kms:us-west-2:111111111:alias/a-uuid' ):
-         '''
-        :  param  datestring: str, format 'YYYY/MM/DD' 
-        :  param  keyid: str
-        '''
-        for item in list_of_objects:
-            copy_source = { 'Bucket' : bucketname,
-                             'Key' :  objectname}
-            s3.meta.client.copy(copy_source, copy_source[ 'Bucket' ], copy_source[ 'Key' ],  
-                                ExtraArgs ={ 'ServerSideEncryption' : 'aws:kms' ,
-                                             'SSEKMSKeyId' :keyid}) 
-            logging.info( 're-encrypting {}' .format(item))
-     [/code]
+{{< highlight python >}}
+def  re_encrypt_objects(datestring, keyid= 'arn:aws:kms:us-west-2:111111111:alias/a-uuid' ):
+     '''
+    :  param  datestring: str, format 'YYYY/MM/DD' 
+    :  param  keyid: str
+    '''
+    for item in list_of_objects:
+        copy_source = { 'Bucket' : bucketname,
+                         'Key' :  objectname}
+        s3.meta.client.copy(copy_source, copy_source[ 'Bucket' ], copy_source[ 'Key' ],  
+                            ExtraArgs ={ 'ServerSideEncryption' : 'aws:kms' ,
+                                         'SSEKMSKeyId' :keyid}) 
+        logging.info( 're-encrypting {}' .format(item))
+{{< /highlight >}}
        
 ----------
 
