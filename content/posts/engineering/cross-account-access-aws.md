@@ -32,18 +32,27 @@ _The scene:_
  stuff I learned the hard way. 
  
 **AWS Services used:**
+
 - S3:  Simple Storage Service, where the input data and scripts are stored, and where the results will be saved
+
 - IAM: Identity and Access Management, the role management service that controls access for users and services
+
 - KMS: Key Management Service, which controls encryption and access to the s3 bucket 
+
 - EC2: Elastic Cloud Compute, the AWS hosted machines that form the EMR cluster
+
 - EMR: Elastic Map Reduce, the service that runs the spark job
+
 - STS: Security Token Service, the token system that allows a user or role to assume another role or temporary credentials to access a service
 
 ----------
 
 **Accounts used:**
+
 1) BucketOwner account
+
 2) EMROwner account
+
 
 ![summary diagram](/AWS_diagram_anonymized.pdf)
 
@@ -60,17 +69,13 @@ starts the EMR cluster and runs the spark job from the EMROwner account.
 
 Profiles are for parameters, in this case 
 mostly just needed for the region information, and I need
-one for each account because they're in different regions: 
-1) BucketOwner
-2) EMROwner
+one for each account because they're in different regions.
 
 ----------
     .aws/credentials
 
 When AWS says credentials they mean AWS access keys and secret keys, 
-and they're specific to the account: 
-1) BucketOwner
-2) EMROwner
+and they're specific to the account, so you need one set for each. 
 
 Note: if you have no region in one of these accounts, 
 it will fall back to whatever region you had in your default profile, 
@@ -101,8 +106,8 @@ Bucket policy: grants access to both root accounts
                  "arn:aws:iam::22222222:root"
                 ] 
         },
-        "Action": [ "s3:List*”,
-                    “s3:Get*” ],
+        "Action": [ "s3:List*",
+                    "s3:Get*" ],
         "Resource": [ "arn:aws:s3:::source-data", 
                       "arn:aws:s3:::source-data/*"
         ] }
