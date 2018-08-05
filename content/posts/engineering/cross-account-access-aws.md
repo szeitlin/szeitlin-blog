@@ -1,7 +1,8 @@
 ---
 title: "Cross-account access with AWS"
 draft: false
-date: 2018-08-05
+date: 2018-08-04
+type: new
 tags: ["python", "aws", "s3", "EMR", "pyspark", "KMS"]
 author: Samantha G. Zeitlin
 ---
