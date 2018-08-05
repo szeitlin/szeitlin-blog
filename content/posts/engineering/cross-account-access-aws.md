@@ -44,7 +44,7 @@ _The scene:_
 1) BucketOwner account
 2) EMROwner account
 
-***INSERT FIGURE HERE***
+![summary diagram](/AWS_diagram_anonymized.pdf)
 
 **Local configuration:**
 I already knew how to configure my local machine to let me have multiple profiles, but if you haven't 
@@ -54,15 +54,20 @@ On my local machine, I have separate profiles I’m using to access the s3 bucke
 directly on the BucketOwner account, and to launch the script that 
 starts the EMR cluster and runs the spark job from the EMROwner account.
 
-[code lang="bash"] .aws/config [/code]
+----------
+    .aws/config 
 
-Profiles (mostly just needed for the region information): 
+Profiles are for parameters, in this case 
+mostly just needed for the region information, and I need
+one for each account because they're in different regions: 
 1) BucketOwner
 2) EMROwner
 
-[code lang="bash"].aws/credentials [/code]
+----------
+    .aws/credentials
 
-Credentials (AWS access key and secret key, tied to the two accounts): 
+When AWS says credentials they mean AWS access keys and secret keys, 
+and they're specific to the account: 
 1) BucketOwner
 2) EMROwner
 
@@ -84,7 +89,7 @@ arn:aws:kms:us-west-2:111111111:alias/source-data-key
 
 Bucket policy: grants access to both root accounts
 
-    [code lang="json"]
+
     {
     "Version": "2012-10-17", "Statement": [
         {
@@ -101,11 +106,11 @@ Bucket policy: grants access to both root accounts
                       "arn:aws:s3:::source-data/*"
         ] }
     ] }
-    [/code]
+
 
 Note that you have to list the bucket and objects separately, 
 one without the slash + asterisk (that's for the bucket), 
-and one with the slack + asterisk (that's for the objects in the bucket).
+and one with the slash + asterisk (that's for the objects in the bucket).
 I still find this a strange design choice.
 
 I ended up taking the advice from some friends to try using the most 
@@ -120,8 +125,11 @@ Where the pyspark code lives,
 and where the pyspark logs and processed output will end up.
 
 ----------
+I also added a policy to allow the EMR_EC2_DefaultRole to assume the role I had
+created that had access to the s3 bucket (see the next section for a lot more about IAM roles).
+
 So I got that far and I was able to launch my cluster as usual, but I was 
-getting Access Denied (403) error on EMR, 
+getting an Access Denied (403) error on EMR, 
 or an error saying that the EMR_EC2_DefaultRole can’t 
 assume the role I created which has access to the s3 bucket.
 
@@ -172,7 +180,7 @@ from the EMROwner account, from my machine:
 Next, I wanted to make sure I could assume the new roles I had created, and use
 those to list the bucket, from my machine:
 
-    [code lang="python"]
+    ```python
     
     def  role_arn_to_session(profile_name, 
                              region_name= 'us-west-2',
@@ -198,7 +206,7 @@ those to list the bucket, from my machine:
             aws_secret_access_key =response[ 'Credentials' ][ 'SecretAccessKey' ], 
             aws_session_token =response[ 'Credentials' ][ 'SessionToken' ])
           
-    [/code]
+    ```
     
 If you've done much with s3, you might already know that just because you can list a bucket, doesn't mean
 you can get the objects in it, or read them. So I wrote a test for that. 
@@ -209,7 +217,7 @@ you can get the objects in it, or read them. So I wrote a test for that.
         assumed_client = assumed_session.client('s3')
         response = assumed_client.get_object(Bucket = 'source-data',
                                                 Key = 'example-filename.gz') 
-     assert  response[ 'ResponseMetadata' ][ 'HTTPStatusCode' ] ==  200
+        assert  response[ 'ResponseMetadata' ][ 'HTTPStatusCode' ] ==  200
      [/code]
      
  I also needed to make sure I could actually access the key:
@@ -231,7 +239,7 @@ This role has 3 policies:
 
 2)  Allow-assume-s3-role (had to create this one)
 
-        [code lang="python"]
+
         {
           "Version": "2012-10-17",
           "Statement": {
@@ -241,11 +249,9 @@ This role has 3 policies:
             "Resource": "arn:aws:iam::11111111:role/EMR-access-s3"
           }
         }
-        [/code]
 
 3) Allow-kms-use (also had to create this one)
 
-        [code lang="json"]
         {
         "Version": "2012-10-17", 
         "Statement": [
@@ -255,7 +261,6 @@ This role has 3 policies:
             "Resource": "*"
             } ]
         }
-        [/code]
 
 And I also had to create this trust policy:
 
@@ -338,7 +343,7 @@ explanations of why you have to do a thing a specific way:
 
 So since I had encryption on the source s3 bucket, that meant I *had* to 
 enable the same encryption on the EMR filesystem (EMRFS), 
-whether I cared about that or not (I did not care). 
+whether I cared about that or not (_at this point, I did not care_). 
 
 The security configuration, in case you've never used it, 
 is something you can set up via this obscure tab 
@@ -350,7 +355,7 @@ This seems like a bug to me, since the permissions on that role were identical t
 Note that you can’t edit a security configuration, you can only delete and/or create a new one. So I started over and 
 created a new one with the identical permissions and a different name. 
 
-Finally, it worked for the ones with the custom key. (Totally anticlimactic, btw, after all that work.)
+Finally, it worked for the ones with the custom key. (Totally anticlimactic, btw, after all that confusion.)
 
 ----------
 
@@ -372,7 +377,16 @@ And the boto3 code for that looks something like this:
             copy_source = { 'Bucket' : bucketname,
                              'Key' :  objectname}
             s3.meta.client.copy(copy_source, copy_source[ 'Bucket' ], copy_source[ 'Key' ],  
-                            ExtraArgs ={ 'ServerSideEncryption' : 'aws:kms' ,
-                            'SSEKMSKeyId' :keyid}) 
+                                ExtraArgs ={ 'ServerSideEncryption' : 'aws:kms' ,
+                                             'SSEKMSKeyId' :keyid}) 
             logging.info( 're-encrypting {}' .format(item))
      [/code]
+       
+----------
+
+Overall, I'd say I have one major suggestion for AWS: give us some easier ways to tell which parts of our configurations
+are working correctly. Sure, you don't want to give us too many hints if it's a security risk, I can almost understand that
+(_almost_). But almost all of your documentation gives advice on how to do something, with zero advice on how to check
+if that step succeeded. It's like writing code with no tests: a recipe for headaches. 
+
+     
