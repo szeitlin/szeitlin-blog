@@ -93,10 +93,11 @@ devops person (!)
 
 - Figuring out the workflow for deploying and debugging 
 - Setting up a docker registry and using that (and don't have Jenkins running with handling that for us yet)
-- Managing two clusters and switching between them (learning in hard mode)
+- Managing two clusters and switching between them (learning in hard mode is not twice as fun as just learning!)
 - There is a built-in outlet to connect it up with Prometheus, but no built-in monitoring means we're doing it downstream
 (i.e with automated email alerts sent from Looker if something fails) or manually checking via the
-CLI until we get a dashboard server set up to make it easier to just visit that
+CLI or dashboard view (I have been using the CLI thus far, but now that we have more than a few pipelines 
+going on one cluster, the dashboard is starting to make more sense).
 
 4. Some things that are currently being improved
 
@@ -108,6 +109,7 @@ all features are supported for all versions yet, but mostly it just works.
 - Minor configuration things that maybe most people wouldn't care about, but which affect us
 with our cross-account access issues (like the ability to pass a region and/or profile flag to the egress 
 if you need that). 
+- With my current setup, I'm not sure how I can have two dashboards going at once. 
 
 
 
