@@ -29,36 +29,49 @@ you can have one pipeline read from the output of another, and trigger off of th
 
 In Airflow, for comparison, you had to configure this with messaging and it was kind of clunky 
 (and originally there was no push, only pull, so you were always polling for *is that thing done yet?*). 
-In Pachyderm, it's an extremely simple configuration, and there's an easy way to tell it to re-process as much data as you want.
+
+In Pachyderm, it's an extremely simple configuration. 
 
 Egress means you don't have to write a plugin to do something as basic as push your data to s3. Pachyderm already
 knows how to do that for you (see below for an example of how this is specified in a pipeline). 
 
+There's also an easy way to tell it to re-process as much data as you want.
+
+- **No runaway backfill**
+
+Runaway backfill in Airflow made our server fall down more than once whenever anybody 
+forgot to update the start date or name of their DAG because celery just got overloaded. 
+
+It was the bane of my Airflow existence because clearing the celery cache
+and getting it to restart, and then backfill what we _actually_ wanted was always a time-consuming process, including
+kicking the web server again and getting everything back online. 
+
 - **Smart re-tries by default (and this is configurable).** 
 
 This was also kind of a pain to deal with in Airflow because 
-if you forgot or somebody set a ridiculous number of retries, it could be a blocker for unrelated pipelines just by 
-gunking up the celery queue. 
+if somebody set a ridiculous number of retries, or a backfill job was failing, 
+it could easily become a blocker for unrelated pipelines just by 
+gunking up the celery queue (see above re: runaway backfill). 
 
 - Designed for a machine learning model workflow, but can also handle regular data pipelining
 (including cron-style scheduling). This is incredibly reassuring to me, because Airflow is kind of the other way around.
 
-- Scalability (parallelization support). I haven't done much with this yet, but it's also reassuring since we're a rapidly
-growing company, and I'm sure our data needs are going to continue to expand. 
+- Scalability (parallelization support). I haven't done much with this yet, but it's also reassuring to know it's there,
+since we're a rapidly growing company, and I'm sure our data needs are going to continue to expand. 
 
 If you get the enterprise version (which is cheap for an enterprise product):
 - Built-in encryption
 - Really responsive and smart team
 - Really nice dashboard and simple CLI tool
 
-- Also, if you don't like writing DAGs in Airflow, and are considering one of the myriad new tools <links here> 
-to do that for you, this is a lot simpler, and in my opinion, makes a lot more sense. 
+- Also, if you don't like writing DAGs in Airflow, and are considering one of the myriad (!) new tools
+to simplify that for you, this is even simpler than that. (And in my opinion, makes a lot more sense.) 
 
 Here's an example of a single pipeline:
 
 And here's an example of a full ETL process with 3 pipeline steps:
 
-Finally, they just got Series A funding, so they're going to be around for a while. 
+Also, they just got Series A funding, so they're going to be around for a while. 
 
 ---
 2. The tradeoffs of kubernetes and containerization
@@ -135,7 +148,8 @@ timestamps, or you might find yourself wondering why you can't tell what time a 
 with our cross-account access issues (like the ability to pass a region and/or profile flag to the egress 
 if you need that). 
 
-- With my current setup, I'm not sure how I can have two dashboards going at once. 
+- With my current setup, I'm not sure how I can have two dashboards for two clusters going at once. I'm sure there's a way. 
+I just haven't had time to figure it out yet. 
 ____
 
 **Using the pachyderm filesystem for ingress, and best practices for egress with s3**
