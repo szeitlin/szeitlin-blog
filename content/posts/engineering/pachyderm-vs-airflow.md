@@ -15,29 +15,36 @@ what I love about it, and some of the tricks you'll need to know if you want to 
 ----
 1. What is appealing about Pachyderm
 
+
 - **Data and code provenance tracking are built-in.** 
 
 *What that means:* It's incredibly easy to figure out what version
  of your code was running at any given time, and on what data. This is critical if you're iterating on models or tracking
  a model that's going to evolve over time based on what data it has seen.
 
-- **The egress feature and feed-forward are amazingly elegant.**  
+- **The egress feature and built-in feed-forward are amazingly elegant.**  
 
-Feed-forward means you can have one pipeline read from the output of another, and trigger off of that directly. 
+Feed-forward (I don't know what they call it, that's just what I call it) is a way of saying 
+you can have one pipeline read from the output of another, and trigger off of that directly. 
 
-In Airflow, for comparison, you had to configure this with messaging yourself and it was kind of clunky 
+In Airflow, for comparison, you had to configure this with messaging and it was kind of clunky 
 (and originally there was no push, only pull, so you were always polling for *is that thing done yet?*). 
 In Pachyderm, it's an extremely simple configuration, and there's an easy way to tell it to re-process as much data as you want.
 
 Egress means you don't have to write a plugin to do something as basic as push your data to s3. Pachyderm already
 knows how to do that for you (see below for an example of how this is specified in a pipeline). 
 
-- Smart re-tries by default (and this is configurable). This was also kind of a pain to deal with in Airflow because 
+- **Smart re-tries by default (and this is configurable).** 
+
+This was also kind of a pain to deal with in Airflow because 
 if you forgot or somebody set a ridiculous number of retries, it could be a blocker for unrelated pipelines just by 
 gunking up the celery queue. 
-- Designed for machine learning model workflow, but can also handle regular data pipelining
-(including cron-style scheduling)
-- Scalability (parallelization support)
+
+- Designed for a machine learning model workflow, but can also handle regular data pipelining
+(including cron-style scheduling). This is incredibly reassuring to me, because Airflow is kind of the other way around.
+
+- Scalability (parallelization support). I haven't done much with this yet, but it's also reassuring since we're a rapidly
+growing company, and I'm sure our data needs are going to continue to expand. 
 
 If you get the enterprise version (which is cheap for an enterprise product):
 - Built-in encryption
@@ -53,23 +60,36 @@ And here's an example of a full ETL process with 3 pipeline steps:
 
 Finally, they just got Series A funding, so they're going to be around for a while. 
 
+---
 2. The tradeoffs of kubernetes and containerization
 
-This was my first time using kubernetes, never mind suddenly being in charge of it. 
-Minikube is deceptively easy to set up and use for very basic testing. Kubernetes itself
+This was my first time using kubernetes, never mind suddenly being in charge of it (!). 
+
+Minikube is deceptively easy to set up and use for very basic testing. 
+
+Kubernetes itself
 isn't even that hard to deploy if you know what needs to be configured, but I really didn't
 know any of that when I started. I ended up relying on a script
 that the Pachyderm guys wrote and just adapted that for our needs. 
 
-Friends:
-- encapsulation is your friend
-- logging is your friend
-- versioning is your friend
+Things to remember for deploying in the cloud:
+- Encapsulation is your friend. It's so much easier when you have complete control of the environment, and there's no mystery 
+about what packages are available or what the paths are. Scaling becomes relatively easy. Just split your data and run
+more jobs in parallel. 
 
-- having to rebuild the container and version it and push it up each time does a couple of things:
-a) testing is even more important
-b) a little bit more annoying to push bug fixes/updates (especially without a CICD system
+- Logging is your friend. You won't be able to debug with print statements on a remote, headless machine. Some of my 
+teammates didn't quite understand this until they actually did it. Good logging makes it trivially easy to figure out what went wrong.
+
+- Versioning is your friend. Kubernetes won't pull the container unless it knows it needs to, so you have to keep renaming your container
+if you want to test changes. It's kind of a pain, but it's simple enough to just make it part of the workflow. 
+
+- Having to rebuild the container and version it and push it up each time does a couple of things:
+a) Testing is even more important. It's a lot nicer if you can do enough testing that after a few bug fixes you're on version 4, rather than
+(as one of my early pipelines is) version 16. 
+b) It can be a little bit more annoying to push bug fixes/updates (especially without a CICD system
 to build and deploy the containers for you)
+
+____
 
 3. The learning curve (at least for me)
 
@@ -89,8 +109,6 @@ devops person (!)
     going away any minute now(?), but EC2 still cares about, which generate completely
     uninformative AccessDenied errors
    
-- Understanding how the pachyderm filesystem (pfs) and egress work, and coding accordingly. (elaborate on this here)
-
 - Figuring out the workflow for deploying and debugging 
 - Setting up a docker registry and using that (and don't have Jenkins running with handling that for us yet)
 - Managing two clusters and switching between them (learning in hard mode is not twice as fun as just learning!)
@@ -99,17 +117,60 @@ devops person (!)
 CLI or dashboard view (I have been using the CLI thus far, but now that we have more than a few pipelines 
 going on one cluster, the dashboard is starting to make more sense).
 
+- Understanding how the pachyderm filesystem (pfs) and egress work, and coding accordingly (more on that in the next section).
+____
+
 4. Some things that are currently being improved
 
 - The docs are being updated all the time. There are a lot of platform-specific (read
 Google Cloud or AWS or whatever) things that users are finding and contributing. 
+
 - The deployment/upgrade process is still a little bit under construction and not
 all features are supported for all versions yet, but mostly it just works.
-- Logging/visibility is not bad now, but could be better. 
+
+- Logging/visibility is not bad now, but could be better. Basically you have to make sure your logging is sufficiently noisy and has
+timestamps, or you might find yourself wondering why you can't tell what time a retry happened. 
+
 - Minor configuration things that maybe most people wouldn't care about, but which affect us
 with our cross-account access issues (like the ability to pass a region and/or profile flag to the egress 
 if you need that). 
+
 - With my current setup, I'm not sure how I can have two dashboards going at once. 
+____
 
+**Using the pachyderm filesystem for ingress, and best practices for egress with s3**
 
+*Note: Pachyderm is under rapid development (it's open-source, and I'm a watcher on the repo so I'm constantly seeing all the work they're 
+doing), so some of this may already be out of date by the time I actually post it.*
+ 
+At the time of this writing, we're on version 1.7.11. 
+
+One thing to note about Pachyderm: the equivalent of a DAG here is composed of multiple pipelines (each pipeline can be one
+or more tasks). 
+
+To make my life easier, I've been naming the repositories and the pipelines
+with the same string. You'll see why that's helpful when you have several pipelines you want to string together. 
+
+So for example I have one ETL job I just finished, which goes like this (names have been changed for security reasons):
+1. data-api
+2. data-parsing
+3. data-loading-to-db
+
+The simplest thing to do with the output of a job on pachyderm
+is to write it to `/pfs/out`. 
+
+So let's say you're running `data-parsing-pipeline`. That pipeline writes to `/pfs/out`. 
+Then the next pipeline can pick it up from there in a folder named for the upstream pipeline's internal pfs repository, in this case
+it would be `/pfs/data-parsing-pipeline/`.  
+
+One thing to note, if you want to follow s3 best practices (see my other
+post) for partitioning file names with forward slashes, you'll have to actually make those sub-directories inside the 
+pachyderm filesystem. 
+
+Otherwise, you're going to write out `mydatafile.csv` and then you'll want to put something like 
+`s3://mybucket/2018/12/08/` for egress, but what you'll end up with in s3 is just `s3://mybucket/mydatafile.csv`. 
+
+(And in case
+it's not obvious, the reason you may not want that is you either have to put some other identifier in the file names, or you're going to be 
+overwriting the files every time the pipeline runs).
 
