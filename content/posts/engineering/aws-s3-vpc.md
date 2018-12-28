@@ -10,9 +10,11 @@ I've been doing a lot of fighting with AWS to help support my team.
 Some of the things I've learned along the way are probably not obvious if you, like me, are relying
 mostly on AWS docs and other people's advice, so I thought I'd collect some of them here.
 
+----
+
 **Best practices for storing big data on S3**
 
-1. Think about your bucket structure
+___*Think about your bucket structure*
 
 One of the things I ran into in my previous role was how hard it can be
 to find a specific file in s3 if your file naming isn't set up to make this easy. 
@@ -44,7 +46,7 @@ I say this from experience, having worked with legacy log files that were stored
 
 
 ----
-2. Coalesce
+___*Coalesce*
 
 I recommend against using whatever the default output is, if you're writing out from a cluster,
 for example, with something like spark. 
@@ -55,7 +57,7 @@ any downstream usage.
 
 Instead, I recommend grouping, coalescing, and compressing your files. 
 
-3. Add slashes into your filenames. 
+___*Add slashes into your filenames.* 
 
 This (artifically) groups your files by year, month, and day. 
 
@@ -68,7 +70,7 @@ Now, when you list your bucket, you can easily jump to the date and platform you
 download a minimum number of files that meet your criteria. 
 
 ----
-4. Think about your bucket policies and locations
+___*Think about your bucket policies and locations*
 
 Although new S3 buckets are now global, up until very recently they were restricted to certain regions for a variety
 of reasons - availability, price, and latency are the main ones. 
