@@ -25,8 +25,7 @@ since we're a rapidly growing company, and I'm sure our data needs are going to 
 
 *What that means:* It's easy to figure out what version
  of your code was running at any given time, and on what data. This is critical if you're iterating on 
- code for ETL processes or  
- models, or tracking a model that's going to evolve over time based on what data it has seen.
+ code for ETL processes or models, or tracking a model that's going to evolve over time based on what data it has seen.
 
 - The egress feature and built-in feed-forward are amazingly elegant.  
 
@@ -47,7 +46,7 @@ going to fix that).
 - Not having to clean up the fallout from runaway backfills
 
 Runaway backfill in Airflow made our server fall down more than once whenever anybody 
-forgot to update the start date or name of their DAG. This was a built-int default setting that we couldn't change, 
+forgot to update the start date or name of their DAG. This was a built-in default setting that we couldn't change, 
 where Airflow would try to backfill any missing data to the beginning of time
 (1970, of course), and celery would get overloaded. 
 
@@ -77,8 +76,10 @@ Pachyderm's defaults for this are completely reasonable
 (3 retries, with increasing delay in between each try).
 
 If you get the enterprise version (which is cheap for an enterprise product):
+
 - It's more secure than Airflow, with built-in encryption (There's also no risk of exposing
 passwords by printing all the logs to a webpage that anyone can see, the way Airflow did by default.)
+
 - Really responsive and smart team, and a growing community of users
 - Nice dashboard to go with the CLI tool
 
@@ -173,19 +174,24 @@ kubernetes, you'll think Kubernetes very simple.
 Kubernetes itself
 isn't that hard to deploy if you know what needs to be configured, but I really didn't
 know any of that when I started. I ran into some weird issues where the kubernetes control script
-kubectl didn't set the permissions correctly on some of the config files, stuff like that. 
+`kubectl` didn't set the permissions correctly on some of the config files. (Shoutout to Sean Jezewski for helping me
+troubleshoot unintuitive stuff like that.) 
 
 In case you're wondering, as did almost everyone I spoke to while I was doing this, 
-EKS on AWS is not really ready for prime-time yet, so 
+EKS on AWS is not really ready for prime-time yet. 
+ 
 I ended up relying on a script that the Pachyderm guys wrote to deploy Kubernetes
 directly on EC2, and just adapted that for our needs. 
 
 Things that are great about deploying in the cloud:
+
 - Encapsulation is your friend. It's so much easier when you have complete control of the environment, and there's no mystery 
-about what packages are available or what the paths are. Scaling becomes relatively easy. Just split your data and run
-more jobs in parallel. 
+about what packages are available or what the paths are. 
+
+- Scaling becomes relatively easy. Just split your data and run more jobs in parallel. 
 
 Things to remember about deploying in the cloud:
+
 - Logging is your friend. You won't be able to debug with print statements on a remote, headless machine. Some of my 
 teammates didn't quite understand this until they actually did it. Good logging makes it trivially easy to figure out what went wrong.
 
@@ -306,11 +312,11 @@ overwriting the files every time the pipeline runs).
 Almost every
 problem we've run into (aside from the AWS headaches) were because I didn't know what I was doing, or had a bug in my code, or the data got too
 big for the space or time I had allocated for a given step. So, the usual reasons why anything (everything) fails in
-in software. 
+software. 
 
 I like that we can all interact with the cluster
 directly from our own machines, using the CLI, for quickly debugging. It has been fairly easy for my team
-to start learning how to write and run pipelines, because they're just json. 
+to start learning how to write and run pipelines. 
 
 There are some features that can be improved, and that's actually happening. 
 So overall, I'm a huge fan. So far Pachyderm has been rock-solid on the stuff it's running. In that sense,
