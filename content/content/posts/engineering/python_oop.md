@@ -1,7 +1,7 @@
 ---
 title: "Python_oop"
 date: 2019-05-24T13:29:53-07:00
-draft: true
+draft: false
 ---
 
 I frequently hear Python referred to as a 'scripting' language, because it's not compiled.
@@ -144,7 +144,7 @@ This part is a little confusing sometimes, so I want to break it down a little m
 The arguments being passed into the Cookie `__init__` method are the inputs you're entering. 
 
 Then we pass them to the `__init__` method that was inherited from the Sweets class, which is why we have to 
-list them again.  
+list them again. We don't have to list self again. 
 
 To use this with inputs, we instantiate a new cookie object:
 
@@ -169,7 +169,34 @@ True
 "It's gone!"
 ```
 
-# A note on multiple inheritance
+# Multiple inheritance
+
+Multiple inheritance happens if you want to inherit from more than one parent class. The only time this really makes 
+sense is if the two classes provide very different functionality. So here's an example where it could be useful:
+
+```python
+
+class Box:
+    def __init__(self):
+        self.side = 4
+
+class Chassis:
+    def __init__(self):
+        self.wheels = 4
+
+class ModelTrain(Box, Chassis):
+  
+    def __init__(self):
+        super(ModelTrain, self).__init__()
+        
+    def blow_horn(self):
+        print('choo choo!')
+```
+
+Note that I did it this way to make sure the `__init__` methods get called for both of the parent classes, 
+as described in more detail [in the answers to this StackOverflow question](https://stackoverflow.com/questions/3277367/how-does-pythons-super-work-with-multiple-inheritance). 
+
+Having said that, if you're considering using multiple inheritance, be very careful. Here's my advice on that:
 
 1. **Avoid it.**
 
@@ -181,7 +208,7 @@ If you have methods with the same name in your class and in one or more parent c
 the parent. 
 Beyond that, I recommend trying to check the MRO using the  `.__mro__` attribute, as described ![elsewhere](https://www.programiz.com/python-programming/methods/built-in/super).
 
-# A note on composition
+# Composition
 
 Composition is another term you'll hear, as in 'composition is better than inheritance'. Composition just means
 that one object or class knows about another one, but doesn't inherit from it. 
@@ -212,6 +239,34 @@ class DataPipeline:
 So in this case, DataPipeline uses the DataCleaner class as a way to _encapsulate_ some code and pass it around in a more
 readable way. It also makes it easier to reuse the DataCleaner class, as well as making it easier to 
 write and run tests for the DataCleaner class separately from the DataPipeline class. 
+
+Here's our Cookie example again, but this time with composition instead of inheritance, so we don't have worry about
+using super() at all:
+
+```python
+class Cookie:
+    def __init__(self, sweetness, crunchiness, stickiness):
+        self.description = Sweets(sweetness, crunchiness, stickiness)
+        self.size = 10
+
+    def crumble(self):
+        if self.eaten == False:
+            self.size = 0
+        elif self.eaten == True:
+            print("It's gone!")
+```
+
+But now when we want to access the attributes that came from Sweets, we have to do it via self.description, 
+which gets kind of confusing, since we have to keep track of what's in there vs. what isn't:
+
+```python
+composed_cookie = Cookie(sweetness='high', crunchiness='low', stickiness='low')
+```
+
+```
+> composed_cookie.description.sweetness
+'high'
+```
 
 Here are a couple of other references that might help you as you start to use classes in python:
 
