@@ -6,7 +6,8 @@ draft: false
 
 I frequently hear Python referred to as a 'scripting' language, because it's not compiled.
 Unfortunately, for this reason, a lot of people seem to assume you can't write 'real' programs with it. 
-This post is about moving beyond using Python as a scripting language. 
+This post is about moving beyond using Python as a scripting language. I'm assuming you're already comfortable with
+basic python data types and methods. 
 
 _Note: Most of the content here is specific to Python 3. If you're just learning 
 Python now, don't learn Python 2, it's being deprecated and many current 
@@ -15,11 +16,13 @@ libraries already stopped supporting it._
 # What is OOP and why you should learn it
 
 OOP stands for Object Oriented Programming. It's a way to create more structure in your code. 
-More structure means your code is easier to easier to extend, and easier to test. 
+More structure means your code is easier to extend, and easier to test. 
 
 When I first started learning OOP, I found it kind of confusing, and since then I've taught a few 
 other people how it works, but I never had great references or textbooks to use for reference. So I'm 
 making my own. 
+
+----
 
 I'm going to start with a very simple example, related to food. Let's start with dessert, because life is short.
 
@@ -133,12 +136,12 @@ class Cookie(Sweets):
     def crumble(self):
         self.size = 0
 ```
-So now the Cookie _class_ inherits the `__init__` method and the `was_eaten()` method from the Sweets _class_. And we 
-added a new method. 
+So now the Cookie _class_ inherits the `__init__` method and the `was_eaten()` method from the Sweets _class_. So Cookie can
+use those methods, even though you don't see them here, and we don't have to write them out again. 
 
-We want our crumble method to reduce the size attribute down to 0. But what was it originally?
+And, we added a new method. We want our crumble method to reduce the size attribute down to 0. But what was it originally?
 
-We want to add a new attribute, size, into the `__init__` method for Cookie that was not in Sweets. 
+We want to add this new attribute, size, into the `__init__` method for Cookie that was not in Sweets. 
 We can just do that, and it would look like this:
 
 ```python
@@ -154,9 +157,12 @@ class Cookie(Sweets):
             print("It's gone!")
 ```
 
-But then we can't use `sweetness`, `crunchiness`, `stickiness`, or `eaten`, 
+But now, since we created a new `__init__` method, Cookie will run this local `__init__`, 
+and it will _not_ run the `__init__` that was in Sweets. 
+
+With this version of the code, we can't use `sweetness`, `crunchiness`, `stickiness`, or `eaten`, 
 because this version of the Cookie class didn't initialize any of those attributes, 
-so it doesn't know what they are. 
+so it doesn't know what they are. This is not really the behavior we expected. 
 
 ```
 raw_cookie = Cookie(sweetness='high', crunchiness='low', stickiness='low')
@@ -164,8 +170,12 @@ raw_cookie = Cookie(sweetness='high', crunchiness='low', stickiness='low')
 > raw_cookie.sweetness
 AttributeError: 'Cookie' object has no attribute 'sweetness'
 ```
+____
+# Super() is superior
 
-What if we want to use all the attributes that are defined in the Sweets `__init__` method? 
+What if we want to use all the attributes that are defined in the Sweets `__init__` method, AND add new attributes 
+specific to Cookie?
+ 
 To do that, we use `super()`. 
 
 Super refers to the _parent_ or _base_ class that we're inheriting from. 
@@ -246,24 +256,18 @@ as described in more detail [in the answers to this StackOverflow question](http
 
 Having said that, if you're considering using multiple inheritance, be very careful. Here's my advice on that:
 
-1. **Avoid it.**
-
-Multiple inheritance gets messy and confusing. 
-
-If you need to do it, think hard about changing your design. 
-
-2. **Unique names are helpful.**
-
+1. **Avoid it.**  
+Multiple inheritance gets messy and confusing.   
+If you need to do it, think hard about changing your design.  
+2. **Unique names are helpful.**  
 If you still think it makes sense, or you have to use someone else's code and you can't change it, 
-at least try to name your methods differently in the parent and children classes, if you can. 
-Obviously, you can't do this with `__init__`, which is why you have to know about how `super()` works. 
-
-3. **If you can't avoid it, remember the MRO: method resolution order.** 
-
+at least try to name your methods differently in the parent and children classes, if you can.   
+Obviously, you can't do this with `__init__`, which is why you have to know about how `super()` works.  
+3. **If you can't avoid it, remember the MRO: method resolution order.**  
 If you have methods with the same name in your class and in one or more parent classes, 
-the local one is used first, and then the parent. 
+the local one is used first, and then the parent.   
 Beyond that, I recommend trying to check the MRO 
-using the  `.__mro__` attribute, as described ![elsewhere](https://www.programiz.com/python-programming/methods/built-in/super).
+using the  `.__mro__` attribute, as described [elsewhere](https://www.programiz.com/python-programming/methods/built-in/super).
 
 # Composition
 
@@ -365,6 +369,6 @@ Special thanks to Danek Duvall, Tom Marthal, and Jeremy Abramson for suggested c
 ---
 Here are a couple of other references that might help you as you start to use classes in python:
 
-![one](https://www.thedigitalcatonline.com/blog/2014/08/20/python-3-oop-part-3-delegation-composition-and-inheritance/)
-![two](https://codefellows.github.io/sea-python-401d4/lectures/inheritance_v_composition.html)
+[one](https://www.thedigitalcatonline.com/blog/2014/08/20/python-3-oop-part-3-delegation-composition-and-inheritance/)
+[two](https://codefellows.github.io/sea-python-401d4/lectures/inheritance_v_composition.html)
 
