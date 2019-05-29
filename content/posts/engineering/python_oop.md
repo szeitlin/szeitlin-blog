@@ -1,5 +1,5 @@
 ---
-title: "Python_oop"
+title: "Python OOP"
 date: 2019-05-24T13:29:53-07:00
 draft: false
 ---
@@ -26,7 +26,7 @@ making my own.
 
 I'm going to start with a very simple example, related to food. Let's start with dessert, because life is short.
 
-#`__init__`
+# `__init__`
 
 ```python
 class Sweets:
