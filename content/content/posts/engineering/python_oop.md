@@ -48,7 +48,7 @@ a set of methods attached to an object, those are hints that you might not need 
 
 In this case, the `__init__` method can take inputs to define each of our different types of dessert. 
 
-The _self_ argument is a default reference that python uses to keep track of which 
+The _self_ argument is a reference that python uses to keep track of which 
 _instance_ of the class we're talking about.
 So each time we create a new Sweets object, it will have its own attributes, 
 which we refer to by using _self_ within
@@ -70,15 +70,16 @@ class Sweets:
 ```
 
 Here, I've added some arguments into our `__init__` method. Note that I'm using type hinting to indicate that they're
-all strings (str). Then I convert those inputs into _attributes_ by saving them onto _self_ with names. So here's how you use that:
+all strings (str). Then I convert those inputs into _attributes_ by saving them onto _self_ with names. 
+So here's how you use that:
 
-First, I'm going to _instantiate_ a baked_donut, which is an _instance_ of the Sweets _class_.
+First, I'm going to _instantiate_ (create) a baked_donut, which is an _instance_ of the Sweets _class_.
 
 ```python
 baked_donut = Sweets(sweetness='high', crunchiness='low', stickiness='low')
 ```
 
-Note that you don't have to add `self` here, the python runtime does that for you 
+Note that you don't have to add `self` when you create the object, the python runtime does that for you 
 automagically in the background. 
 
 Let's check that our baked_donut is the type we expect:
@@ -223,7 +224,6 @@ Multiple inheritance happens if you want to inherit from more than one parent cl
 sense is if the two classes provide very different functionality. So here's an example where it could be useful:
 
 ```python
-
 class Box:
     def __init__(self):
         self.side = 4
@@ -248,20 +248,29 @@ Having said that, if you're considering using multiple inheritance, be very care
 
 1. **Avoid it.**
 
-Multiple inheritance gets messy and confusing. If you need to do it, think hard about changing your design. 
+Multiple inheritance gets messy and confusing. 
 
-2. **If you can't avoid it, remember the MRO: method resolution order.** 
+If you need to do it, think hard about changing your design. 
 
-If you have methods with the same name in your class and in one or more parent classes, the local one is used first, and then 
-the parent. 
-Beyond that, I recommend trying to check the MRO using the  `.__mro__` attribute, as described ![elsewhere](https://www.programiz.com/python-programming/methods/built-in/super).
+2. **Unique names are helpful.**
+
+If you still think it makes sense, or you have to use someone else's code and you can't change it, 
+at least try to name your methods differently in the parent and children classes, if you can. 
+Obviously, you can't do this with `__init__`, which is why you have to know about how `super()` works. 
+
+3. **If you can't avoid it, remember the MRO: method resolution order.** 
+
+If you have methods with the same name in your class and in one or more parent classes, 
+the local one is used first, and then the parent. 
+Beyond that, I recommend trying to check the MRO 
+using the  `.__mro__` attribute, as described ![elsewhere](https://www.programiz.com/python-programming/methods/built-in/super).
 
 # Composition
 
 Composition is another term you'll hear, as in 'composition is better than inheritance'. Composition just means
 that one object or class knows about another one, but doesn't inherit from it. 
 
-Here's a very simplified example of the type of design I've used before:
+Here's a very simplified example of the type of design I've used a lot for data engineering:
 
 ```python
 class DataCleaner:
@@ -317,7 +326,9 @@ In this case, composition is arguably
 better than inheritance. The DataPipeline class doesn't need to use what's in the DataCleaner class, it just has to 
 be able to use the output of DataCleaner.cleanup_method(). 
 
-Other times, inheritance is simpler. Here's our Cookie example again, 
+# Sometimes, inheritance is actually simpler than composition. 
+
+Here's our Cookie example again, 
 but this time with composition instead of inheritance, so we don't have worry about using super() at all, which 
 seems simpler at first:
 
@@ -345,8 +356,15 @@ composed_cookie = Cookie(sweetness='high', crunchiness='low', stickiness='low')
 > composed_cookie.description.sweetness
 'high'
 ```
+---
+This is a big topic, so I'm just going to stop there for now. This is enough to get you started, at least. 
+Future posts may include discussion on abstract base classes, metaclasses, mixins, etc. if that seems useful. 
 
+Special thanks to Danek Duvall, Tom Marthal, and Jeremy Abramson for suggested clarifications on this post. 
+
+---
 Here are a couple of other references that might help you as you start to use classes in python:
 
 ![one](https://www.thedigitalcatonline.com/blog/2014/08/20/python-3-oop-part-3-delegation-composition-and-inheritance/)
 ![two](https://codefellows.github.io/sea-python-401d4/lectures/inheritance_v_composition.html)
+
