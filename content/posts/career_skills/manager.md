@@ -1,7 +1,7 @@
 ---
 title: "Manager"
 date: 2019-08-30T16:35:24-07:00
-draft: true
+draft: false
 ---
 
 I was chatting with some friends recently, and this question came up:
@@ -10,6 +10,8 @@ What does a good working relationship with your manager look like?
 
 This is the list I came up with. I'm not saying I've been perfect at all of these myself as a manager, 
 but it's what I strive for, and it's what I look for in a good manager. 
+
+-----
 
 1. They trust you
     - They ask for your input when appropriate
@@ -48,10 +50,14 @@ This post is just an elaboration on what I mean by each of the things on that li
     it probably isn't working for other people, either.  
     
     *They promote your work* 
+    
     - Good managers know that the better you look, the better they look. 
+    
     - Smart leadership knows that successful teams get that way because they have a good manager. 
+    
     - What a particular team needs can vary widely: from a strong hand that keeps everyone on the same page, 
     to someone who just stays out of the way and helps give the team protected time to do what they do best. The best managers can do both, as needed. 
+    
     - Good managers know that helping you get promoted or move to another team is good for them, 
     because it means you'll be a loyal ally and collaborator even if you're somewhere else in the company. 
     
@@ -81,6 +87,7 @@ You won't be hearing an endless stream of excuses for why it hasn't happened yet
      *No surprises: planning and transparency*
 
     - Your manager provides clarity on roles and responsibilities: both theirs and yours.  
+    
     - They clearly communicate expectations for you, regarding: 
         - your projects (ownership, scope, requirements, timelines)
         - your teammates
@@ -89,16 +96,21 @@ You won't be hearing an endless stream of excuses for why it hasn't happened yet
         - relationships with representatives from third-party services or clients 
     
     *You feel safe asking them for help*
+    
     - You feel encouraged to ask for help, whether that's related to technical questions, 
     career questions, problems with people on your team, or problems with other people in the company. 
+    
     - They have your back, and you know they're not going to judge you for struggling or admitting you don't know how to handle something. 
 
     *They discuss your career goals with you*
+    
     - The best managers: 
-        - help steer you toward projects and opportunities to grow your skills and promote your work, 
-    both within the company and outside of it. They encourage you to be ambitious. 
+
         - won't try to force you into a role you don't want, or bait-and-switch you from what you originally 
      agreed when you interviewed. If your current role isn't quite what you want to be doing, 
     they work with you to focus on the good parts, and advocate for you to be able to do more of what you enjoy. 
+    
+        - help steer you toward projects and opportunities to grow your skills and promote your work, 
+    both within the company and outside of it. They encourage you to be ambitious. 
     
  
