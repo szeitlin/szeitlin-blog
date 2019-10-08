@@ -66,11 +66,11 @@ You should see a prompt that looks something like this:
 
 3. Now we can check a couple of things. First, check if there's a database there. 
 
-`postgres-# \l`               *#lowercase L is for 'list'*
+`postgres-# \l`               *#lowercase L is for 'list'*  #todo: add output
 
 4. Make sure you can connect to the default database. 
 
-`postgres-# \c postgres`    *# c is for connect, and postgres is the database name*
+`postgres-# \c postgres`    *# c is for connect, and postgres is the database name* #todo: add output
 
 ----
 
@@ -91,7 +91,7 @@ because I almost always end up using them for development and/or debugging.
 
 You should see your prompt change again, so now it should show the environment name: #todo add this
 
-3. Start ipython (or jupyter). 
+3. Start ipython (or jupyter if you're doing more elaborate things). 
 
 `ipython`
 
@@ -101,7 +101,10 @@ If ^this step gives an error, the package isn’t on your path. Run `!conda list
 of packages that are in your environment. 
 
 If ipython is not in the environment, conda will pull it from elsewhere on your machine. 
-So ipython will run, but the path will be wrong, and you’ll be confused.
+So ipython will run, but the path will be wrong, and you’ll be confused. Exit out of ipython, run `conda list` again, 
+and make sure you have what you need. If any packages are missing, you can activate the conda environment and then 
+`conda install <packagename>` or `pip install <packagename>`. I generally use pip as a fallback for anything conda 
+can't find. 
 
 4. Finally, connect to the database. Note that the documentation for psycogp2 is not completely up to date, and 
 there is more than one way to do this that may or may not work depending on your situation. 
