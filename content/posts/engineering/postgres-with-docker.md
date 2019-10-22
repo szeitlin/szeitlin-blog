@@ -32,19 +32,88 @@ installed postgres on your mac with homebrew, make sure that's been shut down, j
 
 # Step 1. Get set up with docker and make sure you can run the postgres container
 
-1. Install docker if you don't have it already (I didn't have it on my current laptop at home). #todo: add link here
+1. [Install docker](https://docs.docker.com/v17.12/install/) if you don't have it already 
+(I didn't have it on my current laptop at home). 
 
 Docker has great documentation, I recommend reading it. You really only need to know a few commands
 to get started. 
 
-2. Get the postgres image: `docker pull postgres:alpine` #todo add output there
+2. Get the postgres image: `docker pull postgres:alpine` 
 
 Alpine is just a very lightweight operating system. 
 
-3. Check the name by running `docker images`  #todo add output here 
+3. Check the name by running `docker images`. 
 
-4. Start the container: #todo: add command here
+You should see `postgres` under `REPOSITORY` and `alpine` under `tag`.  
 
+4. Start the container: `docker run postgres`
+
+Your output should look something like this:
+
+```$ docker run postgres
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/data ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default timezone ... Etc/UTC
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    pg_ctl -D /var/lib/postgresql/data -l logfile start
+
+
+WARNING: enabling "trust" authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.
+****************************************************
+WARNING: No password has been set for the database.
+         This will allow anyone with access to the
+         Postgres port to access your database. In
+         Docker's default configuration, this is
+         effectively any other container on the same
+         system.
+
+         Use "-e POSTGRES_PASSWORD=password" to set
+         it in "docker run".
+****************************************************
+waiting for server to start....2019-09-25 16:50:07.799 UTC [42] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2019-09-25 16:50:07.815 UTC [43] LOG:  database system was shut down at 2019-09-25 16:50:07 UTC
+2019-09-25 16:50:07.824 UTC [42] LOG:  database system is ready to accept connections
+ done
+server started
+
+/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+
+2019-09-25 16:50:07.890 UTC [42] LOG:  received fast shutdown request
+waiting for server to shut down....2019-09-25 16:50:07.893 UTC [42] LOG:  aborting any active transactions
+2019-09-25 16:50:07.897 UTC [42] LOG:  background worker "logical replication launcher" (PID 49) exited with exit code 1
+2019-09-25 16:50:07.897 UTC [44] LOG:  shutting down
+2019-09-25 16:50:07.911 UTC [42] LOG:  database system is shut down
+ done
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+2019-09-25 16:50:08.005 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2019-09-25 16:50:08.005 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2019-09-25 16:50:08.008 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2019-09-25 16:50:08.021 UTC [51] LOG:  database system was shut down at 2019-09-25 16:50:07 UTC
+2019-09-25 16:50:08.026 UTC [1] LOG:  database system is ready to accept connections
+```
 
 ----
 
