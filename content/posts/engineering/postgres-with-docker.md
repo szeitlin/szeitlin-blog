@@ -135,11 +135,28 @@ You should see a prompt that looks something like this:
 
 3. Now we can check a couple of things. First, check if there's a database there. 
 
-`postgres-# \l`               *#lowercase L is for 'list'*  #todo: add output
+`postgres-# \l`               *#lowercase L is for 'list'*  
+
+You should see something like this:
+
+```
+postgres-# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+```
 
 4. Make sure you can connect to the default database. 
 
-`postgres-# \c postgres`    *# c is for connect, and postgres is the database name* #todo: add output
+`postgres-# \c postgres`    *# c is for connect, and postgres is the database name* 
+
+Here's what it looks like if it works:
+
+```
+postgres-# \c postgres
+You are now connected to database "postgres" as user "postgres".
+```
 
 ----
 
@@ -149,7 +166,7 @@ You should see a prompt that looks something like this:
 
 `conda create -n postgres-test python=3 psycopg2 ipython jupyter notebook`
 
-Conda has great documentation, I recommend reading it: #link here
+Conda has [great documentation](https://docs.anaconda.com/anaconda/), I recommend reading it. 
 
 Psycopg2 is the name of the library we'll use to connect to postgres. I always install ipython and jupyter notebooks
 because I almost always end up using them for development and/or debugging. 
@@ -158,7 +175,9 @@ because I almost always end up using them for development and/or debugging.
  
 `conda activate postgres-test`
 
-You should see your prompt change again, so now it should show the environment name: #todo add this
+You should see your prompt change again, so now it should show the environment name: 
+
+`(postgres-test) ~/postgres-docker$`
 
 3. Start ipython (or jupyter if you're doing more elaborate things). 
 
