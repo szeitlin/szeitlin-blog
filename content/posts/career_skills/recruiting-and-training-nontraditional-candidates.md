@@ -4,11 +4,12 @@ date: 2019-11-19T10:29:00-08:00
 draft: true
 ---
 
+
+# Question: How come we don't have more diversity at our company? 
+
 This is one of those posts, I'm writing it because I keep hearing people asking the same questions
 over and over. I hear these questions at meetups and in Slack groups every week, and I hate seeing people 
 trying to reinvent the wheel when it's really not necessary. 
-
-# Question: How come we don't have more diversity at our company? 
 
  ## Answer: You haven't tried that hard. 
     
@@ -51,8 +52,8 @@ transferrable skills. You should be hiring more people like us.
                   
 # Training Junior or Nontraditional Candidates
 
-Not all nontraditional candidates are really junior, but most of us have gaps. I had a lot of transferrable skills
-when I first started in software, but I didn't know what they all were. I knew some of the things I hadn't done yet,
+Not all nontraditional candidates are really junior, but most of us have gaps. I had a lot of transferable skills
+when I first started in software, but I didn't know what they all were. I had at least heard of some things I hadn't done yet,
 but there were also plenty of things I didn't know that I didn't know. There still are. 
 
 I’ve trained a LOT of junior people, starting from way back in my scientific career, and my process is basically this: 
@@ -60,8 +61,17 @@ I’ve trained a LOT of junior people, starting from way back in my scientific c
 a) Train the first one of each cohort well, so they can help train the ones who join later. This makes your job easier, 
 and teaching others is a great way for them to cement what they just learned. 
 
-b) Write everything down, so they can look stuff up instead of asking me. Encourage them to improve the documentation
- as they use it. The more people who contribute, the better your instructions will be. 
+b) For more complicated things in lab, I've always used the classic "they watch me do it once, I watch them do it once, 
+then they do it on their own when I'm not around". Software is generally easier. And most people code better when you're
+not looking over their shoulder. 
+
+Show your existing code, and walk people through it so they understand
+your thought process. Similarly, when it's time for their code reviews, do it in person. Let them explain their thought
+process and what they were trying to do, before you jump all over them demanding a bunch of changes. 
+
+c) Write everything down, so they can look stuff up and get more done if you're not around. 
+Encourage them to improve the documentation as they use it. 
+The more people who contribute, the better your instructions will be. 
  
  I have a terrible memory, so I prefer written instructions
  to verbal, and I take notes whenever anyone is telling me how to do something. 
@@ -97,7 +107,7 @@ a company that handed a new person a giant list of links and docs,
 and half the links led nowhere because the list hadn't been maintained, and this person just felt completely lost. 
 We want to avoid that scenario. 
 
-c) Give a new person a small, discrete project to start with. Something that you know will result in a quick win. 
+d) Give a new person a small, discrete project to start with. Something that you know will result in a quick win. 
 Really map out in detail what all the steps should be, and the timelines. Don't expect them to guess how to proceed. 
 Do expect them to take longer than you might have expected at first. However long you think it's going to take, 
 multiply that by at least 3. Maybe 10. If they finish it faster, everybody's happy. If they finish it on time, they've learned
@@ -107,10 +117,10 @@ a lot, and so have you.
  means you have to communicate with them about how they prefer to work. It's helpful if you can offer advice on what you 
  might do. They may incorporate your advice in ways you didn't expect. 
 
-d) Once they've been there a little while, be a little bit unavailable sometimes, so they can start doing things on their own. 
+e) Once they've been there a little while, be a little bit unavailable sometimes, so they can start doing things on their own. 
 Don’t be afraid to tell them to look on stackoverflow/try a little more before they ask you.  
 
-d) Focus on teaching them how to teach themselves, because that’s a more transferrable skill anyway.
+f) Focus on teaching them how to teach themselves, because that’s a more transferrable skill anyway.
 
 This one can be tricky. If you're hiring mostly PhDs, some will already have very mature self-teaching skills, but 
 not everyone does. Or they'll be overwhelmed by adjusting to the culture shock of a new environment. 
