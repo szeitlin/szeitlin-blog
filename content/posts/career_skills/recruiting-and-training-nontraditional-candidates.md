@@ -31,7 +31,7 @@ transferrable skills. You should be hiring more people like us.
   2. Break out essential vs. nice-to-have skills. 
   3. Emphasize what process and support systems the company provides for candidates transitioning from other roles or fields. 
      - Do you have training and development stipends?
-     - Do you send people to Grace Hopper every year? 
+     - Do you send people to Grace Hopper (and other relevant conferences) every year? 
      - Do you have employee resource groups, or an inclusion squad? 
   4. Describe what candidates can expect in their first few months there. What does onboarding look like? How are employees evaluated?
             
@@ -58,18 +58,18 @@ but there were also plenty of things I didn't know that I didn't know. There sti
 
 I’ve trained a LOT of junior people, starting from way back in my scientific career, and my process is basically this: 
 
-a) Train the first one of each cohort well, so they can help train the ones who join later. This makes your job easier, 
+*a) Train the first one of each cohort well*, so they can help train the ones who join later. This makes your job easier, 
 and teaching others is a great way for them to cement what they just learned. 
 
-b) For more complicated things in lab, I've always used the classic "they watch me do it once, I watch them do it once, 
-then they do it on their own when I'm not around". Software is generally easier. And most people code better when you're
-not looking over their shoulder. 
+*b) They watch me do it once, I watch them do it once, 
+then they do it on their own when I'm not around.* 
 
 Show your existing code, and walk people through it so they understand
 your thought process. Similarly, when it's time for their code reviews, do it in person. Let them explain their thought
-process and what they were trying to do, before you jump all over them demanding a bunch of changes. 
+process and what they were trying to do, before you jump all over them demanding a bunch of changes. And always remember, 
+many people code best when they don't have someone looking over their shoulder.
 
-c) Write everything down, so they can look stuff up and get more done if you're not around. 
+*c) Write everything down, so they can look stuff up and get more done if you're not around.* 
 Encourage them to improve the documentation as they use it. 
 The more people who contribute, the better your instructions will be. 
  
