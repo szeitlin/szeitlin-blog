@@ -86,9 +86,14 @@ The more people who contribute, the better your instructions will be.
  
  ## The kinds of things that are useful to have written down:
  ### Onboarding:
- - How to set up your computer with access to all the services/databases/software they will need.
+ - How to set up a new computer with 
+ 
+    a) all the recommended tooling (Homebrew, github, Xcode, etc.) so they don't have to reinvent that wheel
+    
+    b) access to all the services/databases/software they will need, so they don't have to wait for the permissions they'll need. 
+    
  - Where to find information (Confluence, JIRA, google docs folders, etc)
- - Who to ask about what - for example, who owns what repos
+ - Who to ask about what - for example, org chart, and who owns what repos
 
 It doesn't take much, but it makes a huge difference to keep this stuff up to date. Do expect your new hire to update the docs
 with any changes. Don't expect them to go hunting for all this information on their own. Note that you can't expect a new hire
