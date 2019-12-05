@@ -138,24 +138,32 @@ in the morning, others at night. Some will learn quickly at first and then get s
 phase-shift to the next level overnight. If you want to level up your team, pay attention to these differences, and cultivate 
 what works for each person. If your team is actually diverse, it won't always be the same. 
 
-**Leveling up**
 
+###Leveling up team members
 I think the main difference between junior and senior is knowing what’s known/been done before, 
 and what’s really novel or unique to your system. This is true in science and in software. 
 
 Senior people usually have a better grasp of what’s available, what to ask for, and where to look for resources. 
 
-Really good senior people always look around first before reinventing the wheel, 
-and even if they have to do something novel, they look for related things to build from and inform their process.
+Really good senior people always look around first and ask, rather than guessing. 
+Even if they have to do something novel, they look for related things to build from and inform their process.
 
 Another difference between junior and senior people is that junior people 
 typically spend a huge amount of energy doubting themselves and second-guessing every move they make. 
 
-They have to know that even if they screw up, it will probably cost some time, 
+They have to know that even if they make a mistake, it will probably cost some time, 
 and it might even cost some money, but it's probably not going to cost anyone their job if they screw up once in a while. 
+Especially if they tell someone right away. They have to feel safer telling you than trying to fix it themselves. 
  
 You have to make everyone feel psychologically safe. Junior people don't become senior unless they 
 feel comfortable asking for help. 
+
+###Leveling up the team
+To me, the single most important thing that distinguishes great teams is the willingness of team mates to help each other
+out. This means they have to communicate, and have to appreciate complementary skills sets. Great team members know
+how to share, and when to hand things off. Senior people are willing and able to help the junior members, and each other. 
+If you're the manager, fostering this cooperation among team members means that you're no longer the single point of failure. 
+
 
 
 
