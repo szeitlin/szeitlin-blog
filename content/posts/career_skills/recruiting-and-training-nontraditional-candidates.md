@@ -1,7 +1,7 @@
 ---
 title: "Recruiting and Training Nontraditional Candidates"
 date: 2019-11-19T10:29:00-08:00
-draft: true
+draft: false
 ---
 
 
@@ -11,7 +11,7 @@ This is one of those posts, I'm writing it because I keep hearing people asking 
 over and over. I hear these questions at meetups and in Slack groups every week, and I hate seeing people 
 trying to reinvent the wheel when it's really not necessary. 
 
- ## Answer: You haven't tried that hard. 
+## Answer: You haven't tried that hard. 
     
 For the purposes of this blog post, let's go with the hypothesis that there are plenty of nontraditional candidates out there
 like me. We didn't major in computer science, but we learned how to code and we enjoy it. 
@@ -32,6 +32,7 @@ transferable skills. You should be hiring more people like us.
   3. Emphasize what process and support systems the company provides for candidates transitioning from other roles or fields. 
      - Do you have training and development stipends?
      - Do you send people to Grace Hopper (and other relevant conferences) every year? 
+     - Are you taking opportunities to sponsor conferences like Elevate and Girl Geek X?
      - Do you have employee resource groups, or an inclusion squad? 
   4. Describe what candidates can expect in their first few months there. What does onboarding look like? How are employees evaluated?
             
@@ -90,9 +91,8 @@ The more people who contribute, the better your instructions will be.
  **Onboarding:**
  - How to set up a new computer with 
  
-    - all the recommended tooling (Homebrew, github, Xcode, etc.) so they don't have to reinvent that wheel
-    
-    - access to all the services/databases/software they will need, so they don't have to wait for the permissions they'll need. 
+  + all the recommended tooling (Homebrew, github, Xcode, etc.) so they don't have to reinvent that wheel
+  + access to all the services/databases/software they will need, so they don't have to wait for the permissions they'll need. 
     
  - Where to find information (Confluence, JIRA, google docs folders, etc)
  - Who to ask about what - for example, org chart, and who owns what repos
@@ -139,7 +139,8 @@ phase-shift to the next level overnight. If you want to level up your team, pay 
 what works for each person. If your team is actually diverse, it won't always be the same. 
 
 
-###Leveling up team members
+### Leveling up team members
+
 I think the main difference between junior and senior is knowing what’s known/been done before, 
 and what’s really novel or unique to your system. This is true in science and in software. 
 
@@ -158,7 +159,8 @@ Especially if they tell someone right away. They have to feel safer telling you 
 You have to make everyone feel psychologically safe. Junior people don't become senior unless they 
 feel comfortable asking for help. 
 
-###Leveling up the team
+### Leveling up the team
+
 To me, the single most important thing that distinguishes great teams is the willingness of team mates to help each other
 out. This means they have to communicate, and have to appreciate complementary skills sets. Great team members know
 how to share, and when to hand things off. Senior people are willing and able to help the junior members, and each other. 
