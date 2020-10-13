@@ -44,11 +44,7 @@ When dealing with data, these are the cases I usually try to cover with tests:â€
     def test_optional_thing_missing():
         fake_data = {'a':1, 'b':2, 'd':4}
         results = []
-        for k,v in fake_data.items():
-            if k in {'a','b','c','d'}:
-                results.append(v)
-            else:
-                logging.info(f'Missing data for {k}')
+        #todo: fix this example
         assert len(results) == 3
 ```
 
@@ -59,6 +55,7 @@ When dealing with data, these are the cases I usually try to cover with tests:â€
     def test_thing_appears_twice():
         fake_data = [('a',1), ('b', 2), ('b', 2)]
         results = {}
+        #todo: finish this example
         
 
 ```
