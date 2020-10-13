@@ -12,48 +12,119 @@ This post is about that.
 
 #1. What to test? 
 
-todo: #I think I blogged about this before? 
+I've blogged about this [before][1], but it wasn't a great post. There are some useful hints in there, but I think this one will be Better.  
 
 **Test at least three: positive, negative, missing/unknown cases** 
 
 When dealing with data, these are the cases I usually try to cover with tests: 
 
-- thing meets my expectations (test should always succeed)
-- thing is very wrong (code should always throw an error)
-- thing is missing or just kind of wrong (to error or just log usually depends on scale) #todo: figure out how to do a footnote with md
-- often: also check that code handles duplicates gracefully
+- This thing meets my expectations (test should always succeed)
 
-footnote: Sometimes at scale you're better off just logging some types of errors or warnings, rather than actually causing your program 
-to stop. 
+```python
+   def test_valid_token_found():
+       config_dict = {'token': 'asdflkj348sak'}
+       token = config_dict.get('token')
+       assert isinstance(token, str)
+```
+
+- This thing is very wrong (code should always throw an error if this happens)
+
+```python
+   def test_invalid_token_throws_error(self):
+       empty_config_dict = dict()
+       with self.assertRaises(KeyError):
+           empty_config_dict.get('token')
+```
+
+- Something is missing or just kind of wrong, but it's handled correctly (to error or just log usually depends on scale) 
+
+```python
+    import logging
+    
+    def test_optional_thing_missing():
+        fake_data = {'a':1, 'b':2, 'd':4}
+        results = []
+        for k,v in fake_data.items():
+            if k in {'a','b','c','d'}:
+                results.append(v)
+            else:
+                logging.info(f'Missing data for {k}')
+        assert len(results) == 3
+```
+
+- Often: also check that code handles duplicates gracefully
+
+```python
+    
+    def test_thing_appears_twice():
+        fake_data = [('a',1), ('b', 2), ('b', 2)]
+        results = {}
+        
+
+```
+
+
+*Note: Sometimes at scale you're better off just logging some types of errors or warnings, rather than actually causing your program 
+to stop.* 
 
 
 # Unit tests
-<todo: what’s a unit test>
-Usually, testing a single method
 
-Often using static data, e.g. an example file. 
+*What's a unit test?* 
 
-ok but how do I write one for database operations without a database? what about s3 buckets?
+Usually when I'm talking about unit tests, I'm talking about testing a single method, often using static data, e.g. a hard-coded dictionary. 
+All the examples shown above are unit tests. 
+
+*Ok but how do I write one for database operations without a database? what about s3 buckets?*
+
+You don't. For that, you need integration tests. 
 
 # Integration tests
-<todo: what’s an integration test>
 
-Wherever possible, test on actual data. Ideally, pull fresh data and test on that. 
+*What's an integration test?*
+
+An integration test bridges across multiple methods, classes, or services. 
+
+<todo: add example here>
+
+Wherever possible, test on actual data. Ideally, if it's for data pipelining, your code should be able to pull fresh data and test on that. 
 
 Things worth testing: 
 - configurations to do certain types of operations
+
+<todo: add example here>
+
 - table inserts, joins, updates
+
+<todo: add example here>
+
 - logic that spans more than 1 operation (sequences of operations)
+
+<todo: add example here>
 
 ## How to do it:
 
 There are several options. Here are some common ones:
  
 1. Make a whole “mock” database, maybe in a docker container
+
+<todo: add example here>
+
 2. Set up some other database that’s sorta similar in dialect, e.g. sqlite, maybe in a docker container 
+
+<todo: add example here>
+
 3. If it’s a table, sometimes just mock it with a file or pandas
+
+<todo: add example here>
+
 4. Make an actual test table in a real database, do some stuff, and then delete it (setup and teardown)
+
+<todo: add example here>
+
 5. Make a whole test cluster (for e.g. airflow or pachyderm)
+
+<todo: add example here>
 
 _What’s good about mocks:_
 
@@ -66,18 +137,32 @@ Testing with a mock is usually an exercise in redundantly creating extra work an
 It won’t be automatically updated if the dependencies or deployment environment(s) change. And those are the things that usually break. 
 
 Other considerations:
-- If you're doing anything at scale, you're usually running in the cloud, which means you can’t always run a mock db locally like you can with postgres or mysql
-- Permissions & security considerations can be major blockers. 
-- Cost - especially if these tests are going to run on a lot of data or very frequently
+
+- If you're doing anything at scale, you're usually running a distributed database in the cloud, which means you can’t always run a mock database 
+locally like you can with postgres or mysql
+
+- Permissions & security considerations can be major blockers for running real integration tests in CICD systems. 
+It can be risky to give your test environment access to your production databases. If you're going to do this, it's best to 
+have your tests use a separate namespace or create their own tables. 
+
+- If you're running in the cloud on a real database, costs can add up, 
+especially if your tests are going to run on a lot of data, or very frequently. 
 
 #Regression tests
 
-So you’ve finally got your stuff working, how do you make sure nobody (including Future You) accidentally breaks it? 
+So you’ve finally got your stuff working. Congratulations! 
 
-What kinds of things usually cause things to break?
+*How do I make sure nobody (including Future Me) accidentally breaks it?* 
 
-- missing/renamed/swapped parameters
-- deprecations in your dependencies
-- major shifts from baseline
-- slow drift
-- changes to assumptions you made that were ‘temporary’
+You can't. Stuff will break. 
+
+What kinds of things usually cause stuff to break?
+
+- Changes to assumptions you made that were ‘temporary’
+- Missing/renamed/swapped parameters
+- Deprecations in your dependencies
+- Major shifts from baseline
+- Slow data drift
+
+
+[1]: https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/
