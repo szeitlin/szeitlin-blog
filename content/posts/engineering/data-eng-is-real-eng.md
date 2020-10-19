@@ -16,12 +16,12 @@ After I got over my initial horror that she had been wondering this for months a
 
 She seemed somewhat enlightened by this answer, but I didn’t love it, because there's a lot more to it than that. 
 So I wanted to write something here about what data engineers do all day, 
-because I’ve noticed a belief in many engineering orgs that data engineers are somehow not doing “real” engineering. 
-
-That data engineers are not Real Engineers. 
+because I’ve noticed a belief in many engineering orgs that data engineers are somehow not doing “real” engineering.
+And there's a lot of confusion about what data scientists do with regard to data engineering. 
 
 I've also noticed that there are some serious misconceptions about how standard web development CICD practices should work
-for data engineering, and it's because there's not enough understanding of how data engineering needs are different. 
+for data engineering, and it's because there's not enough understanding of how data engineering needs are different. So this post
+will touch on that, too. 
 
 ## First, what is an engineer?
 
@@ -41,7 +41,7 @@ About this [this definition](https://www.thoughtco.com/what-is-software-engineer
 
 > Software engineers use well-defined scientific principles and procedures to deliver an efficient and reliable software product. 
 
-Ok, so we do that when we do data engineering. But you could argue that the things we're building are not "a product". 
+Ok, so data engineers definitely do that. But you could argue that the things we're building are not "a product". 
 
 ## What's a software product?
 
@@ -60,11 +60,11 @@ So is it not a product if it's free and open-source?
 
 - We use CICD, just like everyone else
 
-- We use monitoring, probably more than you do
+- We use monitoring, probably more than some software engineers
 
-- We use containers, maybe more than you do
+- We use containers, maybe more than some software engineers
 
--  We use databases, a lot more than you do
+-  We use databases, a lot more than most software engineers
 
 ##What makes data engineering its own thing
 
