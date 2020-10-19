@@ -58,7 +58,7 @@ So is it not a product if it's free and open-source?
 
 - We write and run tests, just like everyone else
 
-- We use CICD, just like everyone else
+- We use CICD, just like everyone else*
 
 - We use monitoring, probably more than some software engineers
 
@@ -103,5 +103,23 @@ systems that use kubernetes to serve models and pipelines. These systems are sti
 it's always a moving target. We rarely get to just sit back and practice doing things we've done before. 
 
 ## Why our CICD has to be a little different from the usual setup for web development
+
+For data engineering, integration tests are way more important than unit tests. Unit tests are great, 
+and we use them, but most of the time we're working with distributed systems and databases, where state matters a lot. 
+So we can test some things locally, but generally we need to be testing things on remote systems. 
+
+Mocks generally don't work or are too much work to maintain, and test databases are good for 
+some things, but can fall out of sync quickly if they're not set up with automation to constantly pull in current data. 
+
+Then we get into a situation where we have to hit the 'production' databases in order to run meaningful tests,
+or we have to have a whole system to clone the production databases, or reproduce production tables, which can get
+expensive (both in terms of money, and also time). All of these
+options also have security and privacy complications to consider. 
+
+For ETL, it's usually necessary to have an additional kubernetes cluster just for testing data pipelines. 
+
+This is such a big topic that I've got a whole separate blog post on it (coming soon).
+
+
 
 
