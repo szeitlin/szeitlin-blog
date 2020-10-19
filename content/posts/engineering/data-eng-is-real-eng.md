@@ -50,7 +50,7 @@ This is where we get philosophical. You could say it's a "product" only if it it
 So is it not a product if it's free and open-source? 
 
 
-##What data engineering has in common with other software engineering
+## What data engineering has in common with other software engineering
 
 - We use logging, just like everyone else
 
@@ -66,7 +66,7 @@ So is it not a product if it's free and open-source?
 
 - We use databases, a lot more than most software engineers
 
-##What makes data engineering its own thing
+## What makes data engineering its own thing
 
 The customers for data engineering are usually all internal. That's the major difference. 
 
