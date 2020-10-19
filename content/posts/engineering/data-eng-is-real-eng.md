@@ -37,7 +37,7 @@ Where Real Engineers == Software Engineers.
 
 ## What's a software engineer?
 
-About this [this definition](https://www.thoughtco.com/what-is-software-engineering-958652)
+From [this definition](https://www.thoughtco.com/what-is-software-engineering-958652)
 
 > Software engineers use well-defined scientific principles and procedures to deliver an efficient and reliable software product. 
 
