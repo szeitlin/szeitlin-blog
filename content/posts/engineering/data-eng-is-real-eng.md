@@ -64,31 +64,43 @@ So is it not a product if it's free and open-source?
 
 - We use containers, maybe more than some software engineers
 
--  We use databases, a lot more than most software engineers
+- We use databases, a lot more than most software engineers
 
 ##What makes data engineering its own thing
 
 The customers for data engineering are usually all internal. That's the major difference. 
 
 But this is also true for another team of 
-engineers who are essential to a software business: your ops team. You could just look at it as another form 
+engineers who are essential to a software business: your devops team. You could just look at it as another form 
 of backend infrastructure: the front end doesn't work without the back end. 
-Similarly, many parts of the business are running in the dark without data. 
+Similarly, many parts of the business are serving garbage, or not running at all, without data. 
 
 We are often, but not always, like a separate startup within a company. 
-By that I mean, we usually do most, if not all, our own DevOps and product management. 
-Data engineering teams often have our own stack. 
+By that I mean, we usually do most, if not all, our own devops and product management. 
+This is partly because data teams usually have a separate tech stack. It's mostly because
+devops teams traditionally aren't big enough to support a data team's separate stack
+on top of everything a devops team normally does. I'm not saying this is how it should be, 
+but it's where most companies fail to plan for sufficient resourcing. 
 
-Some of the tools we use are different. 
+Some of the tools we use are different. For example, we have to know about, and typically have to support,
+a lot of different databases, and at scale, our databases are columnar. We have to architect our tables
+and queries while accounting for the potential 
+cost of storing and retrieving data at scale. 
 
-We have to know about a lot of different databases. 
+We do a lot of ETL. We have special tools that we use to automate
+ETL. Some of these tools are basically their own ecosystem. At this point, I'm not 
+really exaggerating when I say that Airflow is approximately on par with 
+Django for how complex and specific it is, in terms of how much knowledge is needed to use and maintain it, even in a
+'hosted' environment like Google Composer. 
 
-Our databases are mostly usually columnar. 
+We have to know all about streaming and cloud stuff. We have to understand distributed systems, and we have to know 
+enough about all the infrastructure running our distributed systems that we can at least know what to google for, 
+and who to ask, when we need help. 
 
-We do a lot of ETL. 
-
-We have to know all about streaming and cloud stuff. 
- We also do stuff in containers. 
+We also use containers. We have to know how to use docker, and often kubernetes as well. Most modern
+software engineering stacks use docker now, and many use kubernetes. But we also need to know, again, specialized
+systems that use kubernetes to serve models and pipelines. These systems are still under rapid development, so 
+it's always a moving target. We rarely get to just sit back and practice doing things we've done before. 
 
 ## Why our CICD has to be a little different from the usual setup for web development
 
