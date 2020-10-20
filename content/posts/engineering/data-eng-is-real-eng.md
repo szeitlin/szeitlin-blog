@@ -70,10 +70,26 @@ Software products can also just be a catchall term for work product. They can in
 
 The customers for data engineering are usually all internal. That's the major difference. 
 
+The customers for data engineering may include, but are not limited to:
+
+- data science/machine learning engineers
+- business analysts
+- marketing
+- sales
+- customer support teams
+- finance
+- the board
+- product managers
+- engineers
+
 But this is also true for another team of 
-engineers who are essential to a software business: your devops team. You could just look at it as another form 
+engineers who are essential to a software business: your devops team. 
+
+You could just look at it as another form 
 of backend infrastructure: the front end doesn't work without the back end. 
-Similarly, many parts of the business are serving garbage, or not running at all, without data. 
+
+Similarly, many parts of the business are serving garbage, or not running at all, without data. But this kind of work can 
+feel thankless at times, because in some ways it's kind of invisible. 
 
 We are often, but not always, like a separate startup within a company. 
 By that I mean, we usually do most, if not all, our own devops and product management. 
