@@ -45,9 +45,9 @@ Ok, so data engineers definitely do that. But you could argue that the things we
 
 ## What's a software product?
 
-This is where we get philosophical. You could say it's a "product" only if it it's paid for. 
+Software products might be business products. They might be things we sell.
 
-So is it not a product if it's free and open-source? 
+Software products can also just be a catchall term for work product. They can include free and open-source software. 
 
 
 ## What data engineering has in common with other software engineering
@@ -108,12 +108,14 @@ For data engineering, integration tests are way more important than unit tests. 
 and we use them, but most of the time we're working with distributed systems and databases, where state matters a lot. 
 So we can test some things locally, but generally we need to be testing things on remote systems. 
 
-Mocks generally don't work or are too much work to maintain, and test databases are good for 
-some things, but can fall out of sync quickly if they're not set up with automation to constantly pull in current data. 
+Mocks don't work for everything, or are too much work to maintain. 
+
+Test databases are good for some things, but can fall out of sync 
+quickly if they're not set up with automation to constantly pull in current data. 
 
 Then we get into a situation where we have to hit the 'production' databases in order to run meaningful tests,
 or we have to have a whole system to clone the production databases, or reproduce production tables, which can get
-expensive (both in terms of money, and also time). All of these
+expensive (in terms of both money and time). All of these
 options also have security and privacy complications to consider. 
 
 For ETL, it's usually necessary to have an additional kubernetes cluster just for testing data pipelines. 
