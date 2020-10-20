@@ -23,7 +23,7 @@ I've also noticed that there are some serious misconceptions about how standard 
 for data engineering, and it's because there's not enough understanding of how data engineering needs are different. So this post
 will touch on that, too. 
 
-## First, what is an engineer?
+### First, what is an engineer?
 
 I like [this definition](https://www.careerexplorer.com/careers/engineer/): 
 
@@ -35,7 +35,7 @@ But plenty of orgs don't consider analysts or data scientists to be Real Enginee
 
 Where Real Engineers == Software Engineers. 
 
-## What's a software engineer?
+### What's a software engineer?
 
 From [this definition](https://www.thoughtco.com/what-is-software-engineering-958652)
 
@@ -43,12 +43,19 @@ From [this definition](https://www.thoughtco.com/what-is-software-engineering-95
 
 Ok, so data engineers definitely do that. But you could argue that the things we're building are not "a product". 
 
-## What's a software product?
+### What's a software product?
 
 Software products might be business products. They might be things we sell.
 
 Software products can also just be a catchall term for work product. They can include free and open-source software. 
 
+The typical data engineering work product usually looks something like this:
+
+    get data --> make data more usable --> write data out (optional: --> make data visible)
+
+If that's the product, and it's running in a container, then it might be a microservice, 
+with a charting tool or dashboard as the optional 'frontend' piece (I say optional because sometimes someone else
+makes the dashboard with the charts).
 
 ## What data engineering has in common with other software engineering
 
@@ -100,8 +107,7 @@ but it's where most companies fail to plan for sufficient resourcing.
 
 Some of the tools we use are different. For example, we have to know about, and typically have to support,
 a lot of different databases, and at scale, our databases are columnar. We have to architect our tables
-and queries while accounting for the potential 
-cost of storing and retrieving data at scale. 
+and queries while accounting for the potential cost of storing and retrieving data at scale. 
 
 We do a lot of ETL. We have special tools that we use to automate
 ETL. Some of these tools are basically their own ecosystem. At this point, I'm not 
