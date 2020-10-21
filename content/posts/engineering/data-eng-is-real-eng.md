@@ -31,6 +31,10 @@ I like [this definition](https://www.careerexplorer.com/careers/engineer/):
 
 By that definition, analysts and data scientists are engineers, too. 
 
+The main difference between data scientists and data engineers are who owns what. 
+
+Data scientists generally own more analyses and models, while data engineers own more pipelines. 
+
 But plenty of orgs don't consider analysts or data scientists to be Real Engineers. 
 
 Where Real Engineers == Software Engineers. 
@@ -47,13 +51,14 @@ Ok, so data engineers definitely do that. But you could argue that the things we
 
 Software products might be business products. They might be things we sell.
 
-Software products can also just be a catchall term for work product. They can include free and open-source software. 
+"Software products" can also be a catchall term for software-related work products. 
+They can include free and open-source software. 
 
 The typical data engineering work product usually looks something like this:
 
-    get data --> make data more usable --> write data out (optional: --> make data visible)
+    code that gets data --> code that makes data more usable --> code that writes data out (optional: --> make data visible)
 
-If that's the product, and it's running in a container, then it might be a microservice, 
+If that's the product, and it's running in a container, or a set of containers, then it might be a microservice, 
 with a charting tool or dashboard as the optional 'frontend' piece (I say optional because sometimes someone else
 makes the dashboard with the charts).
 
@@ -65,7 +70,7 @@ makes the dashboard with the charts).
 
 - We write and run tests, just like everyone else
 
-- We use CICD, just like everyone else*
+- We use CICD, just like everyone else (see below for more about this)
 
 - We use monitoring, probably more than some software engineers
 
@@ -106,7 +111,7 @@ on top of everything a devops team normally does. I'm not saying this is how it 
 but it's where most companies fail to plan for sufficient resourcing. 
 
 Some of the tools we use are different. For example, we have to know about, and typically have to support,
-a lot of different databases, and at scale, our databases are columnar. We have to architect our tables
+a lot of different databases. And at scale, more of our databases are columnar. We have to architect our tables
 and queries while accounting for the potential cost of storing and retrieving data at scale. 
 
 We do a lot of ETL. We have special tools that we use to automate
@@ -143,6 +148,10 @@ options also have security and privacy complications to consider.
 For ETL, it's usually necessary to have an additional kubernetes cluster just for testing data pipelines. 
 
 This is such a big topic that I've got a whole separate blog post on it (coming soon).
+
+### Special thanks to people who read and commented on drafts of this post:
+
+Binal Patel, Caleb Hyde, Sam Johnson, Adam Boscarino, James Felix Black, Danek Duvall
 
 
 
