@@ -1,7 +1,7 @@
 ---
 title: "Data Engineering Is Software Engineering"
 date: 2020-10-15T09:47:10-07:00
-draft: true
+draft: false
 ---
 
 Recently, a coworker asked me what the difference is between data science and data engineering. 
@@ -10,9 +10,9 @@ heard applied to data science, as well.
 
 After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain: 
 
- > Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases. 
+ > *Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases. 
  > Data science is all of that, plus analyzing the data and figuring out how to display it in a way that makes sense, 
- and sometimes also building models and doing machine learning. 
+ and sometimes also building models and doing machine learning.* 
 
 She seemed somewhat enlightened by this answer, but I didn’t love it, because there's a lot more to it than that. 
 So I wanted to write something here about what data engineers do all day, 
@@ -27,7 +27,7 @@ will touch on that, too.
 
 I like [this definition](https://www.careerexplorer.com/careers/engineer/): 
 
-> An engineer uses science, technology and math to solve problems.
+> *An engineer uses science, technology and math to solve problems.*
 
 By that definition, analysts and data scientists are engineers, too. 
 
@@ -43,7 +43,7 @@ Where Real Engineers == Software Engineers.
 
 From [this definition](https://www.thoughtco.com/what-is-software-engineering-958652)
 
-> Software engineers use well-defined scientific principles and procedures to deliver an efficient and reliable software product. 
+> *Software engineers use well-defined scientific principles and procedures to deliver an efficient and reliable software product.* 
 
 Ok, so data engineers definitely do that. But you could argue that the things we're building are not "a product". 
 
