@@ -10,11 +10,19 @@ to be fast and representative of what I expect to find when I run things "for re
 Most people I've met who are newer to data engineering find that it's not immediately obvious how to write and run tests for data things. 
 This post is about that. 
 
-#1. What to test? 
+#1. What to test and why? 
 
 I've blogged about this [before][1], but it wasn't a great post. There are some useful hints in there, but I think this one will be Better.  
 
-**Test at least three: positive, negative, missing/unknown cases** 
+There are several great reasons to write and run automated tests. These are the ones I usually repeat to remind myself and others why it's worth doing:
+
+1) You're already testing when you check your code manually, you're just doing it the slow way. 
+2) In that sense, it's actually faster to automate tests early and often. 
+3) Tests require that your code is modular and, well, testable. If you're struggling to write tests, it might mean
+you need to simplify your code. 
+4) Tests require that you understand how your code actually works. It's a great way to doublecheck your logic and assumptions. 
+
+**Test for these: positive, negative, missing/unknown cases, duplicates** 
 
 When dealing with data, these are the cases I usually try to cover with tests:â€¨
 
@@ -43,23 +51,27 @@ When dealing with data, these are the cases I usually try to cover with tests:â€
     
     def test_optional_thing_missing():
         fake_data = {'a':1, 'b':2, 'd':4}
-        results = []
-        #todo: fix this example
-        assert len(results) == 3
+        results = fake_data.get('c',3)
+        logging.warning("key 'c' was missing")
+        assert results == 3
 ```
 
-- Often: also check that code handles duplicates gracefully
+- Check that code handles duplicates the way you want
 
 ```python
     
-    def test_thing_appears_twice():
-        fake_data = [('a',1), ('b', 2), ('b', 2)]
-        results = {}
-        #todo: finish this example
-        
+    from collections import Counter
+    
+    def test_keep_duplicates():
+        fake_data_list = [('a',1), ('b', 2), ('b', 2)]
+        count = Counter(fake_data_list)
+        assert set(count.values()) == {1,2}        
 
+    def test_drop_duplicates():
+        fake_data = {('a',1), ('b', 2), ('b', 2)}
+        count = Counter(fake_data)
+        assert set(count.values()) == {1} 
 ```
-
 
 *Note: Sometimes at scale you're better off just logging some types of errors or warnings, rather than actually causing your program 
 to stop.* 
