@@ -12,7 +12,9 @@ This post is about that.
 
 #1. What to test and why? 
 
-I've blogged about this [before][1], but it wasn't a great post. There are some useful hints in there, but I think this one will be Better.  
+I've blogged about this [before][1], but that post is more of a 'tips and tricks' post. This post is more about the nuts the bolts.   
+
+----
 
 There are several great reasons to write and run automated tests. These are the ones I usually repeat to remind myself and others why it's worth doing:
 
@@ -81,7 +83,7 @@ to stop.*
 
 *What's a unit test?* 
 
-Usually when I'm talking about unit tests, I'm talking about testing a single method, often using static data, e.g. a hard-coded dictionary. 
+When I'm talking about unit tests, I'm talking about testing a single method, often using static data, e.g. a hard-coded dictionary. 
 All the examples shown above are unit tests. 
 
 *Ok but how do I write one for database operations without a database? what about s3 buckets?*
@@ -96,7 +98,13 @@ An integration test bridges across multiple methods, classes, or services.
 
 <todo: add example here>
 
-Wherever possible, test on actual data. Ideally, if it's for data pipelining, your code should be able to pull fresh data and test on that. 
+Wherever possible, test on (copies or samples of) actual data. Ideally, if it's for data pipelining, 
+your code should be able to pull fresh data and test on that. 
+
+If your code needs to be able to backfill
+historical data, you should have a reference data set. Typically I use files that represent samples of 
+data sources, and whenever I update the code, I pull a fresh sample file, and make sure the updated code 
+works on the new data and is also still backwards-compatible. 
 
 Things worth testing: 
 - configurations to do certain types of operations
@@ -111,9 +119,9 @@ Things worth testing: 
 
 <todo: add example here>
 
-## How to do it:
+## How to do it
 
-There are several options. Here are some common ones:
+### There are several options. Here are some common ones:
  
 1. Make a whole “mock” database, maybe in a docker container
 
@@ -170,6 +178,7 @@ What kinds of things usually cause stuff to break?
 - Changes to assumptions you made that were ‘temporary’
 - Missing/renamed/swapped parameters
 - Deprecations in your dependencies
+- Unannounced changes from upstream (also known as, "whoops we forgot to tell the data team")
 - Major shifts from baseline
 - Slow data drift
 
