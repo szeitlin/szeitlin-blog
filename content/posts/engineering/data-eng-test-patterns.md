@@ -34,14 +34,18 @@ they work (it also makes my code easier for other people to understand),
 and for regression tests/ahead of refactoring. 
 
 ```python
-   import uuid
+    import uuid
    
-   def test_valid_token_found():
-       """Check that the config_dict token object is a valid UUID object"""
-       test_token = uuid.uuid1()
-       config_dict = {'token': test_token}
-       token = config_dict.get('token')
-       assert isinstance(token, uuid.UUID)
+    def make_token_dict():
+        """Returns a dictionary with key "token" and a new UUID as its value"""
+        test_token = uuid.uuid1()
+        return {'token': test_token}
+
+    def test_valid_token_found():
+        """Check that the config_dict token object is a valid UUID object"""
+        config_dict = make_token_dict()
+        token = config_dict.get('token')
+        assert isinstance(token, uuid.UUID)
 ```
 
 - This thing is very wrong (code should always throw an error if this happens)
@@ -78,7 +82,7 @@ to stop.
         fake_data_list = [('a',1), ('b', 2), ('b', 2)]
         count = Counter(fake_data_list)
         results = count.values()
-        assert  results == [1,2,2]        
+        assert  list(results) == [1,2]        
 
     def test_drop_duplicates():
         fake_data = {('a',1), ('b', 2), ('b', 2)}
@@ -122,8 +126,8 @@ An integration test bridges across multiple methods, classes, or services.
 Wherever possible, test on (copies or samples of) actual data. Ideally, if it's for data pipelining, 
 your code should be able to pull fresh data and test on that. 
 
-If your code needs to be able to backfill
-historical data, you should have a reference data set. Typically I use files that represent samples of 
+If your code needs to be able to backfill historical data, you should have a reference data set. 
+Typically I use files that represent samples of 
 data sources, and whenever I update the code, I pull a fresh sample file, and make sure the updated code 
 works on the new data and is also still backwards-compatible. 
 
@@ -133,7 +137,6 @@ Things worth testing: 
 - table inserts, joins, updates
 
 - logic that spans more than 1 operation (sequences of operations)
-
 
 ## How to do it
 
@@ -193,7 +196,7 @@ And those are the things that usually break.
 Take-home points:
 
 - If you're doing anything at scale, you're usually running a distributed database in the cloud, 
-which means you can’t always run a copy of your database locally like you can with postgres or mysql.
+which means you can’t always run a copy of your database locally like you can with Postgres or MySQL.
 
 - Permissions & security considerations can be major blockers for running real integration tests in CICD systems. 
 It can be risky to give your test environment access to your production databases. 
@@ -203,6 +206,35 @@ have your tests use a separate namespace or create their own tables.
 - If you're running in the cloud on a real database, costs can add up, 
 especially if your tests are going to run on a lot of data, or very frequently. 
 
+#Testing ETL
+
+These days, batch and streaming ETL generally have the same steps, it's only the batch size that differs. 
+Ingest the data ('Extract'), do something to it ('Transform'), write it back out ('Load'). 
+
+So how it testing ETL different from other kinds of testing?
+
+ETL testing is sort of like any other kind of integration testing, except that it generally has to always run in the same order. 
+
+1. **Simplify, simplify, simplify.**
+
+    *If you need to mock your ETL in order to test it, it's too complicated.* 
+    
+    You can mock the database, and you may have to, but don't use mocks to test the actual steps. 
+
+2. **Test at the interfaces.** 
+    
+    Test the data going in and out of each step. 
+    
+    Usually you'll want an assert making sure your raw data looks as expected, before you do anything to it. 
+    Then you run your code, and assert that it looks the way you want. 
+    
+3. **Test obvious things.**
+
+    Are my columns in the right order? Are they the right data type? 
+    Did we get the right number of rows back out? 
+    Are we handling nulls correctly? 
+    Is everything formatted correctly at the end?
+    
 #Regression tests
 
 So you’ve finally got your stuff working. Congratulations! 
