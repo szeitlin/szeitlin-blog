@@ -206,7 +206,7 @@ have your tests use a separate namespace or create their own tables.
 - If you're running in the cloud on a real database, costs can add up, 
 especially if your tests are going to run on a lot of data, or very frequently. 
 
-#Testing ETL
+# Testing ETL
 
 These days, batch and streaming ETL generally have the same steps, it's only the batch size that differs. 
 Ingest the data ('Extract'), do something to it ('Transform'), write it back out ('Load'). 
@@ -235,7 +235,7 @@ ETL testing is sort of like any other kind of integration testing, except that i
     Are we handling nulls correctly? 
     Is everything formatted correctly at the end?
     
-#Regression tests
+# Regression tests
 
 So you’ve finally got your stuff working. Congratulations! 
 
