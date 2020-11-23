@@ -252,5 +252,9 @@ What kinds of things usually cause stuff to break?
 - Major shifts from baseline
 - Slow data drift
 
+---
+Thanks to Adam Laiacano and Deron Aucoin for helpful comments on the first draft of this post. 
+
+
 
 [1]: https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/
