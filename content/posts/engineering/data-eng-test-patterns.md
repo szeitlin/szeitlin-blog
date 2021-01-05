@@ -150,12 +150,13 @@ Things worth testing: 
 you may end up with extra code to keep schema consistent with your real database. 
 It can also get expensive if your database is big, so you'll probably want to only have samples, rather than full tables. 
 
-**2. Set up a lighweight local database that’s sorta similar in dialect, e.g. sqlite, maybe in a docker container.**
+**2. Set up a lightweight local database that’s sorta similar in dialect, e.g. sqlite, maybe in a docker container.**
 
 **Pro:** You can insert and change data without worrying about messing up your real data. This is the approach
-used most commonly with ORM frameworks like Django. 
+used most commonly with ORM frameworks like Django. You might want to check out something like [testcontainers][2] 
+for dockerized versions of some commonly-used databases.
 
-**Cons:** same as (1), plus it can take a while to load this up, if your database gets big, plus dialect differences
+**Cons:** same as (1), plus it can take a while to populate, if your database gets big, plus dialect differences
 can lead to confusion. 
 
 **3. If it’s a table, just mock it with a file or pandas.**
@@ -258,3 +259,4 @@ Thanks to Adam Laiacano and Deron Aucoin for helpful comments on the first draft
 
 
 [1]: https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/
+[2]: https://github.com/testcontainers/testcontainers-python
