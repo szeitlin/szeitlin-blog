@@ -4,22 +4,38 @@ date: 2021-01-27T13:13:57-08:00
 draft: true
 ---
 
-# Some intro here about why I'm looking at this:
+# DVC vs. Pachyderm
+
+I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that's why 
+we have forks, and spoons, and sometimes when we're camping, sporks. Although Pachyderm claims to use a git-style 
+model for data and code versioning, there are aspects of the Pachyderm model (like forking) that aren't exactly 
+like git. So one thing I wanted to know is, how well does this analogy to git work for DVC? And are there use cases
+where one should definitely use DVC or Pachyderm? 
+
+So here's the bottom line, and if you want more details, scroll down to read about my experience trying out DVC 
+on my own. 
 
 # comparison
 
 Both DVC and Pachyderm can:
-- track and save data and ML models (pachyderm can do this too)
-- switch between versions easily
+- track and save data and ML models 
+- switch between versions easily*
 - easily pull in data from cloud storage, and push back out
-- functionality for streaming data
+- pull in streaming data
 - facilitate work on a shared development server (or cluster, in the case of Pachyderm)
 
 One major difference is that Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
 really the whole point is to containerize models. DVC has no such expectation. 
 
+Another major difference is that Pachyderm is designed to serve models, both for development and production. DVC 
+isn't a model serving service. 
+
+##todo if time allows, look at CML
+
 ##todo: Some intro here about what else dvc can do that Pachyderm doesn't do as easily:
-- compare model metrics among experiments (not sure what this means yet?)
+- compare model metrics among experiments, e.g `dvc metrics diff` 
+
+This is a feature I would've love to have in Pachyderm, but it doesn't exist. 
 
 
 Some links to past posts about pachyderm:
@@ -31,9 +47,7 @@ First, I started trying to go through one of the tutorials, but I don't have eno
 
 So, then I thought, let's see if I can do something with a small data set I had leftover from a recent job interview. 
 
-Starting with a folder that has a data file in it. 
-
-Create an environment: 
+Starting with a folder that has a data file in it, I created an environment: 
 
 `$ conda create -n iterative python=3 pandas numpy scikit-learn jupyter notebook`
 
@@ -81,8 +95,8 @@ dump(clf, 'logit_bad.joblib')
 ```
 
 Then we add that with `dvc add` and `git add` and `git tag`. Although I don't have aliases for my usual 
-git workflow, since this adds another line of typing to every git command, I am thinking if I were going to do this a lot, 
-I would want an alias or something. 
+git workflow, since this adds another line (or two, with tagging) of typing to every git command, 
+if I were going to do this a lot, I would want an alias in my terminal. 
 
 The next thing the tutorial does makes perfect sense: try to improve the model and save another version of it. 
 
@@ -108,22 +122,27 @@ I also see that there is a function to load/stream data from external DVC projec
 time to test it out now. I ran into problems with Pachyderm's streaming functionality when we tried to use it at scale, 
 so I'd be curious to know if DVC has solved or avoided the kinds of problems we were having. 
 
-The way DVC sets up sharing for e.g. a development server is different from how Pachyderm does it, because it 
-relies on git and caching, and you have to manually set permissions on those caches. 
+The way DVC sets up sharing for multiple users on a single development server is different from how Pachyderm does it, 
+because DVC relies on git and caching, and you have to manually set permissions on those caches. 
 This seems like a pain to set up the first time. 
 
-Pachyderm's enterprise offering has role-based access controls, but we never bothered to set those up, either. (We always said
-we'd do it later...) Instead we just gave everyone on the team access, and as long as we didn't 
+Pachyderm's enterprise offering has role-based access controls, but we never bothered to set those up, either. 
+(We always said we'd do it later...) Instead, we just gave everyone on the team access, and as long as we didn't 
 touch each other's pipelines, it was fine. 
+
 I think if we were going to have multiple people working directly on the same data and/or same models, 
 we would want more granular controls (and the equivalent of `git blame`) for this. 
 
 Another major difference between DVC and Pachyderm is that DVC can be run as a python library. 
 I was curious to try this out, so I opened a new notebook and typed `import dvc.api`. 
 This looks like it should be really easy, in the sense that you don't have to build and push up a container to a container
-registry in order to pull an updated version of your model. So I think that's potentially really useful. 
+registry in order to pull an updated version of your model. So I think that's potentially really useful in situations
+where you won't be building microservices. 
 
-One thing I like about the containerized approach is that it's extremely reproducible. 
+One thing I like about the containerized approach is that it's extremely reproducible, and well, contained. DVC seems to 
+be able to make the reproducible part pretty straightforward with helping you track, for example, what files are in a folder, 
+and taking advantage of git tagging. 
+
 
 
 
