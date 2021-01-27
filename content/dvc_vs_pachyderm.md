@@ -19,6 +19,7 @@ on my own.
 
 Both DVC and Pachyderm can:
 - track and save data and ML models 
+- connect data transformation steps and models in pipelines
 - switch between versions easily*
 - easily pull in data from cloud storage, and push back out
 - pull in streaming data
@@ -30,9 +31,16 @@ really the whole point is to containerize models. DVC has no such expectation.
 Another major difference is that Pachyderm is designed to serve models, both for development and production. DVC 
 isn't a model serving service. 
 
+There are some minor differences, too. Pachyderm uses json for pipeline definitions; DVC uses yaml. Pachyderm has you 
+create a separate pipeline file for each step, wherease DVC has you create DAGs, a little more like Airflow (but simpler). 
+But these differences are what one of my former coworkers would refer to as "implementation details". 
+
+## todo: could write a whole paragraph about having a whole DAG, vs. a single pipeline step, per file
+
 ##todo if time allows, look at CML
 
 ##todo: Some intro here about what else dvc can do that Pachyderm doesn't do as easily:
+- visualize the structure of a dag with ascii art (this is really cute)
 - compare model metrics among experiments, e.g `dvc metrics diff` 
 
 This is a feature I would've love to have in Pachyderm, but it doesn't exist. 
