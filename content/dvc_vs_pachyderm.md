@@ -27,6 +27,10 @@ Both DVC and Pachyderm can:
 Some links to past posts about pachyderm:
 #todo: put link(s) here
 
+Started trying to go through one of the tutorials, but I don't have enough free space on my laptop!
+
+So, let's see if I can do something with a small data set I had leftover from a recent job interview. 
+
 
 Starting with a folder that has a data file in it. 
 
@@ -63,6 +67,36 @@ remotely, and then pull them in when you want to work on them.
 I think this is cute, but I'm not sure how it would work in practice. 
 
 In the interest of time, I'm going to skip over this for now and maybe come back later.
+
+So anyway I went and built a model in a jupyter notebook, and the first version wasn't very good (unsurprisingly). 
+Just to be safe, I dumped it out anyway: 
+
+```python
+from joblib import dump, load
+dump(clf, 'logit_bad.joblib') 
+```
+
+Then we add that with `dvc add` and `git add` and `git tag`. Although I don't have aliases for my usual 
+git workflow, since this adds another line of typing to every git command, I am thinking if I were going to do this a lot, 
+I would want an alias or something. 
+
+The next thing the tutorial does makes perfect sense: try to improve the model and save another version of it. 
+Back to my notebook. 
+
+Since I didn't spend much time on it, the second version of the model isn't much better, but I write out `logit_bad2.joblib` anyway. 
+
+The next step is to demonstrate switching between workspaces, so you can check out the data and the model 
+versions easily. This is where I think DVC really shines, and is easier than Pachyderm. 
+
+Because we tagged the versions, it's really trivial to say `git checkout v1.0` and then `dvc checkout`. 
+
+With Pachyderm, at scale anyway, this was not so easy. The times when I needed this the most were not during development, 
+though, they were during debugging. And then the hard part was going through to find which chunk of data was
+associated with a failed model run, and track back to get the uuid of that commit. 
+
+
+
+
 
 
 
