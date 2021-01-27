@@ -4,9 +4,29 @@ date: 2021-01-27T13:13:57-08:00
 draft: true
 ---
 
-Some intro here about what dvc says it can do:
+# Some intro here about why I'm looking at this:
+
+# comparison
+
+Main differences:
+
+- Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
+really the whole point is to containerize models. DVC has no such expectation. 
+
+Main similarities:
+
+Both DVC and Pachyderm can:
+- track and save data and ML models (pachyderm can do this too)
+- switch between versions easily
+- easily pull in data from cloud storage, and push back out
+
+#todo: Some intro here about what else dvc says it can do:
+- compare model metrics among experiments (not sure what this means yet)
+
 
 Some links to past posts about pachyderm:
+#todo: put link(s) here
+
 
 Starting with a folder that has a data file in it. 
 
