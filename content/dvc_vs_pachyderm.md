@@ -15,7 +15,7 @@ where one should definitely use DVC or Pachyderm?
 So here's the bottom line, and if you want more details, scroll down to read about my experience trying out DVC 
 on my own. 
 
-# comparison
+# High-level comparison
 
 Both DVC and Pachyderm can:
 - track and save data and ML models 
@@ -35,22 +35,68 @@ There are some minor differences, too. Pachyderm uses json for pipeline definiti
 create a separate pipeline file for each step, wherease DVC has you create DAGs, a little more like Airflow (but simpler). 
 But these differences are what one of my former coworkers would refer to as "implementation details". 
 
-## todo: could write a whole paragraph about having a whole DAG, vs. a single pipeline step, per file
+# Deciding which one to use
 
-##todo if time allows, look at CML
+So let's say you're thinking about starting a new project, and you're wondering which tool to use (DVC or Pachyderm). 
+Here are some questions that should help you decide:
 
-##todo: Some intro here about what else dvc can do that Pachyderm doesn't do as easily:
+*1. Do you use git?*
+
+DVC assumes you will be using git. 
+Pachyderm doesn't care what you use for version control for your code. 
+
+*2. Do you plan to use, or already have, kubernetes?*
+
+Kubernetes can be a big devops project if you haven't used it before, or if you don't have the resources to help configure and 
+maintain it. If you don't want to be dealing with that, you should probably use DVC. 
+
+If you're at a place that already uses microservices and has some kubernetes experience in-house, or if you just want to do 
+microservices, you might want to use Pachyderm. 
+
+*3. Do you want to version your DAGs, or version your pipeline steps separately?*
+
+This is sort of a minor workflow question, or potentially a major architecture question. 
+
+If you want to be able to branch off at any point in your DAG (any data import step, or any model step)
+at any point in your development process, then you should probably use Pachyderm. 
+
+If you expect to version entire DAGs from beginning to end, you should probably use DVC. 
+
+*4. Do you want a system where your development environment mimics your deployment environment (and plan to deploy in kubernetes)?*
+
+Both DVC and Pachyderm assume you're going to do some amount of development on your local machine. 
+
+Pachyderm makes sense if you plan to always be running models in containers, and the enterprise version includes 
+encryption over the wire, and role-based access controls. Pachyderm is really meant to be used for serving models, 
+not just tracking and developing them. 
+
+If you know you're not going to be using containers to serve your models, and you primarily want something to help you with 
+tracking data and models, you probably should use DVC. 
+
+# Would you ever use both?
+
+I can imagine a scenario where you'd use DVC for data and model tracking, and Pachyderm for serving. 
+
+----
+
+There are at least a couple of things that DVC can do, which Pachyderm doesn't have at all. For example:
 - visualize the structure of a dag with ascii art (this is really cute)
 - compare model metrics among experiments, e.g `dvc metrics diff` 
 
-This is a feature I would've love to have in Pachyderm, but it doesn't exist. 
-
-
-Some links to past posts about pachyderm:
-## todo: put link(s) here
+It's also worth mentioning that Iterative, the company that created DVC, has another project called CML (Continuous Machine Learning), 
+ for CI/CD in ML projects. Pachyderm doesn't have anything like this. 
+ 
+ CML includes functionality for monitoring and reporting on model performance, and it's designed to work with DVC. 
 
 ____
 
+If you want to know more about Pachyderm, here's a post I wrote a while back comparing Pachyderm to Airflow:
+
+Pachyderm vs. airflow [https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/]
+
+____
+
+# DVC first impressions
 First, I started trying to go through one of the tutorials, but I don't have enough free space on my laptop!
 
 So, then I thought, let's see if I can do something with a small data set I had leftover from a recent job interview. 
