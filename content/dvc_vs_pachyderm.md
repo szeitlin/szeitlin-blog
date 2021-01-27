@@ -8,29 +8,28 @@ draft: true
 
 # comparison
 
-Main differences:
-
-- Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
-really the whole point is to containerize models. DVC has no such expectation. 
-
-Main similarities:
-
 Both DVC and Pachyderm can:
 - track and save data and ML models (pachyderm can do this too)
 - switch between versions easily
 - easily pull in data from cloud storage, and push back out
+- functionality for streaming data
+- facilitate work on a shared development server (or cluster, in the case of Pachyderm)
 
-#todo: Some intro here about what else dvc says it can do:
-- compare model metrics among experiments (not sure what this means yet)
+One major difference is that Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
+really the whole point is to containerize models. DVC has no such expectation. 
+
+##todo: Some intro here about what else dvc can do that Pachyderm doesn't do as easily:
+- compare model metrics among experiments (not sure what this means yet?)
 
 
 Some links to past posts about pachyderm:
-#todo: put link(s) here
+## todo: put link(s) here
 
-Started trying to go through one of the tutorials, but I don't have enough free space on my laptop!
+____
 
-So, let's see if I can do something with a small data set I had leftover from a recent job interview. 
+First, I started trying to go through one of the tutorials, but I don't have enough free space on my laptop!
 
+So, then I thought, let's see if I can do something with a small data set I had leftover from a recent job interview. 
 
 Starting with a folder that has a data file in it. 
 
@@ -50,7 +49,7 @@ and then
 
 `$ dvc init`
 
-I added my data files to my .gitignore, as usual, and then 
+I didn't have to add my data files to my .gitignore, as usual, because dvc takes care of that when you do:
 
 `$ dvc add win-rate-small.data.pickle`
 
@@ -61,14 +60,19 @@ And then I put the tracking file into git for safekeeping:
 
 `$ git add win-rate-small.data.pickle.dvc`
 
-The main advantage of this seems to be if you want to store your large data files
+A big advantage of this seems to be if you want to store your large data files
 remotely, and then pull them in when you want to work on them. 
 
-I think this is cute, but I'm not sure how it would work in practice. 
+I think this is cute, but I'm not sure how it would work in practice. Do you always delete the local copy of the file
+to save space? I may just be paranoid, but I always get nervous when I have to delete data, even if I know it's 
+backed up somewhere else. I'm not sure if it's just because I first started working with data when disks could go bac
+and it took forever to load things, but it just feels weird to me. 
 
-In the interest of time, I'm going to skip over this for now and maybe come back later.
+Anyway, in the interest of time, I'm going to skip over this for now and maybe come back later.
 
-So anyway I went and built a model in a jupyter notebook, and the first version wasn't very good (unsurprisingly). 
+____
+
+Next, I went and built a model in a jupyter notebook, and the first version wasn't very good (unsurprisingly). 
 Just to be safe, I dumped it out anyway: 
 
 ```python
@@ -81,6 +85,7 @@ git workflow, since this adds another line of typing to every git command, I am 
 I would want an alias or something. 
 
 The next thing the tutorial does makes perfect sense: try to improve the model and save another version of it. 
+
 Back to my notebook. 
 
 Since I didn't spend much time on it, the second version of the model isn't much better, but I write out `logit_bad2.joblib` anyway. 
@@ -92,9 +97,33 @@ Because we tagged the versions, it's really trivial to say `git checkout v1.0` a
 
 With Pachyderm, at scale anyway, this was not so easy. The times when I needed this the most were not during development, 
 though, they were during debugging. And then the hard part was going through to find which chunk of data was
-associated with a failed model run, and track back to get the uuid of that commit. 
+associated with a failed model run, and track back to get the uuid of that commit. It was doable, but it wasn't smooth. 
 
+----
 
+The `dvc get` command is not that different from how Pachyderm works. Both systems use remote file storage like s3 or GCS, 
+so you use their command instead of having to use the aws or GCP CLI to retrieve your files.
+
+I also see that there is a function to load/stream data from external DVC projects, which is exciting, and I wish I had 
+time to test it out now. I ran into problems with Pachyderm's streaming functionality when we tried to use it at scale, 
+so I'd be curious to know if DVC has solved or avoided the kinds of problems we were having. 
+
+The way DVC sets up sharing for e.g. a development server is different from how Pachyderm does it, because it 
+relies on git and caching, and you have to manually set permissions on those caches. 
+This seems like a pain to set up the first time. 
+
+Pachyderm's enterprise offering has role-based access controls, but we never bothered to set those up, either. (We always said
+we'd do it later...) Instead we just gave everyone on the team access, and as long as we didn't 
+touch each other's pipelines, it was fine. 
+I think if we were going to have multiple people working directly on the same data and/or same models, 
+we would want more granular controls (and the equivalent of `git blame`) for this. 
+
+Another major difference between DVC and Pachyderm is that DVC can be run as a python library. 
+I was curious to try this out, so I opened a new notebook and typed `import dvc.api`. 
+This looks like it should be really easy, in the sense that you don't have to build and push up a container to a container
+registry in order to pull an updated version of your model. So I think that's potentially really useful. 
+
+One thing I like about the containerized approach is that it's extremely reproducible. 
 
 
 
