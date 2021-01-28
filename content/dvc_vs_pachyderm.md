@@ -8,7 +8,7 @@ draft: true
 
 I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that's why 
 we have forks, and spoons, and sometimes when we're camping, sporks. Although Pachyderm claims to use a git-style 
-model for data and code versioning, there are aspects of the Pachyderm model (like forking) that aren't exactly 
+approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren't exactly 
 like git. So one thing I wanted to know is, how well does this analogy to git work for DVC? And are there use cases
 where one should definitely use DVC or Pachyderm? 
 
@@ -64,22 +64,23 @@ If you expect to version entire DAGs from beginning to end, you should probably 
 
 *4. Do you want a system where your development environment mimics your deployment environment (and plan to deploy in kubernetes)?*
 
-Both DVC and Pachyderm assume you're going to do some amount of development on your local machine. 
+Both DVC and Pachyderm assume you're going to do some amount of development on your local machine.  
 
 Pachyderm makes sense if you plan to always be running models in containers, and the enterprise version includes 
-encryption over the wire, and role-based access controls. Pachyderm is really meant to be used for serving models, 
+encryption over the wire, and role-based access controls. Pachyderm is really meant to be used for *serving* models, 
 not just tracking and developing them. 
 
-If you know you're not going to be using containers to serve your models, and you primarily want something to help you with 
-tracking data and models, you probably should use DVC. 
+If you know you're *not* going to be using containers to serve your models, and you primarily want something to help you with 
+*tracking* data and models, you probably should use DVC. 
 
 # Would you ever use both?
 
 I can imagine a scenario where you'd use DVC for data and model tracking, and Pachyderm for serving. 
 
 ----
+# Other things DVC can do
 
-There are at least a couple of things that DVC can do, which Pachyderm doesn't have at all. For example:
+There are at least a couple of things that DVC can do, which Pachyderm doesn't have at all. For example, DVC can:
 - visualize the structure of a dag with ascii art (this is really cute)
 - compare model metrics among experiments, e.g `dvc metrics diff` 
 
@@ -90,9 +91,7 @@ It's also worth mentioning that Iterative, the company that created DVC, has ano
 
 ____
 
-If you want to know more about Pachyderm, here's a post I wrote a while back comparing Pachyderm to Airflow:
-
-Pachyderm vs. airflow [https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/]
+If you want to know more about Pachyderm, [here's a post][1] I wrote a while back comparing Pachyderm to Airflow:
 
 ____
 
@@ -198,6 +197,7 @@ be able to make the reproducible part pretty straightforward with helping you tr
 and taking advantage of git tagging. 
 
 
+[1] : https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/
 
 
 
