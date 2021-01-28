@@ -26,7 +26,7 @@ Both DVC and Pachyderm can:
 - facilitate work on a shared development server (or cluster, in the case of Pachyderm)
 
 One major difference is that Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
-really the whole point is to containerize models. DVC has no such expectation. 
+the whole point is to containerize models. DVC has no such expectation. 
 
 Another major difference is that Pachyderm is designed to serve models, both for development and production. DVC 
 isn't a model serving service. 
@@ -67,7 +67,7 @@ If you expect to version entire DAGs from beginning to end, you should probably 
 Both DVC and Pachyderm assume you're going to do some amount of development on your local machine.  
 
 Pachyderm makes sense if you plan to always be running models in containers, and the enterprise version includes 
-encryption over the wire, and role-based access controls. Pachyderm is really meant to be used for *serving* models, 
+encryption over the wire, and role-based access controls. Pachyderm is meant to be used for *serving* models, 
 not just tracking and developing them. 
 
 If you know you're *not* going to be using containers to serve your models, and you primarily want something to help you with 
@@ -81,7 +81,7 @@ I can imagine a scenario where you'd use DVC for data and model tracking, and Pa
 # Other things DVC can do
 
 There are at least a couple of things that DVC can do, which Pachyderm doesn't have at all. For example, DVC can:
-- visualize the structure of a dag with ascii art (this is really cute)
+- visualize the structure of a dag with ascii art (this is super cute!)
 - compare model metrics among experiments, e.g `dvc metrics diff` 
 
 It's also worth mentioning that Iterative, the company that created DVC, has another project called CML (Continuous Machine Learning), 
@@ -91,7 +91,7 @@ It's also worth mentioning that Iterative, the company that created DVC, has ano
 
 ____
 
-If you want to know more about Pachyderm, [here's a post][1] I wrote a while back comparing Pachyderm to Airflow:
+If you want to know more about Pachyderm, [here's a post][1] I wrote a while back comparing Pachyderm to Airflow.
 
 ____
 
@@ -128,11 +128,11 @@ And then I put the tracking file into git for safekeeping:
 `$ git add win-rate-small.data.pickle.dvc`
 
 A big advantage of this seems to be if you want to store your large data files
-remotely, and then pull them in when you want to work on them. 
+remotely, and then pull them into your working environment only as needed. 
 
-I think this is cute, but I'm not sure how it would work in practice. Do you always delete the local copy of the file
+I think this is cute, but I'm not sure how it works in practice. Do you always delete the local copy of the file
 to save space? I may just be paranoid, but I always get nervous when I have to delete data, even if I know it's 
-backed up somewhere else. I'm not sure if it's just because I first started working with data when disks could go bac
+backed up somewhere else. I'm not sure if it's just because I first started working with data when disks could go bad
 and it took forever to load things, but it just feels weird to me. 
 
 Anyway, in the interest of time, I'm going to skip over this for now and maybe come back later.
@@ -160,7 +160,7 @@ Since I didn't spend much time on it, the second version of the model isn't much
 The next step is to demonstrate switching between workspaces, so you can check out the data and the model 
 versions easily. This is where I think DVC really shines, and is easier than Pachyderm. 
 
-Because we tagged the versions, it's really trivial to say `git checkout v1.0` and then `dvc checkout`. 
+Because we tagged the versions, it's trivial to say `git checkout v1.0` and then `dvc checkout`. 
 
 With Pachyderm, at scale anyway, this was not so easy. The times when I needed this the most were not during development, 
 though, they were during debugging. And then the hard part was going through to find which chunk of data was
@@ -169,9 +169,9 @@ associated with a failed model run, and track back to get the uuid of that commi
 ----
 
 The `dvc get` command is not that different from how Pachyderm works. Both systems use remote file storage like s3 or GCS, 
-so you use their command instead of having to use the aws or GCP CLI to retrieve your files.
+so you use `dvc get` or `pachctl get` instead of having to use the aws or GCP CLI to retrieve your files.
 
-I also see that there is a function to load/stream data from external DVC projects, which is exciting, and I wish I had 
+I also see that there is a function to stream data in from external DVC projects, which is exciting, and I wish I had 
 time to test it out now. I ran into problems with Pachyderm's streaming functionality when we tried to use it at scale, 
 so I'd be curious to know if DVC has solved or avoided the kinds of problems we were having. 
 
@@ -188,13 +188,13 @@ we would want more granular controls (and the equivalent of `git blame`) for thi
 
 Another major difference between DVC and Pachyderm is that DVC can be run as a python library. 
 I was curious to try this out, so I opened a new notebook and typed `import dvc.api`. 
-This looks like it should be really easy, in the sense that you don't have to build and push up a container to a container
+This looks like it should be very easy, in the sense that you don't have to build and push up a container to a container
 registry in order to pull an updated version of your model. So I think that's potentially really useful in situations
 where you won't be building microservices. 
 
 One thing I like about the containerized approach is that it's extremely reproducible, and well, contained. DVC seems to 
 be able to make the reproducible part pretty straightforward with helping you track, for example, what files are in a folder, 
-and taking advantage of git tagging. 
+and by taking advantage of git tagging. 
 
 
 [1] : https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/
