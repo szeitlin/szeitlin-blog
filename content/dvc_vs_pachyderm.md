@@ -75,7 +75,8 @@ If you know you're *not* going to be using containers to serve your models, and 
 
 # Would you ever use both?
 
-I can imagine a scenario where you'd use DVC for data and model tracking, and Pachyderm for serving. 
+I can imagine a scenario where you'd use DVC for data and model tracking during local development, and Pachyderm for serving and iteration
+once the model is deployed. 
 
 ----
 # Other things DVC can do
@@ -171,9 +172,6 @@ associated with a failed model run, and track back to get the uuid of that commi
 The `dvc get` command is not that different from how Pachyderm works. Both systems use remote file storage like s3 or GCS, 
 so you use `dvc get` or `pachctl get` instead of having to use the aws or GCP CLI to retrieve your files.
 
-I also see that there is a function to stream data in from external DVC projects, which is exciting, and I wish I had 
-time to test it out now. I ran into problems with Pachyderm's streaming functionality when we tried to use it at scale, 
-so I'd be curious to know if DVC has solved or avoided the kinds of problems we were having. 
 
 The way DVC sets up sharing for multiple users on a single development server is different from how Pachyderm does it, 
 because DVC relies on git and caching, and you have to manually set permissions on those caches. 
