@@ -1,7 +1,7 @@
 ---
 title: "Test Patterns for Data Engineering"
-date: 2020-10-13T12:45:27-07:00
-draft: true
+date: 2021-02-26T12:45:27-07:00
+draft: false
 ---
 
 Coming from a background in bench science, or what we affectionately referred to as "wetlab", I like to test everything I do, and I like my tests
@@ -10,7 +10,7 @@ to be fast and representative of what I expect to find when I run things "for re
 Most people I've met who are newer to data engineering find that it's not immediately obvious how to write and run tests for data things. 
 It's different enough from writing unit tests for web apps that there are some pitfalls to be aware of. This post is about that. 
 
-#1. What to test and why? 
+# 1. What to test and why? 
 
 I've blogged about this [before][1], but that post is more of a 'tips and tricks' post. 
 This post is more about the nuts and bolts.   
@@ -20,16 +20,21 @@ This post is more about the nuts and bolts.
 There are several great reasons to write and run automated tests. These are the ones I usually repeat to remind myself and others why it's worth doing:
 
 1) You're already testing when you check your code manually, you're just doing it the slow way. 
+
 2) It's actually faster to automate tests early and often. 
+
 3) Tests require that your code is modular. If you're struggling to write tests, it may mean you
 need to simplify your code. 
+
 4) Tests require that you understand how your code actually works. It's a great way to doublecheck your logic and assumptions. 
 
 **Test for these: positive, negative, missing/unknown cases, duplicates** 
 
 When dealing with data, these are the cases I usually try to cover with tests: 
 
-- This thing meets my expectations (test should always succeed). I use these the most with new libraries to make sure I understand how 
+- *This thing meets my expectations*: test should always succeed. 
+
+I use these the most with new libraries to make sure I understand how 
 they work (it also makes my code easier for other people to understand), 
 and for regression tests/ahead of refactoring. 
 
@@ -38,7 +43,7 @@ and for regression tests/ahead of refactoring.
    
     def make_token_dict():
         """Returns a dictionary with key "token" and a new UUID as its value"""
-        test_token = uuid.uuid1()
+        test_token = uuid.uuid4()
         return {'token': test_token}
 
     def test_valid_token_found():
@@ -48,7 +53,7 @@ and for regression tests/ahead of refactoring.
         assert isinstance(token, uuid.UUID)
 ```
 
-- This thing is very wrong (code should always throw an error if this happens)
+- *This thing is very wrong*: code should always throw an error if this happens
 
 ```python
    def test_missing_token_throws_error(self):
@@ -58,7 +63,9 @@ and for regression tests/ahead of refactoring.
            empty_config_dict.get('token')
 ```
 
-- Something is missing or just kind of wrong, but it's handled correctly. To error or just log usually depends on scale: 
+- *Something is missing or just kind of wrong, but it's handled correctly.* 
+
+To error or just log usually depends on scale: 
 sometimes you're better off just logging some types of errors or warnings, rather than actually causing your program 
 to stop.
 
@@ -72,7 +79,7 @@ to stop.
         assert results == 3
 ```
 
-- Check that code handles duplicates the way you want
+- *Check that code handles duplicates the way you want*
 
 ```python
     
@@ -99,7 +106,7 @@ to stop.
 When I'm talking about unit tests, I'm talking about testing a single method, often using static data, e.g. a hard-coded dictionary. 
 All the examples shown above are unit tests. 
 
-*Ok but how do I write one for database operations without a database? what about s3 buckets?*
+*Ok but how do I write one for database operations, with or without a database? what about s3 buckets?*
 
 You don't. For that, you need integration tests. 
 
@@ -132,6 +139,7 @@ data sources, and whenever I update the code, I pull a fresh sample file, and ma
 works on the new data and is also still backwards-compatible. 
 
 Things worth testing: 
+
 - configurations to do certain types of operations
 
 - table inserts, joins, updates
@@ -150,20 +158,25 @@ Things worth testing: 
 you may end up with extra code to keep schema consistent with your real database. 
 It can also get expensive if your database is big, so you'll probably want to only have samples, rather than full tables. 
 
+---
+
 **2. Set up a lightweight local database that’s sorta similar in dialect, e.g. sqlite, maybe in a docker container.**
 
 **Pro:** You can insert and change data without worrying about messing up your real data. This is the approach
 used most commonly with ORM frameworks like Django. You might want to check out something like [testcontainers][2] 
 for dockerized versions of some commonly-used databases.
 
-**Cons:** same as (1), plus it can take a while to populate, if your database gets big, plus dialect differences
-can lead to confusion. 
+**Cons:** same as (1), plus it can take a while to populate, if your database gets big, plus dialect differences can lead to confusion. 
+
+---
 
 **3. If it’s a table, just mock it with a file or pandas.**
 
 **Pro:** This works nicely for things that fit in memory, and I do it a lot for non-SQL things. 
 
 **Cons:** You may have to replace the file, or add additional files, if the table changes a lot. 
+
+---
 
 **4. Make an actual test table in a real database, do some stuff, and then delete it (setup and teardown)**
 
@@ -172,6 +185,8 @@ in a setup that mimics what will happen when you do it for real.
 
 **Cons:** It can take some finagling to set up credentials etc. the first time, and you may not be allowed to do it
 depending on your CICD system. It can also make your tests take longer to run. 
+
+---
 
 **5. Make a whole test cluster (for e.g. airflow or pachyderm)**
 
@@ -186,13 +201,15 @@ _What’s good about mocks:_
 
 Not much, in my experience. But it can be better than nothing. 
 A mock will, at a minimum, fulfill the purpose of forcing you to doublecheck your logic, 
-at least while you’re writing the test. 
+at least while you’re writing the test. Most of the examples I put in blog posts are mocks. 
 
 _What’s bad about mocks:_
 
 Testing with a mock is usually an exercise in redundantly creating extra work and checking nothing useful. 
 It won’t be automatically updated if the dependencies or deployment environment(s) change. 
 And those are the things that usually break. 
+
+---
 
 Take-home points:
 
