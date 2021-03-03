@@ -22,7 +22,6 @@ Both DVC and Pachyderm can:
 - connect data transformation steps and models in pipelines
 - switch between versions easily*
 - easily pull in data from cloud storage, and push back out
-- pull in streaming data
 - facilitate work on a shared development server (or cluster, in the case of Pachyderm)
 
 One major difference is that Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
@@ -40,18 +39,20 @@ But these differences are what one of my former coworkers would refer to as "imp
 So let's say you're thinking about starting a new project, and you're wondering which tool to use (DVC or Pachyderm). 
 Here are some questions that should help you decide:
 
-*1. Do you use git?*
+*1. Do you already use git?*
 
 DVC assumes you will be using git. 
+
 Pachyderm doesn't care what you use for version control for your code. 
 
 *2. Do you plan to use, or already have, kubernetes?*
 
 Kubernetes can be a big devops project if you haven't used it before, or if you don't have the resources to help configure and 
-maintain it. If you don't want to be dealing with that, you should probably use DVC. 
+maintain it. If you don't want to be dealing with that, you could use the hosted Pachyderm service, 
+if that works with your scale and security restrictions. Otherwise you should probably use DVC. 
 
-If you're at a place that already uses microservices and has some kubernetes experience in-house, or if you just want to do 
-microservices, you might want to use Pachyderm. 
+If you're at a place that already uses microservices and has some kubernetes experience in-house, 
+or if you just want to do microservices for managing models, you might want to use Pachyderm. 
 
 *3. Do you want to version your DAGs, or version your pipeline steps separately?*
 
@@ -165,7 +166,8 @@ Because we tagged the versions, it's trivial to say `git checkout v1.0` and then
 
 With Pachyderm, at scale anyway, this was not so easy. The times when I needed this the most were not during development, 
 though, they were during debugging. And then the hard part was going through to find which chunk of data was
-associated with a failed model run, and track back to get the uuid of that commit. It was doable, but it wasn't smooth. 
+associated with a failed model run, and track back to get the uuid of that commit. 
+It's doable, but it's not smooth. 
 
 ----
 
