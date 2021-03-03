@@ -1,10 +1,8 @@
 ---
-title: "Dvc_vs_pachyderm"
-date: 2021-01-27T13:13:57-08:00
-draft: true
+title: "DVC_vs_Pachyderm"
+date: 2021-03-03T13:13:57-08:00
+draft: false
 ---
-
-# DVC vs. Pachyderm
 
 I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that's why 
 we have forks, and spoons, and sometimes when we're camping, sporks. Although Pachyderm claims to use a git-style 
@@ -18,10 +16,15 @@ on my own.
 # High-level comparison
 
 Both DVC and Pachyderm can:
+
 - track and save data and ML models 
+
 - connect data transformation steps and models in pipelines
+
 - switch between versions easily*
+
 - easily pull in data from cloud storage, and push back out
+
 - facilitate work on a shared development server (or cluster, in the case of Pachyderm)
 
 One major difference is that Pachyderm expects you to use kubernetes. You can run it locally with minikube, but 
