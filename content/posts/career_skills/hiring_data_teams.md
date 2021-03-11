@@ -42,7 +42,14 @@ but couldn't hire for various reasons.
 
 ## Step 3. Phone screen
 
-• SQL vs. python
+*Answer a deceptively simple question: When would you use SQL vs. python?*
+
+What I'm looking for what I ask this: 
+
+1. Can I understand your answer? Are you able to express your thoughts clearly? 
+2. Does your answer make sense? Are you able to give examples to support your reasoning? 
+3. Are you familiar with these tools? Are you honest about your experience level if you've used one more 
+than the other, and are you thoughtful about how that affects your choices?
 
 *Tell me about a project you did, or a job you had where you learned something.*
 
@@ -60,17 +67,24 @@ compare across candidates.
 
 Here are the basics I try to cover, and some people need more prompting than others:
 
-1. What was the business proble you were trying to solve?
+1. What was the business problem you were trying to solve?
 2. What approaches did you consider? 
 3. Where did the data come from? 
 4. What did you end up doing? 
 5. Who else worked on this project with you? How was the work divided?
 6. What was the end result of your project? Was it successful? How could you tell? 
 7. What would you do differently if you could do it over again? 
+8. What did you like best and least about this project?
 
+You'll notice that the better candidates can communicate at both high and low levels, that is, 
+they can talk about the big picture and business impact, as well as discussing the technical details, 
+trade-offs of the choices they made, and think critically about what could've gone better. 
+
+----
 Having said all that, if you have to hire very junior people, that's not going to work. They won't 
 have projects they can talk about that are directly relevant to the role, or they will have been mostly
-just following directions. In those cases, it's hard to get a sense for whether they can handle responsiblity. 
+just following directions. In those cases, it's hard to get a sense for their work ethic, 
+and whether they can work well with others, or handle responsiblity. 
 
 *Story time*: I remember interviewing a technicians for one lab I worked in. We didn't have any 
 candidates (college students or recent graduates) who had experience with breeding, feeding, and otherwise maintaining
@@ -90,8 +104,10 @@ he was kind of disorganized and unreliable, and unwilling to
 take on much responsibility without our having to nag him, for example, 
 to keep on top of things that were part of his job, like ordering supplies.  
 
-Point being, think carefully about what qualities you want for the role, and hire based on that. More on this in 
-the section below about building teams. 
+Point being, think carefully about what qualities you want for the role, and what the team needs,
+and interview accordingly. 
+
+More on this in the section about building teams. 
 
 ## Step 4. Take-home (or code pairing, though no one has chosen that when I offered it)
 
