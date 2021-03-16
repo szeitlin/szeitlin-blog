@@ -4,17 +4,16 @@ date: 2021-03-11T11:35:05-08:00
 draft: true
 ---
 
-• Motivation
+This is one of those posts that I'm writing mostly because I'm still frequently hearing people say they're struggling
+with the question of how to interview data people. I've blogged and spoken previously about the misery of being an interviewee, 
+so suffice it to say I have a ton of empathy for how awful it is to go through a bad interview process, and how disappointing it is to 
+go through a long, grueling interview and not get an offer. 
 
 # How I hire for data teams
 
 After many years in research science, where I watched a lot of science presentations and helped interview
 a large number of graduate students and postdocs and faculty (I never counted how many), I'm a big fan
 of learning from what other people have done, rather than reinventing the wheel. 
-
-I've also blogged and spoken previously about the misery of being an interviewee, so suffice it to say I have
-a ton of empathy for how awful it is to go through a bad interview process, and how disappointing it is to 
-go through a long, grueling interview and not get an offer. 
 
 I'm also really an engineer in the way I think about things, which is to say I like to iteratively improve 
 on any processes I develop. If it's working, great, don't fix it if it ain't broke. 
@@ -25,20 +24,83 @@ So here's my current process, partly based off of what the Product Hackers were 
 at Yahoo, and partly based off my own observations of what has worked well over the last few years,  
 and what didn't. 
 
-I'm not saying it's perfect, but I've been happy with the candidates I hired. 
+I'm not saying it's perfect, but I've been happy with the candidates that I've hired, and the teams that I've built. I'm 
+always looking for candidates who bring complementary skill sets, and whose personalities work well together. 
 
-I'll also talk a bit about having to miss out on candidates I wanted
-but couldn't hire for various reasons. 
+I'll also talk a bit about having to miss out on candidates I wanted but couldn't hire for various reasons. 
 
-## Step 1. Outreach
+## How I think about hiring
 
-• Advertising in diverse networks. Pounding the pavement myself. 
+In my research career, we did a lot of screening. We screened samples of cells or DNA or antibodies almost daily. 
+Some of it is just a numbers game, and has to do with sampling. Some of it has to do with how you do your quality assessments. 
+This basically boils down to two keys to success:
+
+1) Start with the most diverse population you can get. 
+2) Use the right filters.
+
+Here are the things I always prioritize, regardless of the team, though not always in this order. Your needs may be different. 
+
+1) communication skills
+2) curiosity
+3) work ethic
+4) willingness to learn from everyone
+5) ability to work independently
+6) ability to work with others
+7) technical aptitude. 
+
+## Step 1. Outreach: start with the most diverse population you can get. 
+
+• Advertise in diverse networks. Go out and meet people. 
+
+Don't just stick a job ad on the web and wait for people to apply. 
+
+If you're having trouble finding diverse candidates, either you're not looking, or your company is already too homogenous, and 
+it sends a message that either a) you haven't prioritized this, or b) you're biased. Maybe both. 
+
+Do think about how your job ad is written. Here's a map of how some common red-flag words sound to many candidates: 
+
+     {'passionate': 'no work-life balance',
+      'rockstar': 'elitist',
+      'fast-paced': 'highly stressful, disorganized work environment'}
+
+Do break your ad into "essential" and "nice-to-have" skill sets. 
+
+If you're not sure what skills the team needs most, you shouldn't be hiring anyone yet. 
+
+And then: go to meetups. Join slack groups. MEET PEOPLE. Ask around. Be approachable. As hiring manager, you should
+take calls with anyone who asks who seems potentially qualified.  
+
 
 ## Step 2. Resumé review
 
-• Content
+A note here: I have hired people whom I met via a Slack group or a conference and their resumé wasn't the first thing
+I knew about them. It's worth thinking about how much the resumé really captures about what a person is like to work with.
 
-• Verbosity and layout
+• **Content**
+
+Don't get hung up on what schools people went to, what they studied, or where else they've worked.
+ 
+Consider candidates from big companies and small ones, from academia and from industry. 
+
+*Don't assume you can tell much about a person from their resumé alone.* 
+
+The savvy candidate will get someone to help them with formatting, which may help them stand out from the crowd. 
+That can help showcase their skills, which is great, but it can also be misleading. 
+
+You'll have to talk to them to find out if there's any substance behind the shine. 
+
+• **Verbosity and layout**
+
+One thing I look at carefully is whether the resumé seems organized. I don't care if they've used bullet points or 
+sentences, as long as the communication about what they did is clear.  
+
+If the resumé seems jam-packed with buzzwords, I'm going to drill down on that (a little) in the phone screen. 
+
+If they've been judicious in what they chose to emphasize about their 
+past experience, that suggests to me that they're thoughtful and focused on quality (or they had help). 
+
+It's not necessarily a bad thing if they had help with formatting, if anything it suggests they know how to find 
+resources for career growth and take advantage of them. And they understand the importance of communication. 
 
 ## Step 3. Phone screen
 
