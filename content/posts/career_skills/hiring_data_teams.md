@@ -173,13 +173,48 @@ More on this in the section about building teams.
 
 ## Step 4. Take-home (or code pairing, though no one has chosen that when I offered it)
 
-• Tiered approach
+• **Tiered approach**
 
-• Structured data
+The best interview questions work for candidates at all levels. More senior candidates will make it further and their
+answers will be more sophisticated, but ideally we still want to level-set with a series of assessments. So I use the same 
+take-home question for everyone, though I re-do it for each company. 
 
-• Summary statistics
+Note: always use real (sanitized) data, which is relevant for the job. Trick questions are the wrong filter. 
 
-• Room to tell a story
+• **Structured data**
+
+The most basic level for a data person is, can they handle structured data, and extract information from it. Everyone should
+be able to do this, from an entry-level analyst to a senior machine-learning engineer or data engineer. 
+
+I always give them total freedom to use whatever tools are within the realm of things we typically use on the team - 
+usually that would be vanilla python, pandas, SQL, scala, or java. Maybe R or Julia if that's really all they know how to use. 
+Depends on the role and the team. 
+
+I start by giving them a CSV, usually a time series of some kind, and their task is to clean the data, 
+answer some basic questions about it, and then tell me a data story (see below) about what they observed. This part should be fun! 
+
+They can build models if they want, but it's not required. 
+
+I try to choose data sets that I think are representative of
+the types of things we see, and I sometimes use a trick that my team at Yahoo used, which is to dirty up the data a bit on purpose. 
+Maybe drop some rows, mangle a couple of dates, just to give them some things to work with. 
+
+This part also shouldn't take more than an hour or two at most. 
+
+• **Summary statistics**
+
+At a minimum, I expect everyone from analyst to data scientist to engineer should be able to use the right summary statistics. 
+They should know the difference between a median and a mean, and why it matters. I explicitly ask them to answer some of these
+kinds of questions, again just for level setting, and to demonstrate that they can follow directions. 
+
+For a more senior person, this should be trivial. I'm not quizzing them on statistics jargon or anything like that (I personally 
+have a terrible memory for that sort of thing anyway), I want to know if they understand the _concepts_, and if they can reason
+and communicate about things like the size of the data set, how they would divide up subsets of the data and why. 
+
+• **Room to tell a story**
+
+
+
 
 • Unstructured data
 
