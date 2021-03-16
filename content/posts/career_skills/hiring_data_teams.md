@@ -171,7 +171,25 @@ and interview accordingly.
 
 More on this in the section about building teams. 
 
-## Step 4. Take-home (or code pairing, though no one has chosen that when I offered it)
+## Step 4a. Take-home (or code pairing, though no one has chosen that when I offered it)
+
+I should mention here, because I almost forgot to include it, that I give the candidate
+multiple days to work on the take-home, even though I only expect them to spend a couple of hours on it. 
+Part of the idea here is that they can work at their convenience. 
+
+It's supposed to be sort of like a real, though brief, work experience. It's open-book. 
+I ask them to disclose any resources they used (stack overflow, asking friends, etc. are all fine). 
+
+This part is important: I schedule a phone call in the middle of the take-home. 
+This is another trick I learned from my team at Yahoo. 
+
+I give the candidate time to look over the data, and maybe start working, 
+and I encourage them to come up with questions to ask me. 
+
+I've never hired anyone who had zero questions during that phone call. 
+
+I have had one or two people refuse to do a take-home, and they also turned down a 
+live code-pairing option. 
 
 • **Tiered approach**
 
@@ -199,7 +217,7 @@ I try to choose data sets that I think are representative of
 the types of things we see, and I sometimes use a trick that my team at Yahoo used, which is to dirty up the data a bit on purpose. 
 Maybe drop some rows, mangle a couple of dates, just to give them some things to work with. 
 
-This part also shouldn't take more than an hour or two at most. 
+This part shouldn't take more than an hour. 
 
 • **Summary statistics**
 
@@ -213,17 +231,95 @@ and communicate about things like the size of the data set, how they would divid
 
 • **Room to tell a story**
 
+I want to hire people who can think creatively, and dig deeper, without my having to tell them what to do
+every step of the way. This doesn't require a ton of experience, although it can help. Mostly it requires
+curiosity. 
+
+It's really important to me that everyone on the team can:
+ 
+1) frame what questions they thought of while they were exploring data and/or cleaning data, 
+2) the steps they took to answer those questions, 
+3) what they learned. Were they surprised by the results? Why or why not? 
+
+This could be as simple as "I initially assumed that the data set only covered March, but 
+when I checked, I saw that there are a couple of days in April, so I had to group the 
+summary statistics differently than I did at first."
+
+Or it might be something like "I wanted to see what features were predictive of xyz, so I built a model"
+
+Or it might be a bunch of data visualizations. 
+
+Or all of the above. 
+
+Ideally, I want a team where everyone sees different sides of the elephant. 
 
 
+• **Unstructured data**
 
-• Unstructured data
+For more senior candidates or people coming from more of a software engineering/computer science 
+background, I also include a sample of unstructured data. 
 
+This might be a file with a bunch of log lines, or a json file that isn't entirely consistent with 
+some nested fields, or in one case, I used the paginated output from a particular type of database that
+included multiple kinds of messy stuff. 
+
+I always choose something that I was able to clean up and analyze in an hour or less. 
+
+In this case, I'm looking for all the same things as above, plus I care a lot more about the code. 
+I want to see logging, tests, error handling. 
+
+This has turned out to be a great litmus test for candidates with more coding experience, because there are
+so many different ways to parse a file. 
+
+I had a couple of people who used a dead-letter box for bad rows. 
+
+I had one person who contacted me to ask which fields mattered, before unpacking everything (I really really 
+wanted to hire her, but she ended up going elsewhere). 
+
+I had one person who wrote some perfectly decent code, but just blindly unpacked and 
+included everything in the input file (that was a no-hire). 
+
+Not everyone does the unstructured data part. I leave it up to the candidate whether they want to try it. 
+
+## Step 4b. Review the take-home and do a follow-up phone call. 
+
+I always do a phone call when I'm done reviewing the take-homes, to give the person a chance to tell me 
+what they liked or didn't like, what was hard or easy, and what they spent the most time on. 
+
+I've found this is really useful for improving the take-home, and helps me decide who to move onto 
+the next stage. 
+
+By this point I'll have had 3 phone calls with each candidate, on 3 different days, so even if each call is only 15 minutes, 
+it's not a huge time commitment, and it's really worthwhile for me to get to know them a little better. 
 
 ## Step 5. Presentation
 
-• 1:1 with me for more junior people
+If the take-home looks good, I'll ask them to do a video call to present their work. 
 
-• For the whole team if they're more senior
+This step is critical for weeding out cheaters, and seeing how the candidate deals with being asked
+questions or offered feedback. 
+
+I've had the person explode with anger when I asked something along the lines of "I see you did xyz, did you consider
+abc instead?" That didn't make a great first impression. 
+
+I've had the person who seemed unable to talk through what their own code was doing, even with help, and 
+was genuinely surprised and confused when we pointed out some pretty egregious logical errors. 
+
+Ultimately, I'm looking for confirmation that people did their own work, and even if they had help (which is fine), 
+they can explain the code they ended up using. 
+
+• **1:1 with me for more junior people**
+
+One of the mistakes I made in the past was having the candidate present for 2 or more people. 
+This is too much for junior folks, they get pretty freaked out and tend to underperform. 
+
+• **For the whole team if they're more senior**
+
+If the candidate is more experienced and they don't have a phobia of public speaking, I'll ask them to 
+walk the whole team through their findings. More experienced candidates will make slides anyway, and they're
+usually happy to discuss their reasoning, their approaches, and their insights. If they're really 
+outstanding, we might include this as part of the "onsite".
+
 
 ## Step 6. "Onsite" aka "meet more people + some other stuff"
 
