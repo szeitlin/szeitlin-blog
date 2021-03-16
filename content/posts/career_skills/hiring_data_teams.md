@@ -21,8 +21,7 @@ on any processes I develop. If it's working, great, don't fix it if it ain't bro
 But I think we can all agree that *hiring in tech is still a work in progress.* 
 
 So here's my current process, partly based off of what the Product Hackers were doing when I joined them 
-at Yahoo, and partly based off my own observations of what has worked well over the last few years,  
-and what didn't. 
+at Yahoo, and partly based off my own observations of what has worked well over the last few years, and what didn't. 
 
 I'm not saying it's perfect, but I've been happy with the candidates that I've hired, and the teams that I've built. I'm 
 always looking for candidates who bring complementary skill sets, and whose personalities work well together. 
@@ -40,7 +39,7 @@ This basically boils down to two keys to success:
 
 Here are the things I always prioritize, regardless of the team, though not always in this order. Your needs may be different. 
 
-1) communication skills
+1) communication skills (both written and verbal)
 2) curiosity
 3) work ethic
 4) willingness to learn from everyone
@@ -68,7 +67,9 @@ Do break your ad into "essential" and "nice-to-have" skill sets.
 If you're not sure what skills the team needs most, you shouldn't be hiring anyone yet. 
 
 And then: go to meetups. Join slack groups. MEET PEOPLE. Ask around. Be approachable. As hiring manager, you should
-take calls with anyone who asks who seems potentially qualified.  
+take calls with anyone who asks who seems potentially qualified. If you're really getting too many candidates that look
+good and you can't screen them all, get a recruiter to help, but you'll have to give them very specific instructions
+about what to ask, and what qualities to prioritize. 
 
 
 ## Step 2. Resumé review
@@ -106,17 +107,20 @@ resources for career growth and take advantage of them. And they understand the 
 
 *Answer a deceptively simple question: When would you use SQL vs. python?*
 
-What I'm looking for what I ask this: 
+What I'm looking for when I ask this: 
 
 1. Can I understand your answer? Are you able to express your thoughts clearly? 
 2. Does your answer make sense? Are you able to give examples to support your reasoning? 
 3. Are you familiar with these tools? Are you honest about your experience level if you've used one more 
 than the other, and are you thoughtful about how that affects your choices?
 
-*Tell me about a project you did, or a job you had where you learned something.*
+*Tell me a data story about a project you did, or a job you had where you learned something.*
 
 Talking about past projects is best, but that only works well for senior people, 
 and it also takes some experience as the interviewer.
+
+Note that I don't care if they're talking about a software project. It could be a science project
+or a math project. It should be something that involved data.  
 
 To really do it well and make it fair, you have know what to ask, what to listen for, 
 when to dig into something someone mentions in passing, etc. 
@@ -148,9 +152,9 @@ have projects they can talk about that are directly relevant to the role, or the
 just following directions. In those cases, it's hard to get a sense for their work ethic, 
 and whether they can work well with others, or handle responsiblity. 
 
-*Story time*: I remember interviewing a technicians for one lab I worked in. We didn't have any 
+*Story time*: I remember interviewing a technician for one lab I worked in. We didn't have any 
 candidates (college students or recent graduates) who had experience with breeding, feeding, and otherwise maintaining
-Xenopus Laevis. I ended up asking people about their previous work experience of all kinds. 
+*Xenopus Laevis*. I ended up asking people about their previous work experience of all kinds. 
 
 I hired one student who had worked with her parents, who owned a Subway sandwich shop. She was
 prompt and efficient, took notes, referred back to her own notes frequently, and communicated clearly. 
@@ -173,29 +177,45 @@ More on this in the section about building teams.
 
 ## Step 4a. Take-home (or code pairing, though no one has chosen that when I offered it)
 
-I should mention here, because I almost forgot to include it, that I give the candidate
-multiple days to work on the take-home, even though I only expect them to spend a couple of hours on it. 
-Part of the idea here is that they can work at their convenience. 
+*Why do a take-home at all?*
 
-It's supposed to be sort of like a real, though brief, work experience. It's open-book. 
+I'll admit, I hate giving homework. I really do. 
+But it's mostly just a discussion tool.
+It's a way for us to talk about work together, and puts all the candidates on equal footing. 
+
+It also gives me a lot of ammunition in case anyone pushes back on a candidate I want to hire. If all we have to 
+go on is subjective conversations, and no recent technical work product to reference, if someone comes back
+and says "this person isn't technical enough", or whatever, argues that they should be an SE2/3 instead of an 
+SE3/4, it can help to persuade them that this is the right person for the job. 
+
+So to try to make it as pleasant as possible, I give the candidate
+multiple days to work on the take-home, even though I only expect them to spend a couple of hours on it. 
+This way they can work at their convenience. 
+
+It's supposed to be a facsimile of a real, though brief, work experience. It's open-book. 
 I ask them to disclose any resources they used (stack overflow, asking friends, etc. are all fine). 
 
-This part is important: I schedule a phone call in the middle of the take-home. 
+I schedule a phone call in the middle of the take-home. 
 This is another trick I learned from my team at Yahoo. 
 
 I give the candidate time to look over the data, and maybe start working, 
-and I encourage them to come up with questions to ask me. 
+and I encourage them to come up with questions to ask me. I learned that I have to tell them 
+it's part of the evaluation, because otherwise they'll think they're not supposed to ask anything. 
 
-I've never hired anyone who had zero questions during that phone call. 
+I've never hired anyone who had zero questions during that phone call. If they have no questions,
+that usually means they didn't start on the take-home yet, they didn't bother to prepare 
+for the phone call, or they lack curiosity, or all of the above.  
 
 I have had one or two people refuse to do a take-home, and they also turned down a 
-live code-pairing option. 
+live code-pairing option. In one of those cases, the person already had a full-time job, and 
+wasn't sure how much she wanted a new job. 
 
 • **Tiered approach**
 
 The best interview questions work for candidates at all levels. More senior candidates will make it further and their
 answers will be more sophisticated, but ideally we still want to level-set with a series of assessments. So I use the same 
-take-home question for everyone, though I re-do it for each company. 
+take-home assignment for everyone, though I re-do it for each company, and each cohort. I haven't had 
+problems with candidates cheating, but I figure why set yourself up for having to worry about that? 
 
 Note: always use real (sanitized) data, which is relevant for the job. Trick questions are the wrong filter. 
 
@@ -206,7 +226,8 @@ be able to do this, from an entry-level analyst to a senior machine-learning eng
 
 I always give them total freedom to use whatever tools are within the realm of things we typically use on the team - 
 usually that would be vanilla python, pandas, SQL, scala, or java. Maybe R or Julia if that's really all they know how to use. 
-Depends on the role and the team. 
+Depends on the role and the team. I don't want to deal with reviewing submissions in javascript or SAS, though I've 
+gotten them before. So I generally encourage people to use python if they can. 
 
 I start by giving them a CSV, usually a time series of some kind, and their task is to clean the data, 
 answer some basic questions about it, and then tell me a data story (see below) about what they observed. This part should be fun! 
@@ -227,7 +248,7 @@ kinds of questions, again just for level setting, and to demonstrate that they c
 
 For a more senior person, this should be trivial. I'm not quizzing them on statistics jargon or anything like that (I personally 
 have a terrible memory for that sort of thing anyway), I want to know if they understand the _concepts_, and if they can reason
-and communicate about things like the size of the data set, how they would divide up subsets of the data and why. 
+and communicate about things like the size of the data set, and how they would divide up subsets of the data. 
 
 • **Room to tell a story**
 
@@ -281,6 +302,10 @@ included everything in the input file (that was a no-hire).
 
 Not everyone does the unstructured data part. I leave it up to the candidate whether they want to try it. 
 
+I should note that I don't care if they got through the whole thing, or got a perfect solution. 
+I'm more interested in whether they tried, what approach they took, how far they got, and if they're
+able to articulate how it went. 
+
 ## Step 4b. Review the take-home and do a follow-up phone call. 
 
 I always do a phone call when I'm done reviewing the take-homes, to give the person a chance to tell me 
@@ -323,24 +348,143 @@ outstanding, we might include this as part of the "onsite".
 
 ## Step 6. "Onsite" aka "meet more people + some other stuff"
 
-• Fill the gaps from the take-home
+The main point of the onsite is for the team to meet the candidate, if they haven't already, and for
+the candidate to spend more time getting to know the team they'll hopefully be joining. 
+It's also important for the candidate to meet people in other parts of the company. 
 
-• See how they talk with nontechnical stakeholders
+• **Fill the gaps from the take-home**
 
-• Code review exercise
+If they haven't done any SQL as part of the take-home, and it's an important part of the job (this
+depends on the company and the role), we'll have them do something simple at the onsite to demonstrate
+that they have basic skills. I don't care if people can't do windowing functions off the top of
+their head (I usually can't). I want to know that they at least have a basic sense of how to retrieve data
+and the order of execution of SQL statements. 
+
+If they ran out of time to build any models because they were futzing with code, or they spent all their
+time on models but didn't do any polishing on their code, this is the time to get more information
+about their actual experience level with these things. If they're more senior, we'll have them talk through
+a potential modeling project with a more junior team member. 
+
+• **See how they talk with nontechnical stakeholders**
+
+For data roles, it's really important to be able to talk to people in all parts of the company. 
+We are often the glue. In my last role, we supported basically the whole company. We had projects for 
+Product, Engineering, Executive, Customer Support, Finance, Sales, Marketing, and sometimes Ops too. 
+
+When I set up one of these interviews, I'm looking to evaluate the following:
+
+1. Can the candidate re-frame the business question as a data question?
+2. Do they know how to scope a problem and estimate timelines for projects?
+3. Are they willing and able to communicate with someone who doesn't know, and doesn't need to know, all the 
+technical details of a potential solution?
+4. Do they know when to under-promise and over-deliver? Do they know how to politely push back 
+when someone is asking if we can build them the moon and have it done by last week?
+
+• **Code review exercise**
+
+This is one of those things that I haven't always done, but I think everyone should. One of the first
+startups I worked at did this as part of the interview, and it was helpful. The expectations are going to be
+different depending on the person's level, and it says a lot about how they'll participate on the team. 
+
+The take-home exercise I give is a greenfield project. But a lot of what we do in real life is re-use
+and revise other people's old code, and help each other iterate. 
+
+• **Can a junior candidate read and understand an unfamiliar piece of code?**
+
+For a junior candidate, I'd give them a piece of code that we know runs just fine as-is, and is maybe 
+currently in use. 
+
+This is similar to the take-home in the sense that I just want them to talk through what they think 
+the code is doing, and how it works. 
+
+They should be asking questions, not making assumptions. If they have
+suggestions for improvements, that's great. If not, that's ok too. 
+
+• **Can a senior candidate give constructive feedback?**
+
+How to do code reviews is a whole other can of worms, and other people have written a lot about it. So 
+I'm not going into details on that here. [todo: add a link or a few]
+
+Code review is critical to how the team grows, 
+maintains institutional knowledge, and levels up. Good code review should speed up
+productivity, not beat down morale. 
+
+A senior person should be able to make useful suggestions for improving 
+code, and they should be able to do it in a non-judgmental, non-blamey, non-mansplainy way. 
+They shouldn't feel it's their job to find something to pick on just to be able to 
+say they found something that needed to be fixed. 
+
+They should also be ok with peers and junior people on the team asking clarifying questions 
+about their feedback, or pushing back on it, or maybe just ignoring it. They should be able to explain
+the reasoning for their suggestions, and prioritize easy fixes over hard ones, and be able to discuss
+the trade-offs of using imperfect code as time or other constraints require, 
+and how they decide when to do that vs. when to undertake larger cleanup projects. 
+
+Here I'm mostly looking to see how well this person negotiates with at least one other person
+on the team. 
 
 ## Successes: How this process correlates with on-the-job performance
 
-• People who did well on the interview actually did better on the job. No one did worse. 
+Why should you use my process? Well, maybe you don't want to use all of it. It's pretty involved.
+But hopefully some of the stuff I'm mentioning here is useful for you. On the other hand, I'm really proud
+of the teams I've built, and I wouldn't mind if this became the new standard for data hiring. 
 
-• Building a team with a diverse set of talents. 
+• **People who did well on the interview actually did better on the job. No one did worse.**
+
+Everyone I have hired has impressed me. I've had a couple people who were really strong on math and SQL, 
+a couple who were great at data visualization, a couple who were great at coding, and everyone was good at
+working with stakeholders. They also all helped each other, which as a manager meant I could focus on 
+helping out in other ways. 
+
+So I'd say my filters worked pretty well in the sense that I hired people who performed
+well on the job, and made the team stronger. 
+
+• **Building a team with a diverse set of talents.**
+ 
+It's so important to hire people with different strengths. It's important to have an open mind about what 
+you're going to find. I look for aptitude and the stuff I can't teach: curiosity and work ethic. 
 
 ## Failures: people I couldn't hire
 
-• Unintentionally terrified the candidate, more than once. 
+• **Unintentionally terrified the candidate, more than once.**
+ 
+We've probably all done this. There were a couple of candidates who had to deal with 2:1 interviews, and I think
+it freaked them out and they didn't do as well as they would have otherwise. Try to avoid doing this, especially
+with junior candidates. It's too intimidating, and it's not worth it for whatever you think you're gaining
+by having someone shadow or whatever. They can shadow in a mock interview instead. 
 
-• Lost a candidate I really wanted because she got a better offer. 
+• **Lost a candidate I really wanted because she got a better offer.**
 
-• Lost a candidate because I went along with a company process that I knew would not set her up for success. 
+This has happened to me twice now, and in both cases I was disappointed that we couldn't offer
+what these candidates were worth. I'm still glad they interviewed with us, though, because it helped me
+benchmark expectations and helped educate the less experienced members of the team about what to look for. 
+
+• **Lost candidates because of visa problems.**
+
+Sometimes you find the person you think would be best for the team, and it turns out they're not 
+authorized to work in the United States. Sometimes the timing just doesn't work out, or your company 
+can't sponsor anyone. This is always frustrating because it ends up feeling like a waste of everyone's time. 
+
 
 ## Building Teams
+
+At the end of the day, or the very long blog post, all I'm trying to do when I hire
+is find people who bring some skills that the team needs, and have a conversation. 
+It's not a test, I'm not grading anyone or evaluating them as people. It's just a small 
+snapshot and it can be hard to make a decision based on a small number of encounters. 
+This is where I rely on the rest of the team to give me their perspective. 
+
+It's also important to keep in mind that you always want to have at least one junior person, 
+and at least one woman in the interview loop.
+
+I've worked at places where I was the only woman on the engineering team, which meant I met
+with probably more than my fair share of candidates (almost all of them were men). 
+
+I also had an interesting experience once with a candidate who was perfectly respectful toward me,
+but treated the (young-looking) female head of Product like dirt. I was surprised, but we ended up 
+rejecting the guy. I don't usually wield the PhD like a weapon, but in this case, it shielded me from this 
+guy's bad attitude. 
+
+I wouldn't hire anyone who made any team member uncomfortable. Most of all, I want my teams
+to build trust and be able to rely on each other. That means everyone has to be 
+respectful and supportive of each other, first and foremost. 
