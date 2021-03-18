@@ -538,3 +538,6 @@ like data. We don't love it when there's radio silence, or we're getting cryptic
 I've mostly focused this post on aspects specific to hiring for data positions, but a lot of this is 
 just good hiring practice. Tell your candidates what to expect. Try to be aware of any possible biases, 
 and take steps to address those.
+
+
+*Special thanks to Ray Buhr for feedback on the draft version of this post.*
