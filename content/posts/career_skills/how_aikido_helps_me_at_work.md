@@ -36,7 +36,7 @@ So the first thing we learn is to try to see the other person’s perspective.
 This is done before trying to use any ‘martial’ techniques. We look where the other person is looking, 
 literally, and we try to feel where their energy is directed. 
 
-This is the most important and the hardest to learn. Every partner is different. 
+This is the most important piece. Every partner is different. 
 But if this part is done correctly, the conflict ends before it begins. 
 
 We also have to remember that sometimes we can be our own worst enemy. One of the most important skills
@@ -63,7 +63,7 @@ They’re also the most widely applicable off the mat.
 
 Here are the top three concepts I try to apply every day as an engineer and manager. 
 
-1. _Failure is the key to success; each mistake teaches us something._     ---- Morihei Ueshiba
++ **_Failure is the key to success; each mistake teaches us something._     ---- Morihei Ueshiba**
 
 “Fail fast” is a common adage in engineering and scientific research, meaning: if something isn’t going to work, 
 it’s better to find that out sooner than later. It’s essential to get comfortable with failure 
@@ -80,8 +80,7 @@ being thrown, or pinned. This may seem counterintuitive, but if you fall safely,
 
 Failing fast in engineering is similar, since it’s less costly to fail sooner, before you’ve invested a lot of time, 
 money, and effort in building something that isn’t going to work. 
-
-2. **_Simplicity is the most powerful, and the hardest to learn._** 
++ **_Simplicity is the most powerful._** 
 
 At the beginning of learning anything new, we all try too hard. We think too much, we’re stiff and resistant, we 
 overcomplicate everything, and we try to muscle our way through. 
@@ -93,8 +92,7 @@ Complicated solutions aren’t necessarily better or worse than simple ones.
 But the most elegant, simplest things can be deceptively hard to get right. 
 
 It’s true for writing, and code, and martial arts, and business impact. 
-
-3. **_Always go back to Beginner’s Mind_**
++ **_Always go back to Beginner’s Mind_**
 
 > _*Shoshin* is a concept from Zen Buddhism meaning beginner's mind. 
 It refers to having an attitude of openness, eagerness, and lack of preconceptions when studying a subject, 
