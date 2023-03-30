@@ -80,6 +80,8 @@ being thrown, or pinned. This may seem counterintuitive, but if you fall safely,
 
 Failing fast in engineering is similar, since it’s less costly to fail sooner, before you’ve invested a lot of time, 
 money, and effort in building something that isn’t going to work. 
+
+
 + **_Simplicity is the most powerful._** 
 
 At the beginning of learning anything new, we all try too hard. We think too much, we’re stiff and resistant, we 
@@ -91,7 +93,9 @@ and become more efficient in our actions.
 Complicated solutions aren’t necessarily better or worse than simple ones. 
 But the most elegant, simplest things can be deceptively hard to get right. 
 
-It’s true for writing, and code, and martial arts, and business impact. 
+It’s true for writing, and code, and martial arts, and business impact.
+
+
 + **_Always go back to Beginner’s Mind_**
 
 > _*Shoshin* is a concept from Zen Buddhism meaning beginner's mind. 
