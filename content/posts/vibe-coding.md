@@ -1,10 +1,10 @@
 ---
 title: "Vibe Coding"
 date: 2025-07-24T10:23:20-07:00
-draft: true
+draft: false
 ---
 
-# Some observations on vibe coding
+### Some observations on vibe coding
 
 I get a lot of questions about working with LLMs. Something I hear people discussing a lot is whether AI-generated code is 
 better, or worse, or just more evil than human-generated code. I don't think it's an either/or question. To me, it's just another tool:
