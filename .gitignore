@@ -1,2 +1,6 @@
 public/
 .idea/
+.DS_Store
+.hugo_build.lock
+new/.DS_Store
+new/.hugo_build.lock
