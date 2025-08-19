@@ -1,7 +1,7 @@
 ---
 title: "Remote Work Best Practices"
 date: 2025-08-18T14:37:45-07:00
-draft: true
+draft: false
 ---
 Recently, I’ve been surprised to note how many companies aren’t just returning 
 to offices (ugh, open offices are the worst!), 
