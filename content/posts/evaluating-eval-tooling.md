@@ -11,11 +11,17 @@ glaring omissions for what I thought were obvious features, at worst.
 
 Now, to be fair, what I’m asking for from an eval tool is kind of a lot. 
 I want something that can 
+
 a) send my prompts (of any size), 
-b) to the model (on any of the main platforms - Anthropic, AWS, etc) 
+
+b) to the model (on any of the main platforms - Anthropic, AWS, etc), 
+
 c) using my API keys, 
+
 d) help me track costs, 
-e) handle all my datasets
+
+e) handle all my datasets,
+
 f) include some data visualizations and statistical tooling to make it easy for me to tell if my experiments are working or not. 
 
 So here are my suggestions for anyone with an eval tool they're trying to get me to adopt. 
