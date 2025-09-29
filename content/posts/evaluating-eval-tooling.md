@@ -1,7 +1,7 @@
 ---
 title: "Evaluating Eval Tooling"
 date: 2025-09-29T14:40:36-07:00
-draft: true
+draft: false
 ---
 This post is about things I wish all eval tools provided (but many don’t). 
 
