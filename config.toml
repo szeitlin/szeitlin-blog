@@ -4,3 +4,4 @@ title = ""
 theme = "ananke"
 pygmentsCodeFences = true
 buildDrafts = true
+mainSections=["posts", "airflow", "biking_data", "career_skills", "career_transition", "engineering", "recruiting", "statistics"]
