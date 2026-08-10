@@ -1,7 +1,47 @@
 baseURL = "https://szeitlin.github.io/"
 languageCode = "en-us"
-title = ""
+title = "p < Whatever"
 theme = "ananke"
 pygmentsCodeFences = true
 buildDrafts = true
 mainSections=["posts", "airflow", "biking_data", "career_skills", "career_transition", "engineering", "recruiting", "statistics"]
+
+[[menu.main]]
+  name = "All Posts"
+  url = "/posts/"
+  weight = 1
+
+[[menu.main]]
+  name = "Engineering"
+  url = "/posts/engineering/"
+  weight = 2
+
+[[menu.main]]
+  name = "Biking Data"
+  url = "/posts/biking_data/"
+  weight = 3
+
+[[menu.main]]
+  name = "Career Skills"
+  url = "/posts/career_skills/"
+  weight = 4
+
+[[menu.main]]
+  name = "Career Transition"
+  url = "/posts/career_transition/"
+  weight = 5
+
+[[menu.main]]
+  name = "Statistics"
+  url = "/posts/statistics/"
+  weight = 6
+
+[[menu.main]]
+  name = "Airflow"
+  url = "/posts/airflow/"
+  weight = 7
+
+[[menu.main]]
+  name = "Recruiting"
+  url = "/posts/recruiting/"
+  weight = 8
